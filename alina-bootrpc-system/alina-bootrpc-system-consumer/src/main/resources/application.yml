@@ -1,0 +1,7 @@
+#spring.application.name=alina-bootrpc-system-consumer
+server:
+  port: 7002
+  session-timeout: 120
+spring:
+  application:
+    name: alina-bootrpc-system-consumer
