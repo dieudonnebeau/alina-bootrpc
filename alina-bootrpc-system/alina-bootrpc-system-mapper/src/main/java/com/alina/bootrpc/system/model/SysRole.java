@@ -3,6 +3,7 @@ package com.alina.bootrpc.system.model;
 import lombok.Data;
 
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -45,8 +46,10 @@ public class SysRole implements Serializable {
     private boolean flag = false;
 
     /** 菜单组 */
+    @Transient
     private Long[] menuIds;
 
     /** 部门组（数据权限） */
+    @Transient
     private Long[] deptIds;
 }

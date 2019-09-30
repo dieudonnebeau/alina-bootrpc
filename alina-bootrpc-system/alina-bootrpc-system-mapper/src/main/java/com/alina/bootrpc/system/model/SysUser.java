@@ -3,6 +3,7 @@ package com.alina.bootrpc.system.model;
 import lombok.Data;
 
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -58,8 +59,10 @@ public class SysUser implements Serializable {
 
     private String remark;
 
+    @Transient
     private SysDept dept;
 
+    @Transient
     private List<SysRole> roles;
 
     public boolean isAdmin()

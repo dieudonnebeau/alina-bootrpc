@@ -21,7 +21,7 @@
 	   from sys_user_online
     </sql>
 
-    <select id="selectOnlineByExpired" parameterType="String" resultMap="SysUserOnlineResult">
+    <select id="selectOnlineByExpired" parameterType="String" resultMap="BaseResultMap">
         <include refid="selectOnlineVo"/> o
         WHERE o.last_access_time <![CDATA[ <= ]]> #{lastAccessTime} ORDER BY o.last_access_time ASC
     </select>
