@@ -258,7 +258,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils
      * @return
      */
     public static Date getNowDate() {
-        return DateUtil.getDateFormat(dateFormat.format(new Date()));
+        return new Date();
     }
 
     /**
