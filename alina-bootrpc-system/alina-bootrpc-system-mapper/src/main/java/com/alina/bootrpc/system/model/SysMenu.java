@@ -3,8 +3,11 @@ package com.alina.bootrpc.system.model;
 import lombok.Data;
 
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author ：迪艾多
@@ -46,4 +49,8 @@ public class SysMenu implements Serializable {
     private Date updateTime;
 
     private String remark;
+
+    /** 子菜单 */
+    @Transient
+    private List<SysMenu> children = new ArrayList<SysMenu>();
 }

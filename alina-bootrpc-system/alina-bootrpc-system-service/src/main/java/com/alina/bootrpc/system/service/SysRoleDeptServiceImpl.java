@@ -7,13 +7,12 @@ package com.alina.bootrpc.system.service;
  * @version:     1.0
  */
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.alina.bootrpc.common.mapper.service.impl.BaseServiceImpl;
 import com.alina.bootrpc.system.facade.ISysRoleDeptService;
 import com.alina.bootrpc.system.mapper.SysRoleDeptMapper;
 import com.alina.bootrpc.system.model.SysRoleDept;
-import org.springframework.stereotype.Service;
 
-@Service(value = SysRoleDeptServiceImpl.BEAN_NAME)
+@Service(version="1.0.0")
 public class SysRoleDeptServiceImpl  extends BaseServiceImpl<SysRoleDeptMapper, SysRoleDept> implements ISysRoleDeptService {
-    public final static String BEAN_NAME = "roleDeptService";
 }

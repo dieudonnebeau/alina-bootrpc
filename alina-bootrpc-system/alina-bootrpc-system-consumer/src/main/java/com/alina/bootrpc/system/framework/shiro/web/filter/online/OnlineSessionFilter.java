@@ -3,9 +3,12 @@ package com.alina.bootrpc.system.framework.shiro.web.filter.online;
 
 import com.alina.bootrpc.common.core.constant.ShiroConstants;
 import com.alina.bootrpc.common.core.enums.OnlineStatus;
+import com.alina.bootrpc.common.core.utils.BlankUtil;
+import com.alina.bootrpc.system.facade.ISysDeptService;
 import com.alina.bootrpc.system.framework.shiro.session.OnlineSession;
 import com.alina.bootrpc.system.framework.shiro.session.OnlineSessionDAO;
 import com.alina.bootrpc.system.framework.util.ShiroUtils;
+import com.alina.bootrpc.system.model.SysDept;
 import com.alina.bootrpc.system.model.SysUser;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -36,6 +39,9 @@ public class OnlineSessionFilter extends AccessControlFilter
     @Autowired
     private OnlineSessionDAO onlineSessionDAO;
 
+    @Autowired
+    private ISysDeptService deptService;
+
     /**
      * 表示是否允许访问；mappedValue就是[urls]配置中拦截器参数部分，如果允许访问返回true，否则false；
      */
@@ -63,7 +69,10 @@ public class OnlineSessionFilter extends AccessControlFilter
                     onlineSession.setUserId(user.getId());
                     onlineSession.setLoginName(user.getLoginName());
 					onlineSession.setAvatar(user.getAvatar());
-                    onlineSession.setDeptName(user.getDept().getDeptName());
+                    SysDept sysDept = deptService.queryByID(user.getDeptId());
+                    if(BlankUtil.isNotBlank(sysDept)){
+                        onlineSession.setDeptName(sysDept.getDeptName());
+                    }
                     onlineSession.markAttributeChanged();
                 }
             }

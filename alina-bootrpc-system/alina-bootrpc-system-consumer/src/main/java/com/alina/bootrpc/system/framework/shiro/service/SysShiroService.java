@@ -8,8 +8,11 @@ import com.alina.bootrpc.system.model.SysUserOnline;
 import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import tk.mybatis.mapper.entity.Example;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author     ：迪艾多
@@ -42,7 +45,9 @@ public class SysShiroService
      */
     public Session getSession(Serializable sessionId)
     {
-        SysUserOnline userOnline = onlineService.queryByID(String.valueOf(sessionId));
+        Map<String , Object> params = new HashMap<>(16);
+        params.put("sessionid" , sessionId);
+        SysUserOnline userOnline = onlineService.queryOneByParams(SysUserOnline.class , params);
         return StringUtils.isNull(userOnline) ? null : createSession(userOnline);
     }
 

@@ -11,9 +11,7 @@ import com.alina.bootrpc.common.mapper.service.impl.BaseServiceImpl;
 import com.alina.bootrpc.system.facade.ISysUserRoleService;
 import com.alina.bootrpc.system.mapper.SysUserRoleMapper;
 import com.alina.bootrpc.system.model.SysUserRole;
-import org.springframework.stereotype.Service;
-
-@Service(value = SysUserRoleServiceImpl.BEAN_NAME)
+import com.alibaba.dubbo.config.annotation.Service;
+@Service(version="1.0.0")
 public class SysUserRoleServiceImpl  extends BaseServiceImpl<SysUserRoleMapper, SysUserRole> implements ISysUserRoleService {
-    public final static String BEAN_NAME = "userRoleService";
 }

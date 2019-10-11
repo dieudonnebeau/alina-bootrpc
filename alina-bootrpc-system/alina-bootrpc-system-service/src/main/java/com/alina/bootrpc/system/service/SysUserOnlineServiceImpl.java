@@ -7,6 +7,7 @@ package com.alina.bootrpc.system.service;
  * @version:     1.0
  */
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.alina.bootrpc.common.core.utils.BlankUtil;
 import com.alina.bootrpc.common.core.utils.DateUtils;
 import com.alina.bootrpc.common.mapper.service.impl.BaseServiceImpl;
@@ -14,15 +15,14 @@ import com.alina.bootrpc.system.facade.ISysUserOnlineService;
 import com.alina.bootrpc.system.mapper.SysUserOnlineMapper;
 import com.alina.bootrpc.system.model.SysUserOnline;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-
-@Service(value = SysUserOnlineServiceImpl.BEAN_NAME)
+@Service(version="1.0.0")
 public class SysUserOnlineServiceImpl  extends BaseServiceImpl<SysUserOnlineMapper, SysUserOnline> implements ISysUserOnlineService {
-    public final static String BEAN_NAME = "userOnlineService";
     @Autowired
     private SysUserOnlineMapper userOnlineMapper;
 
@@ -37,9 +37,9 @@ public class SysUserOnlineServiceImpl  extends BaseServiceImpl<SysUserOnlineMapp
         if(BlankUtil.isNotBlank(sessions)){
             for (String sessionId : sessions)
             {
-                SysUserOnline userOnline = new SysUserOnline();
-                userOnline.setSessionid(sessionId);
-                userOnline = queryOne(userOnline);
+                Map<String , Object> params = new HashMap<>();
+                params.put("sessionid" , sessionId);
+                SysUserOnline userOnline = queryOneByParams(SysUserOnline.class , params);
                 if (BlankUtil.isNotBlank(userOnline))
                 {
                     deleteByID(userOnline.getId());

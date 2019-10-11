@@ -7,13 +7,12 @@ package com.alina.bootrpc.system.service;
  * @version:     1.0
  */
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.alina.bootrpc.common.mapper.service.impl.BaseServiceImpl;
 import com.alina.bootrpc.system.facade.ISysDictTypeService;
 import com.alina.bootrpc.system.mapper.SysDictTypeMapper;
 import com.alina.bootrpc.system.model.SysDictType;
-import org.springframework.stereotype.Service;
 
-@Service(value = SysDictTypeServiceImpl.BEAN_NAME)
+@Service(version="1.0.0")
 public class SysDictTypeServiceImpl  extends BaseServiceImpl<SysDictTypeMapper, SysDictType> implements ISysDictTypeService {
-    public final static String BEAN_NAME = "dictTypeService";
 }

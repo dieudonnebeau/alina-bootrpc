@@ -15,16 +15,17 @@ import com.alina.bootrpc.system.mapper.SysConfigMapper;
 import com.alina.bootrpc.system.model.SysConfig;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service(version="1.0.0")
 public class SysConfigServiceImpl  extends BaseServiceImpl<SysConfigMapper, SysConfig> implements ISysConfigService {
-    public final static String BEAN_NAME = "configService";
 
     @Override
     public String selectConfigByKey(String configKey) {
-        Example example = new Example(SysConfig.class);
-        Example.Criteria criteria = example.createCriteria();
-        criteria.andEqualTo("config_key",configKey);
-        SysConfig sysConfig = queryOneByExample(example);
+        Map<String, Object> params = new HashMap<>(16);
+        params.put("configKey" , configKey);
+        SysConfig sysConfig = queryOneByParams(SysConfig.class , params);
         return BlankUtil.isBlank(sysConfig) ? "" : sysConfig.getConfigValue();
     }
 }

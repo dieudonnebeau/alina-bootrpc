@@ -2,7 +2,6 @@ package com.alina.bootrpc.system.framework.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.alina.bootrpc.common.core.utils.StringUtils;
-import com.alina.bootrpc.common.core.utils.spring.SpringUtils;
 import com.alina.bootrpc.system.framework.shiro.realm.UserRealm;
 import com.alina.bootrpc.system.framework.shiro.session.OnlineSessionDAO;
 import com.alina.bootrpc.system.framework.shiro.session.OnlineSessionFactory;
@@ -13,6 +12,7 @@ import com.alina.bootrpc.system.framework.shiro.web.filter.online.OnlineSessionF
 import com.alina.bootrpc.system.framework.shiro.web.filter.sync.SyncOnlineSessionFilter;
 import com.alina.bootrpc.system.framework.shiro.web.session.OnlineWebSessionManager;
 import com.alina.bootrpc.system.framework.shiro.web.session.SpringSessionValidationScheduler;
+import com.alina.bootrpc.system.framework.util.spring.SpringUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.codec.Base64;

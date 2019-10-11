@@ -6,31 +6,32 @@ package com.alina.bootrpc.system.service;
  * @modified By：
  * @version:     1.0
  */
+import com.alibaba.dubbo.config.annotation.Service;
 import com.alina.bootrpc.common.mapper.service.impl.BaseServiceImpl;
 import com.alina.bootrpc.system.facade.ISysUserService;
 import com.alina.bootrpc.system.mapper.SysUserMapper;
 import com.alina.bootrpc.system.model.SysUser;
-import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
-@Service(value = SysUserServiceImpl.BEAN_NAME)
+import java.util.HashMap;
+import java.util.Map;
+
+@Service(version="1.0.0")
 public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> implements ISysUserService {
-	public final static String BEAN_NAME = "userService";
 
 	@Override
 	public SysUser selectUserByLoginName(String userName) {
 		Example example = new Example(SysUser.class);
 		Example.Criteria criteria = example.createCriteria();
-		criteria.andEqualTo("user_name",userName);
+		criteria.andEqualTo("loginName",userName);
 		return queryOneByExample(example);
 	}
 
 	@Override
 	public SysUser selectUserByPhoneNumber(String phonenumber) {
-		Example example = new Example(SysUser.class);
-		Example.Criteria criteria = example.createCriteria();
-		criteria.andEqualTo("phonenumber",phonenumber);
-		return queryOneByExample(example);
+		Map<String , Object> params = new HashMap<>(16);
+		params.put("phonenumber",phonenumber);
+		return queryOneByParams(SysUser.class , params);
 	}
 
 	@Override

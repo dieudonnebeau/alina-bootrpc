@@ -7,18 +7,17 @@ package com.alina.bootrpc.system.service;
  * @version:     1.0
  */
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.alina.bootrpc.common.mapper.service.impl.BaseServiceImpl;
 import com.alina.bootrpc.system.facade.ISysDictDataService;
 import com.alina.bootrpc.system.mapper.SysDictDataMapper;
 import com.alina.bootrpc.system.model.SysDictData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service(value = SysDictDataServiceImpl.BEAN_NAME)
+@Service(version="1.0.0")
 public class SysDictDataServiceImpl  extends BaseServiceImpl<SysDictDataMapper, SysDictData> implements ISysDictDataService {
-    public final static String BEAN_NAME = "dictDataService";
 
     @Autowired
     private SysDictDataMapper dictDataMapper;

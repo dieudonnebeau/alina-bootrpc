@@ -11,8 +11,10 @@ import com.github.pagehelper.page.PageMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.common.BaseMapper;
 import tk.mybatis.mapper.common.Mapper;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
+import java.util.Map;
 
 public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> implements IBaseService<T> {
 	@Autowired
@@ -74,6 +76,17 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> implements IBa
 			return list.get(0);
 		}
 	}
+
+	@Override
+	public T queryOneByParams(Class clazz , Map<String , Object> params){
+		Example example = new Example(clazz);
+		Example.Criteria criteria = example.createCriteria();
+		for(Map.Entry<String, Object> entry : params.entrySet()){
+			criteria.andEqualTo(entry.getKey(),entry.getValue());
+		}
+		return  queryOneByExample(example);
+	}
+
 	@Override
 	public int queryCount(T entity) {
 		return mapper.selectCount(entity);

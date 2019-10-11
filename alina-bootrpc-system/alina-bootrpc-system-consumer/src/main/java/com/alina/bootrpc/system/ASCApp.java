@@ -12,7 +12,6 @@ import org.springframework.context.annotation.ImportResource;
 //@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 
 @SpringBootApplication (exclude={DataSourceAutoConfiguration.class})
-@ComponentScan("com.alina.bootrpc.system.consumer")
 @ImportResource("classpath:system-dubbo-consumer.xml")
 public class ASCApp {
 

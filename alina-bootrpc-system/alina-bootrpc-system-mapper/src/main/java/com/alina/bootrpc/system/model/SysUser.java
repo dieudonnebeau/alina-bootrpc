@@ -3,6 +3,7 @@ package com.alina.bootrpc.system.model;
 import lombok.Data;
 
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
@@ -16,6 +17,7 @@ import java.util.List;
  * @version: 1.0
  */
 @Data
+@Table(name = "sys_user")
 public class SysUser implements Serializable {
     private static final long serialVersionUID = 3611104699562919482L;
     @Id

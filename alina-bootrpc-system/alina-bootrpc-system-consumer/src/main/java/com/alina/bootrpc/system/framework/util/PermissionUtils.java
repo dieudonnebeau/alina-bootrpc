@@ -1,7 +1,6 @@
-package com.alina.bootrpc.common.core.utils.security;
+package com.alina.bootrpc.system.framework.util;
 
 import com.alina.bootrpc.common.core.constant.PermissionConstants;
-import com.alina.bootrpc.common.core.utils.MessageUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;

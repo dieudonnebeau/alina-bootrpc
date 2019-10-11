@@ -9,5 +9,20 @@
 
     <dubbo:application name="alina-bootrpc-system-consumer"/>
     <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"/>
-    <dubbo:reference id="configService" interface="com.alina.bootrpc.system.facade.ISysConfigService"/>
+    <dubbo:reference id="configService" interface="com.alina.bootrpc.system.facade.ISysConfigService"  check="false"/>
+    <dubbo:reference id="menuService" interface="com.alina.bootrpc.system.facade.ISysMenuService"  check="false"/>
+    <dubbo:reference id="deptService" interface="com.alina.bootrpc.system.facade.ISysDeptService"  check="false"/>
+    <dubbo:reference id="dictDataService" interface="com.alina.bootrpc.system.facade.ISysDictDataService"  check="false"/>
+    <dubbo:reference id="dictTypeService" interface="com.alina.bootrpc.system.facade.ISysDictTypeService"  check="false"/>
+    <dubbo:reference id="genTableColumnService" interface="com.alina.bootrpc.system.facade.ISysGenTableColumnService"  check="false"/>
+    <dubbo:reference id="genTableService" interface="com.alina.bootrpc.system.facade.ISysGenTableService"  check="false"/>
+    <dubbo:reference id="jobLogService" interface="com.alina.bootrpc.system.facade.ISysJobLogService"  check="false"/>
+    <dubbo:reference id="jobService" interface="com.alina.bootrpc.system.facade.ISysJobService"  check="false"/>
+    <dubbo:reference id="logininforService" interface="com.alina.bootrpc.system.facade.ISysLogininforService"  check="false"/>
+    <dubbo:reference id="noticeService" interface="com.alina.bootrpc.system.facade.ISysNoticeService"  check="false"/>
+    <dubbo:reference id="operLogService" interface="com.alina.bootrpc.system.facade.ISysOperLogService"  check="false"/>
+    <dubbo:reference id="postService" interface="com.alina.bootrpc.system.facade.ISysPostService"  check="false"/>
+    <dubbo:reference id="roleService" interface="com.alina.bootrpc.system.facade.ISysRoleService"  check="false"/>
+    <dubbo:reference id="userOnlineService" interface="com.alina.bootrpc.system.facade.ISysUserOnlineService"  check="false"/>
+    <dubbo:reference id="userService" interface="com.alina.bootrpc.system.facade.ISysUserService"  check="false"/>
 </beans>

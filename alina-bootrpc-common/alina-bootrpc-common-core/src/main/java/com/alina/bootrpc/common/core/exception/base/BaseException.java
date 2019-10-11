@@ -1,6 +1,5 @@
 package com.alina.bootrpc.common.core.exception.base;
 
-import com.alina.bootrpc.common.core.utils.MessageUtils;
 import com.alina.bootrpc.common.core.utils.StringUtils;
 
 /**
@@ -68,7 +67,7 @@ public class BaseException extends RuntimeException
         String message = null;
         if (!StringUtils.isEmpty(code))
         {
-            message = MessageUtils.message(code, args);
+            //message = MessageUtils.message(code, args);
         }
         if (message == null)
         {

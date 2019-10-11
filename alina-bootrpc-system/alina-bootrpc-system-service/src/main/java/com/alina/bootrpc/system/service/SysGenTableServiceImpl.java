@@ -7,13 +7,12 @@ package com.alina.bootrpc.system.service;
  * @version:     1.0
  */
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.alina.bootrpc.common.mapper.service.impl.BaseServiceImpl;
 import com.alina.bootrpc.system.facade.ISysGenTableService;
 import com.alina.bootrpc.system.mapper.SysGenTableMapper;
 import com.alina.bootrpc.system.model.SysGenTable;
-import org.springframework.stereotype.Service;
 
-@Service(value = SysGenTableServiceImpl.BEAN_NAME)
+@Service(version="1.0.0")
 public class SysGenTableServiceImpl  extends BaseServiceImpl<SysGenTableMapper, SysGenTable> implements ISysGenTableService {
-    public final static String BEAN_NAME = "genTableService";
 }

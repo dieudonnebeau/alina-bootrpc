@@ -6,16 +6,12 @@ package com.alina.bootrpc.system.service;
  * @modified By：
  * @version:     1.0
  */
+import com.alibaba.dubbo.config.annotation.Service;
 import com.alina.bootrpc.common.mapper.service.impl.BaseServiceImpl;
 import com.alina.bootrpc.system.facade.ISysRoleMenuService;
 import com.alina.bootrpc.system.mapper.SysRoleMenuMapper;
 import com.alina.bootrpc.system.model.SysRoleMenu;
-import org.springframework.stereotype.Service;
 
-/**
- * Created by 1 on 2019/9/16.
- */
-@Service(value = SysRoleMenuServiceImpl.BEAN_NAME)
+@Service(version="1.0.0")
 public class SysRoleMenuServiceImpl  extends BaseServiceImpl<SysRoleMenuMapper, SysRoleMenu> implements ISysRoleMenuService {
-    public final static String BEAN_NAME = "roleMenuService";
 }

@@ -1,6 +1,5 @@
-package com.alina.bootrpc.common.core.config.thread;
+package com.alina.bootrpc.system.framework.config;
 
-import com.alina.bootrpc.common.core.utils.Threads;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,12 +10,10 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
- * @author     ：迪艾多
- * @date       ：Created on 2019/9/20 10:02
- * @description：线程池配置
- * @modified By：
- * @version:     1.0
- */
+ * 线程池配置
+ *
+ * @author mh
+ **/
 @Configuration
 public class ThreadPoolConfig
 {
@@ -52,14 +49,6 @@ public class ThreadPoolConfig
     protected ScheduledExecutorService scheduledExecutorService()
     {
         return new ScheduledThreadPoolExecutor(corePoolSize,
-                new BasicThreadFactory.Builder().namingPattern("schedule-pool-%d").daemon(true).build())
-        {
-            @Override
-            protected void afterExecute(Runnable r, Throwable t)
-            {
-                super.afterExecute(r, t);
-                Threads.printException(r, t);
-            }
-        };
+                new BasicThreadFactory.Builder().namingPattern("schedule-pool-%d").daemon(true).build());
     }
 }

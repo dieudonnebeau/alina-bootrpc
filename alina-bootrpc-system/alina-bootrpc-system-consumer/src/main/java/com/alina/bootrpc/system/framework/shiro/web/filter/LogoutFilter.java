@@ -3,10 +3,10 @@ package com.alina.bootrpc.system.framework.shiro.web.filter;
 
 import com.alina.bootrpc.common.core.constant.Constants;
 import com.alina.bootrpc.common.core.constant.ShiroConstants;
-import com.alina.bootrpc.common.core.utils.MessageUtils;
 import com.alina.bootrpc.common.core.utils.StringUtils;
 import com.alina.bootrpc.system.framework.manager.AsyncManager;
 import com.alina.bootrpc.system.framework.manager.factory.AsyncFactory;
+import com.alina.bootrpc.system.framework.util.MessageUtils;
 import com.alina.bootrpc.system.framework.util.ShiroUtils;
 import com.alina.bootrpc.system.model.SysUser;
 import org.apache.shiro.cache.Cache;

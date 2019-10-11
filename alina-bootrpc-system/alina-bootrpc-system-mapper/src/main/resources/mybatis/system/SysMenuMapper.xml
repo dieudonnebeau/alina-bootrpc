@@ -19,6 +19,11 @@
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <sql id="selectMenuVo">
+        select id, menu_name, parent_id, order_num, url, target, menu_type, visible, ifnull(perms,'') as perms, icon, create_by, create_time
+		from sys_menu
+    </sql>
+
     <select id="selectPermsByUserId" parameterType="Long" resultType="String">
 		select distinct m.perms
 		from sys_menu m
@@ -26,6 +31,96 @@
 			 left join sys_user_role ur on rm.role_id = ur.role_id
 		where ur.user_id = #{userId}
 	</select>
+
+
+    <select id="selectMenusByUserId" parameterType="Long" resultMap="BaseResultMap">
+		select distinct m.id, m.parent_id, m.menu_name, m.url, m.visible, ifnull(m.perms,'') as perms, m.target, m.menu_type, m.icon, m.order_num, m.create_time
+		from sys_menu m
+			 left join sys_role_menu rm on m.id = rm.id
+			 left join sys_user_role ur on rm.id = ur.id
+			 LEFT JOIN sys_role ro on ur.id = ro.id
+		where ur.id = #{userId} and m.menu_type in ('M', 'C') and m.visible = 0  AND ro.status = 0
+		order by m.parent_id, m.order_num
+	</select>
+
+    <select id="selectMenuNormalAll" resultMap="BaseResultMap">
+		select distinct m.id, m.parent_id, m.menu_name, m.url, m.visible, ifnull(m.perms,'') as perms, m.target, m.menu_type, m.icon, m.order_num, m.create_time
+		from sys_menu m
+		where m.menu_type in ('M', 'C') and m.visible = 0
+		order by m.parent_id, m.order_num
+	</select>
+
+    <select id="selectMenuAll" resultMap="BaseResultMap">
+        <include refid="selectMenuVo"/>
+        order by parent_id, order_num
+    </select>
+
+    <select id="selectMenuAllByUserId" parameterType="Long" resultMap="BaseResultMap">
+		select distinct m.id, m.parent_id, m.menu_name, m.url, m.visible, ifnull(m.perms,'') as perms, m.target, m.menu_type, m.icon, m.order_num, m.create_time
+		from sys_menu m
+			 left join sys_role_menu rm on m.id = rm.id
+			 left join sys_user_role ur on rm.id = ur.id
+			 LEFT JOIN sys_role ro on ur.id = ro.id
+		where ur.id = #{userId}
+		order by m.parent_id, m.order_num
+	</select>
+
+    <select id="selectMenuTree" parameterType="Long" resultType="String">
+		select concat(m.id, ifnull(m.perms,'')) as perms
+		from sys_menu m
+			left join sys_role_menu rm on m.id = rm.id
+		where rm.id = #{roleId}
+		order by m.parent_id, m.order_num
+	</select>
+
+    <select id="selectMenuList" parameterType="SysMenu" resultMap="BaseResultMap">
+        <include refid="selectMenuVo"/>
+        <where>
+            <if test="menuName != null and menuName != ''">
+                AND menu_name like concat('%', #{menuName}, '%')
+            </if>
+            <if test="visible != null and visible != ''">
+                AND visible = #{visible}
+            </if>
+        </where>
+        order by parent_id, order_num
+    </select>
+
+    <select id="selectMenuListByUserId" parameterType="SysMenu" resultMap="BaseResultMap">
+        select distinct m.id, m.parent_id, m.menu_name, m.url, m.visible, ifnull(m.perms,'') as perms, m.target, m.menu_type, m.icon, m.order_num, m.create_time
+        from sys_menu m
+        left join sys_role_menu rm on m.id = rm.id
+        left join sys_user_role ur on rm.id = ur.id
+        LEFT JOIN sys_role ro on ur.id = ro.id
+        where ur.id = #{params.userId}
+        <if test="menuName != null and menuName != ''">
+            AND m.menu_name like concat('%', #{menuName}, '%')
+        </if>
+        <if test="visible != null and visible != ''">
+            AND m.visible = #{visible}
+        </if>
+        order by m.parent_id, m.order_num
+    </select>
+
+    <delete id="deleteMenuById" parameterType="Long">
+	    delete from sys_menu where id = #{menuId} or parent_id = #{menuId}
+	</delete>
+
+    <select id="selectMenuById" parameterType="Long" resultMap="BaseResultMap">
+		SELECT t.id, t.parent_id, t.menu_name, t.order_num, t.url, t.target, t.menu_type, t.visible, t.perms, t.icon, t.remark,
+			(SELECT menu_name FROM sys_menu WHERE id = t.parent_id) parent_name
+		FROM sys_menu t
+		where t.id = #{menuId}
+	</select>
+
+    <select id="selectCountMenuByParentId" resultType="Integer">
+	    select count(1) from sys_menu where parent_id=#{menuId}
+	</select>
+
+    <select id="checkMenuNameUnique" parameterType="SysMenu" resultMap="BaseResultMap">
+        <include refid="selectMenuVo"/>
+        where menu_name=#{menuName} and parent_id = #{parentId}
+    </select>
 
 
 </mapper>

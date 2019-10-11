@@ -19,7 +19,7 @@
     </resultMap>
 
     <sql id="selectDictDataVo">
-        select dict_code, dict_sort, dict_label, dict_value, dict_type, css_class, list_class, is_default, status, create_by, create_time, remark
+        select id , dict_sort, dict_label, dict_value, dict_type, css_class, list_class, is_default, status, create_by, create_time, remark
 		from sys_dict_data
     </sql>
 

@@ -54,7 +54,7 @@ logging:
   level:
     root: INFO
     org.mybatis: INFO
-    com.dieudonne.adminlte.system: DEBUG
+    com.alina.bootrpc.system: DEBUG
 
 
 mybatis:

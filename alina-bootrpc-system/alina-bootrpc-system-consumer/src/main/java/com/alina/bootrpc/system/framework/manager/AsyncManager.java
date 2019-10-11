@@ -1,7 +1,7 @@
 package com.alina.bootrpc.system.framework.manager;
 
 import com.alina.bootrpc.common.core.utils.Threads;
-import com.alina.bootrpc.common.core.utils.spring.SpringUtils;
+import com.alina.bootrpc.system.framework.util.spring.SpringUtils;
 
 import java.util.TimerTask;
 import java.util.concurrent.ScheduledExecutorService;

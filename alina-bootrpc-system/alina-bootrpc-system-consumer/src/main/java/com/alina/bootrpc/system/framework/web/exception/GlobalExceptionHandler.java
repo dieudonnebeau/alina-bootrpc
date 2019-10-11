@@ -5,7 +5,7 @@ import com.alina.bootrpc.common.core.domain.AjaxResult;
 import com.alina.bootrpc.common.core.exception.BusinessException;
 import com.alina.bootrpc.common.core.exception.DemoModeException;
 import com.alina.bootrpc.common.core.utils.ServletUtils;
-import com.alina.bootrpc.common.core.utils.security.PermissionUtils;
+import com.alina.bootrpc.system.framework.util.PermissionUtils;
 import org.apache.shiro.authz.AuthorizationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

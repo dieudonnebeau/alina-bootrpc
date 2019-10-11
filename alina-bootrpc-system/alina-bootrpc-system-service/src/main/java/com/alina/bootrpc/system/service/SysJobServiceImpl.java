@@ -7,13 +7,12 @@ package com.alina.bootrpc.system.service;
  * @version:     1.0
  */
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.alina.bootrpc.common.mapper.service.impl.BaseServiceImpl;
 import com.alina.bootrpc.system.facade.ISysJobService;
 import com.alina.bootrpc.system.mapper.SysJobMapper;
 import com.alina.bootrpc.system.model.SysJob;
-import org.springframework.stereotype.Service;
 
-@Service(value = SysJobServiceImpl.BEAN_NAME)
+@Service(version="1.0.0")
 public class SysJobServiceImpl  extends BaseServiceImpl<SysJobMapper, SysJob> implements ISysJobService {
-    public final static String BEAN_NAME = "jobService";
 }

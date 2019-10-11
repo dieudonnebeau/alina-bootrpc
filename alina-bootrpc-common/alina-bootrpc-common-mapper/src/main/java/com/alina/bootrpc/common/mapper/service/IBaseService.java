@@ -5,6 +5,7 @@ import com.alina.bootrpc.common.core.entity.response.StateAndMsgResponseEntity;
 import com.alina.bootrpc.common.mapper.util.PageUtil;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -126,6 +127,17 @@ public interface  IBaseService<T> {
 	 * @throws
 	 */
 	T queryOneByExample(Object example);
+
+	/**
+	 *
+	 * @Title: queryOneByParams
+	 * @Description: 查询单条记录
+	 * @param: @param example
+	 * @param: @return
+	 * @return: T
+	 * @throws
+	 */
+	T queryOneByParams(Class clazz,  Map<String , Object> params);
 	
 	/**
 	 * 

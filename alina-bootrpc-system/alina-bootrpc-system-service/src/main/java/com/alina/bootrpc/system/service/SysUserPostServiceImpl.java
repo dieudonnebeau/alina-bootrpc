@@ -7,14 +7,12 @@ package com.alina.bootrpc.system.service;
  * @version:     1.0
  */
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.alina.bootrpc.common.mapper.service.impl.BaseServiceImpl;
 import com.alina.bootrpc.system.facade.ISysUserPostService;
 import com.alina.bootrpc.system.mapper.SysUserPostMapper;
 import com.alina.bootrpc.system.model.SysUserPost;
-import org.springframework.stereotype.Service;
 
-
-@Service(value = SysUserPostServiceImpl.BEAN_NAME)
+@Service(version="1.0.0")
 public class SysUserPostServiceImpl  extends BaseServiceImpl<SysUserPostMapper, SysUserPost> implements ISysUserPostService {
-    public final static String BEAN_NAME = "userPostService";
 }

@@ -1,6 +1,6 @@
 package com.alina.bootrpc.system.framework.web.service;
 
-import com.alina.bootrpc.common.core.utils.security.PermissionUtils;
+import com.alina.bootrpc.system.framework.util.PermissionUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Service;
 
