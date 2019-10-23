@@ -71,6 +71,17 @@ public interface  IBaseService<T> {
 	 * @throws
 	 */
 	int deleteByID(Object key);
+
+	/**
+	 *
+	 * @Title: deleteByIDS
+	 * @Description: 根据主键删除
+	 * @param: @param ids
+	 * @param: @return
+	 * @return: int
+	 * @throws
+	 */
+	int deleteByIDS(String ids);
 	
 	/**
 	 * 
@@ -131,6 +142,17 @@ public interface  IBaseService<T> {
 	/**
 	 *
 	 * @Title: queryOneByParams
+	 * @Description: 查询单条记录
+	 * @param: @param example
+	 * @param: @return
+	 * @return: T
+	 * @throws
+	 */
+	List<T> queryListByParams(Class clazz,  Map<String , Object> params);
+
+	/**
+	 *
+	 * @Title: queryListByParams
 	 * @Description: 查询单条记录
 	 * @param: @param example
 	 * @param: @return

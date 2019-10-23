@@ -15,4 +15,12 @@ public interface ISysConfigService extends IBaseService<SysConfig> {
      * @return 参数键值
      */
     String selectConfigByKey(String configKey);
+
+    /**
+     * 校验参数键名是否唯一
+     *
+     * @param config 参数信息
+     * @return 结果
+     */
+    String checkConfigKeyUnique(SysConfig config);
 }

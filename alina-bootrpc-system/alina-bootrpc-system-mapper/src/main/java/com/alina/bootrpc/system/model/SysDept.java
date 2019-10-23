@@ -45,4 +45,7 @@ public class SysDept implements Serializable {
 
     private Date updateTime;
 
+    /** 父部门名称 */
+    private String parentName;
+
 }

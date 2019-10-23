@@ -6,6 +6,7 @@
         <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
         <result column="ancestors" property="ancestors" jdbcType="VARCHAR"/>
         <result column="dept_name" property="deptName" jdbcType="VARCHAR"/>
+        <result column="parent_name" property="parentName" jdbcType="VARCHAR"/>
         <result column="order_num" property="orderNum" jdbcType="INTEGER"/>
         <result column="leader" property="leader" jdbcType="VARCHAR"/>
         <result column="phone" property="phone" jdbcType="VARCHAR"/>
@@ -17,5 +18,13 @@
         <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
     </resultMap>
+
+    <select id="selectRoleDeptTree" parameterType="Long" resultType="String">
+		select concat(d.dept_id, d.dept_name) as dept_name
+		from sys_dept d
+			left join sys_role_dept rd on d.dept_id = rd.dept_id
+		where d.del_flag = '0' and rd.role_id = #{roleId}
+		order by d.parent_id, d.order_num
+	</select>
 
 </mapper>

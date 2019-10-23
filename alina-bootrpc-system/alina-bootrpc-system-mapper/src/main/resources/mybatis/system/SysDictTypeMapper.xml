@@ -12,4 +12,9 @@
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
     </resultMap>
+
+    <select id="checkDictTypeUnique" parameterType="String" resultMap="BaseResultMap">
+        <include refid="selectDictTypeVo"/>
+        where dict_type = #{dictType}
+    </select>
 </mapper>

@@ -50,6 +50,19 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> implements IBa
 	}
 
 	@Override
+	public int deleteByIDS(String ids) {
+		int result = 0;
+		if(BlankUtil.isNotBlank(ids)){
+			String [] array = ids.split(",");
+			for (int i = 0 ; i < array.length ; i++){
+				result += this.deleteByID(array[i]);
+			}
+
+		}
+		return result;
+	}
+
+	@Override
 	public int deleteByExample(Object example) {
 		return mapper.deleteByExample(example);
 	}
@@ -85,6 +98,16 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> implements IBa
 			criteria.andEqualTo(entry.getKey(),entry.getValue());
 		}
 		return  queryOneByExample(example);
+	}
+
+	@Override
+	public List<T> queryListByParams(Class clazz , Map<String , Object> params){
+		Example example = new Example(clazz);
+		Example.Criteria criteria = example.createCriteria();
+		for(Map.Entry<String, Object> entry : params.entrySet()){
+			criteria.andEqualTo(entry.getKey(),entry.getValue());
+		}
+		return  queryByExample(example);
 	}
 
 	@Override

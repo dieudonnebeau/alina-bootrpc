@@ -6,7 +6,7 @@
 <body class="white-bg">
 	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
 		<form class="form-horizontal m" id="form-dept-edit" th:object="${dept}">
-			<input name="deptId" type="hidden" th:field="*{deptId}" />
+			<input name="id" type="hidden" th:field="*{deptId}" />
 			<input id="treeId" name="parentId" type="hidden" th:field="*{parentId}" />
 			<div class="form-group">
 				<label class="col-sm-3 control-label ">上级部门：</label>
@@ -51,8 +51,8 @@
 				<label class="col-sm-3 control-label">部门状态：</label>
 				<div class="col-sm-8">
 					<div class="radio-box" th:each="dict : ${@dict.getType('sys_normal_disable')}">
-						<input type="radio" th:id="${dict.dictCode}" name="status" th:value="${dict.dictValue}" th:field="*{status}">
-						<label th:for="${dict.dictCode}" th:text="${dict.dictLabel}"></label>
+						<input type="radio" th:id="${dict.id}" name="status" th:value="${dict.dictValue}" th:field="*{status}">
+						<label th:for="${dict.id}" th:text="${dict.dictLabel}"></label>
 					</div>
 				</div>
 			</div>
@@ -72,7 +72,7 @@
 		                dataType: "json",
 		                data: {
 		                	"deptId": function() {
-		                        return $("#deptId").val();
+		                        return $("#id").val();
 		                    },
 		                    "parentId": function() {
 		                        return $("input[name='parentId']").val();

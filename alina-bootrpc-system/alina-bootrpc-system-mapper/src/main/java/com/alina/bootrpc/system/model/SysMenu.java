@@ -1,5 +1,6 @@
 package com.alina.bootrpc.system.model;
 
+import com.alina.bootrpc.common.core.domain.BaseEntity;
 import lombok.Data;
 
 import javax.persistence.Id;
@@ -17,7 +18,7 @@ import java.util.List;
  * @version: 1.0
  */
 @Data
-public class SysMenu implements Serializable {
+public class SysMenu extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1903655888572520310L;
     @Id
     private Long id;

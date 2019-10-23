@@ -14,4 +14,14 @@
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <sql id="selectConfigVo">
+        select id, config_name, config_key, config_value, config_type, create_by, create_time, update_by, update_time, remark
+		from sys_config
+    </sql>
+
+    <select id="checkConfigKeyUnique" parameterType="String" resultMap="BaseResultMap">
+        <include refid="selectConfigVo"/>
+        where config_key = #{configKey}
+    </select>
+
 </mapper>
