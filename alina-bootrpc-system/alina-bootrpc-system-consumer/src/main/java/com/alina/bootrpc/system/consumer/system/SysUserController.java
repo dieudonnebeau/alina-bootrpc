@@ -6,7 +6,9 @@ import java.util.Map;
 
 import com.alina.bootrpc.common.core.annotation.Log;
 import com.alina.bootrpc.common.core.constant.UserConstants;
-import com.alina.bootrpc.common.core.controller.BaseController;
+import com.alina.bootrpc.common.core.utils.EntityUtils;
+import com.alina.bootrpc.common.mapper.util.PageUtil;
+import com.alina.bootrpc.system.base.BaseController;
 import com.alina.bootrpc.common.core.domain.AjaxResult;
 import com.alina.bootrpc.common.core.enums.BusinessType;
 import com.alina.bootrpc.common.core.page.TableDataInfo;
@@ -70,9 +72,11 @@ public class SysUserController extends BaseController
     @ResponseBody
     public TableDataInfo list(SysUser user)
     {
-        startPage();
-        List<SysUser> list = userService.queryList(user);
-        return getDataTable(list);
+        PageUtil<SysUser> pageInit = new PageUtil<>(pageNumber() , pageSize() , orderBy());
+        SysUser entity = EntityUtils.mapToEntity(EntityUtils.entityToMap(user) , SysUser.class);
+        PageUtil<SysUser> pageUtil = userService.queryPage(pageInit, entity);
+        //List<SysUser> list = userService.queryList(user);
+        return getDataTable(pageUtil);
     }
 
     @Log(title = "用户管理", businessType = BusinessType.EXPORT)

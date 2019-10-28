@@ -125,8 +125,18 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> implements IBa
 
 	@Override
 	public PageUtil<T> queryPage(PageUtil<T> page, T entity) {
-		PageMethod.startPage(page.getPageNo(), page.getPageSize());
-		List<T> list = queryList(entity);
+		if(BlankUtil.isBlank(page.getOrderBy())){
+			PageMethod.startPage(page.getPageNo(), page.getPageSize());
+		}else{
+			PageMethod.startPage(page.getPageNo(), page.getPageSize(),page.getOrderBy());
+		}
+		List<T> list = null;
+		if(BlankUtil.isBlank(entity)){
+			list = queryAll();
+		}else{
+			list = queryList(entity);
+		}
+
 		return new PageUtil<T>(list);
 	}
 
@@ -136,7 +146,6 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> implements IBa
 		List<T> list = queryByExample(example);
 		return new PageUtil<T>(list);
 	}
-
 
 
 	@Override

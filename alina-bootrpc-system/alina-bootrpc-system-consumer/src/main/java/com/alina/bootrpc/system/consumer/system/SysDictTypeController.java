@@ -2,7 +2,9 @@ package com.alina.bootrpc.system.consumer.system;
 
 import com.alina.bootrpc.common.core.annotation.Log;
 import com.alina.bootrpc.common.core.constant.UserConstants;
-import com.alina.bootrpc.common.core.controller.BaseController;
+import com.alina.bootrpc.common.core.utils.EntityUtils;
+import com.alina.bootrpc.common.mapper.util.PageUtil;
+import com.alina.bootrpc.system.base.BaseController;
 import com.alina.bootrpc.common.core.domain.AjaxResult;
 import com.alina.bootrpc.common.core.domain.Ztree;
 import com.alina.bootrpc.common.core.enums.BusinessType;
@@ -55,9 +57,10 @@ public class SysDictTypeController extends BaseController
     @ResponseBody
     public TableDataInfo list(SysDictType dictType)
     {
-        startPage();
-        List<SysDictType> list = dictTypeService.queryList(dictType);
-        return getDataTable(list);
+        PageUtil<SysDictType> pageInit = new PageUtil<>(pageNumber() , pageSize() , orderBy());
+        SysDictType entity = EntityUtils.mapToEntity(EntityUtils.entityToMap(dictType) , SysDictType.class);
+        PageUtil<SysDictType> pageUtil = dictTypeService.queryPage(pageInit, entity);
+        return getDataTable(pageUtil);
     }
 
     @Log(title = "字典类型", businessType = BusinessType.EXPORT)

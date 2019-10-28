@@ -12,7 +12,17 @@ import com.alina.bootrpc.common.mapper.service.impl.BaseServiceImpl;
 import com.alina.bootrpc.system.facade.ISysLogininforService;
 import com.alina.bootrpc.system.mapper.SysLogininforMapper;
 import com.alina.bootrpc.system.model.SysLogininfor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Service(version="1.0.0")
 public class SysLogininforServiceImpl  extends BaseServiceImpl<SysLogininforMapper, SysLogininfor> implements ISysLogininforService {
+
+    @Autowired
+    private SysLogininforMapper logininforMapper;
+
+    @Override
+    public void cleanLogininfor()
+    {
+        logininforMapper.cleanLogininfor();
+    }
 }

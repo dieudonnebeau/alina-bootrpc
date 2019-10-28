@@ -67,6 +67,12 @@ public class PageUtil<T> implements Serializable {
     	this.pageSize = pageSize ;
     }
 
+    public PageUtil(int pageNo , int pageSize , String orderBy ) {
+        this.pageNo = pageNo;
+        this.pageSize = pageSize ;
+        this.orderBy = orderBy;
+    }
+
     /**
      * 包装Page对象
      * @param list

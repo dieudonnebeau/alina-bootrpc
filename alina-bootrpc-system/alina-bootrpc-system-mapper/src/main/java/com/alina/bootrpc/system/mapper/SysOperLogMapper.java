@@ -5,4 +5,6 @@ import com.alina.bootrpc.system.model.SysOperLog;
 
 public interface SysOperLogMapper  extends BaseMapper<SysOperLog> {
 
+    void cleanOperLog();
+
 }

@@ -3,7 +3,7 @@ package com.alina.bootrpc.system.consumer.system;
 
 import com.alina.bootrpc.common.core.annotation.Log;
 import com.alina.bootrpc.common.core.constant.UserConstants;
-import com.alina.bootrpc.common.core.controller.BaseController;
+import com.alina.bootrpc.system.base.BaseController;
 import com.alina.bootrpc.common.core.domain.AjaxResult;
 import com.alina.bootrpc.common.core.enums.BusinessType;
 import com.alina.bootrpc.common.core.page.TableDataInfo;

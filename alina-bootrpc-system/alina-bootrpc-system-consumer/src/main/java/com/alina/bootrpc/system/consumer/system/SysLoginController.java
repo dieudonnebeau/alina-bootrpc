@@ -3,7 +3,7 @@ package com.alina.bootrpc.system.consumer.system;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.alina.bootrpc.common.core.controller.BaseController;
+import com.alina.bootrpc.system.base.BaseController;
 import com.alina.bootrpc.common.core.domain.AjaxResult;
 import com.alina.bootrpc.common.core.utils.ServletUtils;
 import com.alina.bootrpc.common.core.utils.StringUtils;

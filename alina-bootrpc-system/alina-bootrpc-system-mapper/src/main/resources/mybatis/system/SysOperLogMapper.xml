@@ -19,4 +19,8 @@
         <result column="oper_time" property="operTime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
+    <update id="cleanOperLog">
+        truncate table sys_oper_log
+    </update>
+
 </mapper>

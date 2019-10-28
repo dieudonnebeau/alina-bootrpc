@@ -13,6 +13,10 @@
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <sql id="selectDictTypeVo">
+        select id, dict_name, dict_type, status, create_by, create_time, remark
+		from sys_dict_type
+    </sql>
     <select id="checkDictTypeUnique" parameterType="String" resultMap="BaseResultMap">
         <include refid="selectDictTypeVo"/>
         where dict_type = #{dictType}

@@ -1,4 +1,4 @@
-package com.alina.bootrpc.common.core.controller;
+package com.alina.bootrpc.system.base;
 
 import com.alina.bootrpc.common.core.domain.AjaxResult;
 import com.alina.bootrpc.common.core.page.PageDomain;
@@ -8,8 +8,7 @@ import com.alina.bootrpc.common.core.utils.DateUtils;
 import com.alina.bootrpc.common.core.utils.ServletUtils;
 import com.alina.bootrpc.common.core.utils.StringUtils;
 import com.alina.bootrpc.common.core.utils.sql.SqlUtil;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import com.alina.bootrpc.common.mapper.util.PageUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.WebDataBinder;
@@ -61,10 +60,24 @@ public class BaseController
         if (StringUtils.isNotNull(pageNum) && StringUtils.isNotNull(pageSize))
         {
             String orderBy = SqlUtil.escapeOrderBySql(pageDomain.getOrderBy());
-            PageHelper.startPage(pageNum, pageSize, orderBy);
+            //PageHelper.startPage(pageNum, pageSize, orderBy);
         }
     }
 
+    protected Integer pageSize(){
+        PageDomain pageDomain = TableSupport.buildPageRequest();
+        return pageDomain.getPageSize();
+    }
+
+    protected Integer pageNumber(){
+        PageDomain pageDomain = TableSupport.buildPageRequest();
+        return pageDomain.getPageNum();
+    }
+
+    protected String orderBy(){
+        PageDomain pageDomain = TableSupport.buildPageRequest();
+        return SqlUtil.escapeOrderBySql(pageDomain.getOrderBy());
+    }
     /**
      * 获取request
      */
@@ -98,7 +111,21 @@ public class BaseController
         TableDataInfo rspData = new TableDataInfo();
         rspData.setCode(0);
         rspData.setRows(list);
-        rspData.setTotal(new PageInfo(list).getTotal());
+       // rspData.setTotal(new PageInfo(list).getTotal());
+        rspData.setTotal(20);
+        return rspData;
+    }
+
+    /**
+     * 响应请求分页数据
+     */
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    protected TableDataInfo getDataTable(PageUtil pageUtil)
+    {
+        TableDataInfo rspData = new TableDataInfo();
+        rspData.setCode(0);
+        rspData.setRows(pageUtil.getRows());
+        rspData.setTotal(pageUtil.getTotal());
         return rspData;
     }
 

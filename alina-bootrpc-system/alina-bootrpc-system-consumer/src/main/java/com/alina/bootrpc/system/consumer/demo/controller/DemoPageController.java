@@ -1,6 +1,6 @@
 package com.alina.bootrpc.system.consumer.demo.controller;
 
-import com.alina.bootrpc.common.core.controller.BaseController;
+import com.alina.bootrpc.system.base.BaseController;
 import com.alina.bootrpc.common.core.domain.AjaxResult;
 import com.alina.bootrpc.common.core.exception.BusinessException;
 import com.alina.bootrpc.common.core.page.PageDomain;

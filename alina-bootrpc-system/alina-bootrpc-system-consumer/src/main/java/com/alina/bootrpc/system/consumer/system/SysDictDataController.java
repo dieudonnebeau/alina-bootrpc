@@ -1,7 +1,9 @@
 package com.alina.bootrpc.system.consumer.system;
 
 import com.alina.bootrpc.common.core.annotation.Log;
-import com.alina.bootrpc.common.core.controller.BaseController;
+import com.alina.bootrpc.common.core.utils.EntityUtils;
+import com.alina.bootrpc.common.mapper.util.PageUtil;
+import com.alina.bootrpc.system.base.BaseController;
 import com.alina.bootrpc.common.core.domain.AjaxResult;
 import com.alina.bootrpc.common.core.enums.BusinessType;
 import com.alina.bootrpc.common.core.page.TableDataInfo;
@@ -50,9 +52,10 @@ public class SysDictDataController extends BaseController
     @ResponseBody
     public TableDataInfo list(SysDictData dictData)
     {
-        startPage();
-        List<SysDictData> list = dictDataService.queryList(dictData);
-        return getDataTable(list);
+        PageUtil<SysDictData> pageInit = new PageUtil<>(pageNumber() , pageSize() , orderBy());
+        SysDictData entity = EntityUtils.mapToEntity(EntityUtils.entityToMap(dictData) , SysDictData.class);
+        PageUtil<SysDictData> pageUtil = dictDataService.queryPage(pageInit, entity);
+        return getDataTable(pageUtil);
     }
 
     @Log(title = "字典数据", businessType = BusinessType.EXPORT)

@@ -4,7 +4,6 @@ import com.alina.bootrpc.common.core.annotation.Excel;
 import com.alina.bootrpc.common.core.domain.BaseEntity;
 import com.alina.bootrpc.common.core.utils.DateUtils;
 
-import java.util.Date;
 
 public class UserOperateModel extends BaseEntity
 {
@@ -34,7 +33,7 @@ public class UserOperateModel extends BaseEntity
     private String status;
 
     @Excel(name = "创建时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss", type = Excel.Type.EXPORT)
-    private Date createTime;
+    private String createTime;
 
     public UserOperateModel()
     {
@@ -52,7 +51,7 @@ public class UserOperateModel extends BaseEntity
         this.userEmail = userEmail;
         this.userBalance = userBalance;
         this.status = status;
-        this.createTime = DateUtils.getNowDate();
+        this.createTime = DateUtils.parseDateToStr( DateUtils.YYYY_MM_DD_HH_MM_SS, DateUtils.getNowDate());
     }
 
     public int getUserId()
@@ -133,15 +132,5 @@ public class UserOperateModel extends BaseEntity
     public void setStatus(String status)
     {
         this.status = status;
-    }
-
-    public Date getCreateTime()
-    {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime)
-    {
-        this.createTime = createTime;
     }
 }

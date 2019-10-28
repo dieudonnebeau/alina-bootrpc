@@ -2,7 +2,8 @@ package com.alina.bootrpc.system.consumer.system;
 
 import com.alina.bootrpc.common.core.annotation.Log;
 import com.alina.bootrpc.common.core.constant.UserConstants;
-import com.alina.bootrpc.common.core.controller.BaseController;
+import com.alina.bootrpc.common.core.utils.EntityUtils;
+import com.alina.bootrpc.system.base.BaseController;
 import com.alina.bootrpc.common.core.domain.AjaxResult;
 import com.alina.bootrpc.common.core.domain.Ztree;
 import com.alina.bootrpc.common.core.enums.BusinessType;
@@ -52,7 +53,7 @@ public class SysMenuController extends BaseController
     public List<SysMenu> list(SysMenu menu)
     {
         Long userId = ShiroUtils.getUserId();
-        List<SysMenu> menuList = menuService.selectMenuList(menu, userId);
+        List<SysMenu> menuList = menuService.selectMenuList(EntityUtils.mapToEntity(EntityUtils.entityToMap(menu) , SysMenu.class), userId);
         return menuList;
     }
 

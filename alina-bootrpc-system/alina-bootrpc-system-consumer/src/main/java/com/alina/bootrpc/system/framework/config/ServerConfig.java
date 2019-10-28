@@ -1,4 +1,4 @@
-package com.alina.bootrpc.common.core.config;
+package com.alina.bootrpc.system.framework.config;
 
 import com.alina.bootrpc.common.core.utils.ServletUtils;
 import org.springframework.stereotype.Component;

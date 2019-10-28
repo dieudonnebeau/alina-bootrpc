@@ -43,11 +43,11 @@ public class SysMenu extends BaseEntity implements Serializable {
 
     private String createBy;
 
-    private Date createTime;
+    private String createTime;
 
     private String updateBy;
 
-    private Date updateTime;
+    private String updateTime;
 
     private String remark;
 

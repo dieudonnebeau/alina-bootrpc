@@ -13,4 +13,8 @@
         <result column="login_time" property="loginTime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
+    <update id="cleanLogininfor">
+        truncate table sys_logininfor
+    </update>
+
 </mapper>
