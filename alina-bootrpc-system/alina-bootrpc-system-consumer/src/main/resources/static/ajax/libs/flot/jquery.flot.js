@@ -2547,7 +2547,7 @@
         var hours = d.getUTCHours();
         var isAM = hours < 12;
         if (monthNames == null)
-            monthNames = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
+            monthNames = ["Jan", "Feb", "Mar", "Apl", "May", "Jun", "Jul", "Aut", "Sep", "Oct", "Nov", "Dec"];
 
         if (fmt.search(/%p|%P/) != -1) {
             if (hours > 12) {

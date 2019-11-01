@@ -6,7 +6,7 @@
 <body class="white-bg">
 	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
 		<form class="form-horizontal m" id="form-post-edit" th:object="${post}">
-			<input id="postId" name="postId" type="hidden" th:field="*{postId}"/>
+			<input id="postId" name="id" type="hidden" th:field="*{id}"/>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">岗位名称：</label>
 				<div class="col-sm-8">
@@ -56,7 +56,7 @@
 		                dataType: "json",
 		                data: {
 		                	"postId": function() {
-							    return $("input[name='postId']").val();
+							    return $("input[name='id']").val();
 							},
 		                	"postName" : function() {
 		                        return $.common.trim($("#postName").val());
@@ -74,7 +74,7 @@
 		                dataType: "json",
 		                data: {
 		                	"postId": function() {
-							    return $("input[name='postId']").val();
+							    return $("input[name='id']").val();
 							},
 		                	"postCode" : function() {
 		                		return $.common.trim($("#postCode").val());

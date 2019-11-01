@@ -5,6 +5,7 @@ import com.alina.bootrpc.common.core.entity.response.ResultResponseEntity;
 import com.alina.bootrpc.common.core.entity.response.StateAndMsgResponseEntity;
 import com.alina.bootrpc.common.core.enums.CommonEnum;
 import com.alina.bootrpc.common.core.utils.BlankUtil;
+import com.alina.bootrpc.common.core.utils.RequestBeanUtil;
 import com.alina.bootrpc.common.mapper.service.IBaseService;
 import com.alina.bootrpc.common.mapper.util.PageUtil;
 import com.github.pagehelper.page.PageMethod;
@@ -137,6 +138,43 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> implements IBa
 			list = queryList(entity);
 		}
 
+		return new PageUtil<T>(list);
+	}
+
+	@Override
+	public PageUtil <T> queryPage(PageUtil<T> page, RequestBeanUtil requestBeanUtil, Class clazz){
+		Example example = new Example(clazz);
+		Example.Criteria criteria = example.createCriteria();
+		for(Object key : requestBeanUtil.keySet()){
+			String keyStr = String.valueOf(key);
+			boolean skipColumn = "pageNum".equalsIgnoreCase(keyStr) || "pageSize".equalsIgnoreCase(keyStr)||
+					"isAsc".equalsIgnoreCase(keyStr) || "orderByColumn".equalsIgnoreCase(keyStr);
+			if(skipColumn){
+				continue;
+			}
+			if("beginTime".equalsIgnoreCase(keyStr)){
+				if(BlankUtil.isNotBlank(requestBeanUtil.getString(keyStr))){
+					criteria.andGreaterThanOrEqualTo("createTime" , requestBeanUtil.getString(keyStr));
+				}
+			}else{
+				if("endTime".equalsIgnoreCase(keyStr)){
+					if(BlankUtil.isNotBlank(requestBeanUtil.getString(keyStr))){
+						criteria.andLessThanOrEqualTo("createTime" , requestBeanUtil.getString(keyStr));
+					}
+				}else {
+					if(BlankUtil.isNotBlank(requestBeanUtil.get(keyStr)) && BlankUtil.isNotBlank(String.valueOf(requestBeanUtil.get(keyStr)))) {
+						try {
+							criteria.andEqualTo(keyStr, requestBeanUtil.get(keyStr));
+						} catch (Exception e){
+							e.printStackTrace();
+							continue;
+						}
+					}
+				}
+			}
+		}
+		PageMethod.startPage(page.getPageNo(), page.getPageSize(),page.getOrderBy());
+		List<T> list = queryByExample(example);
 		return new PageUtil<T>(list);
 	}
 

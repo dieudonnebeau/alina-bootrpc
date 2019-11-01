@@ -3,6 +3,7 @@ package com.alina.bootrpc.system.model;
 import lombok.Data;
 
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -36,4 +37,7 @@ public class SysPost implements Serializable {
     private Date updateTime;
 
     private String remark;
+
+    @Transient
+    private Boolean flag;
 }

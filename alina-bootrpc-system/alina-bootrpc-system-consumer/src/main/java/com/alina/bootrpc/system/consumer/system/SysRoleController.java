@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.alina.bootrpc.common.core.annotation.Log;
 import com.alina.bootrpc.common.core.constant.UserConstants;
+import com.alina.bootrpc.common.core.utils.RequestBeanUtil;
+import com.alina.bootrpc.common.mapper.util.PageUtil;
 import com.alina.bootrpc.system.base.BaseController;
 import com.alina.bootrpc.common.core.domain.AjaxResult;
 import com.alina.bootrpc.common.core.enums.BusinessType;
@@ -25,6 +27,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author     ：迪艾多
@@ -55,11 +59,12 @@ public class SysRoleController extends BaseController
     @RequiresPermissions("system:role:list")
     @PostMapping("/list")
     @ResponseBody
-    public TableDataInfo list(SysRole role)
+    public TableDataInfo list(HttpServletRequest request)
     {
-        startPage();
-        List<SysRole> list = roleService.queryList(role);
-        return getDataTable(list);
+        RequestBeanUtil requestBeanUtil = new RequestBeanUtil(request);
+        PageUtil<SysRole> pageInit = new PageUtil<>(pageNumber() , pageSize() , orderBy());
+        PageUtil<SysRole> pageUtil = roleService.queryPage(pageInit, requestBeanUtil, SysRole.class);
+        return getDataTable(pageUtil);
     }
 
     @Log(title = "角色管理", businessType = BusinessType.EXPORT)

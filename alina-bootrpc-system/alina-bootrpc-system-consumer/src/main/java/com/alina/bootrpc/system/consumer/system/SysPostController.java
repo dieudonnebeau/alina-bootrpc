@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.alina.bootrpc.common.core.annotation.Log;
 import com.alina.bootrpc.common.core.constant.UserConstants;
+import com.alina.bootrpc.common.core.utils.RequestBeanUtil;
+import com.alina.bootrpc.common.mapper.util.PageUtil;
 import com.alina.bootrpc.system.base.BaseController;
 import com.alina.bootrpc.common.core.domain.AjaxResult;
 import com.alina.bootrpc.common.core.enums.BusinessType;
@@ -22,6 +24,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author     ：迪艾多
  * @date       ：Created on 2019/10/23 15:27
@@ -48,11 +53,12 @@ public class SysPostController extends BaseController
     @RequiresPermissions("system:post:list")
     @PostMapping("/list")
     @ResponseBody
-    public TableDataInfo list(SysPost post)
+    public TableDataInfo list(HttpServletRequest request)
     {
-        startPage();
-        List<SysPost> list = postService.queryList(post);
-        return getDataTable(list);
+        RequestBeanUtil requestBeanUtil = new RequestBeanUtil(request);
+        PageUtil<SysPost> pageInit = new PageUtil<>(pageNumber() , pageSize() , orderBy());
+        PageUtil<SysPost> pageUtil = postService.queryPage(pageInit, requestBeanUtil, SysPost.class);
+        return getDataTable(pageUtil);
     }
 
     @Log(title = "岗位管理", businessType = BusinessType.EXPORT)

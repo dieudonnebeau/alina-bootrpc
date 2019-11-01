@@ -2,6 +2,7 @@ package com.alina.bootrpc.common.mapper.service;
 
 import com.alina.bootrpc.common.core.entity.response.ResultResponseEntity;
 import com.alina.bootrpc.common.core.entity.response.StateAndMsgResponseEntity;
+import com.alina.bootrpc.common.core.utils.RequestBeanUtil;
 import com.alina.bootrpc.common.mapper.util.PageUtil;
 
 import java.util.List;
@@ -204,6 +205,18 @@ public interface  IBaseService<T> {
 	 * @throws
 	 */
 	PageUtil <T> queryPage(PageUtil<T> page, T entity) ;
+
+	/**
+	 *
+	 * @Title: queryPage
+	 * @Description: 所有数据PageUtil对象
+	 * @param: page
+	 * @param: requestBeanUtil
+	 * @param: clazz
+	 * @retrn: PageUtil<T>
+	 * @throws
+	 */
+	PageUtil <T> queryPage(PageUtil<T> page, RequestBeanUtil requestBeanUtil, Class clazz) ;
 
 	/**
 	 * 

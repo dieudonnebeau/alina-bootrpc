@@ -1,26 +1,27 @@
 package com.alina.bootrpc.system.consumer.system;
 
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import com.alina.bootrpc.common.core.annotation.Log;
 import com.alina.bootrpc.common.core.constant.UserConstants;
-import com.alina.bootrpc.common.core.utils.EntityUtils;
+import com.alina.bootrpc.common.core.utils.BlankUtil;
+import com.alina.bootrpc.common.core.utils.RequestBeanUtil;
+import com.alina.bootrpc.common.core.utils.bean.BeanUtils;
 import com.alina.bootrpc.common.mapper.util.PageUtil;
 import com.alina.bootrpc.system.base.BaseController;
 import com.alina.bootrpc.common.core.domain.AjaxResult;
 import com.alina.bootrpc.common.core.enums.BusinessType;
 import com.alina.bootrpc.common.core.page.TableDataInfo;
-import com.alina.bootrpc.common.core.utils.BlankUtil;
 import com.alina.bootrpc.common.core.utils.poi.ExcelUtil;
+import com.alina.bootrpc.system.dto.SysUserDTO;
+import com.alina.bootrpc.system.facade.ISysDeptService;
 import com.alina.bootrpc.system.facade.ISysPostService;
 import com.alina.bootrpc.system.facade.ISysRoleService;
 import com.alina.bootrpc.system.facade.ISysUserService;
 import com.alina.bootrpc.system.framework.shiro.service.SysPasswordService;
 import com.alina.bootrpc.system.framework.util.ShiroUtils;
-import com.alina.bootrpc.system.model.SysPost;
-import com.alina.bootrpc.system.model.SysRole;
+import com.alina.bootrpc.system.model.SysDept;
 import com.alina.bootrpc.system.model.SysUser;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -58,6 +61,9 @@ public class SysUserController extends BaseController
     private ISysPostService postService;
 
     @Autowired
+    private ISysDeptService deptService;
+
+    @Autowired
     private SysPasswordService passwordService;
 
     @RequiresPermissions("system:user:view")
@@ -70,12 +76,11 @@ public class SysUserController extends BaseController
     @RequiresPermissions("system:user:list")
     @PostMapping("/list")
     @ResponseBody
-    public TableDataInfo list(SysUser user)
+    public TableDataInfo list(HttpServletRequest request)
     {
+        RequestBeanUtil requestBeanUtil = new RequestBeanUtil(request);
         PageUtil<SysUser> pageInit = new PageUtil<>(pageNumber() , pageSize() , orderBy());
-        SysUser entity = EntityUtils.mapToEntity(EntityUtils.entityToMap(user) , SysUser.class);
-        PageUtil<SysUser> pageUtil = userService.queryPage(pageInit, entity);
-        //List<SysUser> list = userService.queryList(user);
+        PageUtil<SysUser> pageUtil = userService.queryPage(pageInit, requestBeanUtil, SysUser.class);
         return getDataTable(pageUtil);
     }
 
@@ -130,7 +135,7 @@ public class SysUserController extends BaseController
     @Log(title = "用户管理", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
-    public AjaxResult addSave(@Validated SysUser user)
+    public AjaxResult addSave(@Validated SysUserDTO user)
     {
         if (UserConstants.USER_NAME_NOT_UNIQUE.equals(userService.checkLoginNameUnique(user.getLoginName())))
         {
@@ -147,7 +152,9 @@ public class SysUserController extends BaseController
         user.setSalt(ShiroUtils.randomSalt());
         user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
         user.setCreateBy(ShiroUtils.getLoginName());
-        return toAjax(userService.saveNotNull(user));
+        user.setCreateTime(new Date());
+        user.setUpdateTime(new Date());
+        return toAjax(userService.insertUser(user));
     }
 
     /**
@@ -156,12 +163,13 @@ public class SysUserController extends BaseController
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, ModelMap mmap)
     {
-        mmap.put("user", userService.queryByID(id));
-
-        Map<String , Object> params = new HashMap<>(16);
-        params.put("userId" , id);
-        mmap.put("roles", roleService.queryListByParams(SysRole.class , params));
-        mmap.put("posts", postService.queryListByParams(SysPost.class , params));
+        SysUserDTO userDTO = new SysUserDTO();
+        BeanUtils.copyProperties(userService.queryByID(id) , userDTO);
+        SysDept dept = deptService.queryByID(userDTO.getDeptId());
+        userDTO.setDept(dept);
+        mmap.put("user", userDTO);
+        mmap.put("roles", roleService.selectRolesByUserId(id));
+        mmap.put("posts", postService.selectPostsByUserId(id));
         return prefix + "/edit";
     }
 
@@ -172,8 +180,10 @@ public class SysUserController extends BaseController
     @Log(title = "用户管理", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
-    public AjaxResult editSave(@Validated SysUser user)
+    public AjaxResult editSave(@Validated SysUserDTO userDTO)
     {
+        SysUser user = new SysUser();
+        BeanUtils.copyProperties(userDTO,user);
         if (BlankUtil.isNotBlank(user.getId()) && SysUser.isAdmin(user.getId()))
         {
             return error("不允许修改超级管理员用户");
@@ -186,8 +196,9 @@ public class SysUserController extends BaseController
         {
             return error("修改用户'" + user.getLoginName() + "'失败，邮箱账号已存在");
         }
-        user.setUpdateBy(ShiroUtils.getLoginName());
-        return toAjax(userService.updateByIDNotNull(user));
+        userDTO.setUpdateBy(ShiroUtils.getLoginName());
+        userDTO.setUpdateTime(new Date());
+        return toAjax(userService.updateUser(userDTO));
     }
 
     @RequiresPermissions("system:user:resetPwd")
@@ -207,9 +218,10 @@ public class SysUserController extends BaseController
     {
         user.setSalt(ShiroUtils.randomSalt());
         user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
+        user.setUpdateTime(new Date());
         if (userService.updateByIDNotNull(user) > 0)
         {
-            if (ShiroUtils.getUserId() == user.getId())
+            if (ShiroUtils.getUserId().compareTo(user.getId()) == 0 )
             {
                 ShiroUtils.setSysUser(userService.queryByID(user.getId()));
             }
@@ -226,7 +238,7 @@ public class SysUserController extends BaseController
     {
         try
         {
-            return toAjax(userService.deleteByIDS(ids));
+            return toAjax(userService.deleteUserByIds(ids));
         }
         catch (Exception e)
         {

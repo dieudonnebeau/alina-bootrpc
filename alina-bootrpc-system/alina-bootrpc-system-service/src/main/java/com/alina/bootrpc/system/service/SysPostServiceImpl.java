@@ -13,13 +13,17 @@ import com.alina.bootrpc.common.mapper.service.impl.BaseServiceImpl;
 import com.alina.bootrpc.system.facade.ISysPostService;
 import com.alina.bootrpc.system.mapper.SysPostMapper;
 import com.alina.bootrpc.system.model.SysPost;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service(version="1.0.0")
 public class SysPostServiceImpl  extends BaseServiceImpl<SysPostMapper, SysPost> implements ISysPostService {
 
+    @Autowired
+    private SysPostMapper postMapper;
 
     @Override
     public String checkPostNameUnique(SysPost post)
@@ -49,4 +53,30 @@ public class SysPostServiceImpl  extends BaseServiceImpl<SysPostMapper, SysPost>
         }
         return UserConstants.POST_CODE_UNIQUE;
     }
+
+    /**
+     * 根据用户ID查询岗位
+     *
+     * @param userId 用户ID
+     * @return 岗位列表
+     */
+    @Override
+    public List<SysPost> selectPostsByUserId(Long userId)
+    {
+        List<SysPost> userPosts = postMapper.selectPostsByUserId(userId);
+        List<SysPost> posts = postMapper.selectAll();
+        for (SysPost post : posts)
+        {
+            for (SysPost userRole : userPosts)
+            {
+                if (post.getId().compareTo(userRole.getId()) == 0)
+                {
+                    post.setFlag(true);
+                    break;
+                }
+            }
+        }
+        return posts;
+    }
+
 }

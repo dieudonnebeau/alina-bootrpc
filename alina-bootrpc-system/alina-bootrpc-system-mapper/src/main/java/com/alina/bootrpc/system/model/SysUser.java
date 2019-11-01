@@ -2,9 +2,7 @@ package com.alina.bootrpc.system.model;
 
 import lombok.Data;
 
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -21,6 +19,7 @@ import java.util.List;
 public class SysUser implements Serializable {
     private static final long serialVersionUID = 3611104699562919482L;
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     private Long deptId;
@@ -61,11 +60,7 @@ public class SysUser implements Serializable {
 
     private String remark;
 
-    @Transient
-    private SysDept dept;
-
-    @Transient
-    private List<SysRole> roles;
+    private String deptName;
 
     public boolean isAdmin()
     {

@@ -6,6 +6,7 @@ import com.alina.bootrpc.common.core.enums.BusinessStatus;
 import com.alina.bootrpc.common.core.json.JSON;
 import com.alina.bootrpc.common.core.utils.ServletUtils;
 import com.alina.bootrpc.common.core.utils.StringUtils;
+import com.alina.bootrpc.system.facade.ISysOperLogService;
 import com.alina.bootrpc.system.framework.manager.AsyncManager;
 import com.alina.bootrpc.system.framework.manager.factory.AsyncFactory;
 import com.alina.bootrpc.system.framework.util.ShiroUtils;
@@ -20,6 +21,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -37,6 +39,9 @@ import java.util.Map;
 public class LogAspect
 {
     private static final Logger log = LoggerFactory.getLogger(LogAspect.class);
+
+    @Autowired
+    private ISysOperLogService operLogService;
 
     // 配置织入点
     @Pointcut("@annotation(com.alina.bootrpc.common.core.annotation.Log)")
@@ -91,12 +96,12 @@ public class LogAspect
             operLog.setOperUrl(ServletUtils.getRequest().getRequestURI());
             if (currentUser != null)
             {
-                operLog.setOperName(currentUser.getLoginName());
-                if (StringUtils.isNotNull(currentUser.getDept())
-                        && StringUtils.isNotEmpty(currentUser.getDept().getDeptName()))
-                {
-                    operLog.setDeptName(currentUser.getDept().getDeptName());
-                }
+//                operLog.setOperName(currentUser.getLoginName());
+//                if (StringUtils.isNotNull(currentUser.getDept())
+//                        && StringUtils.isNotEmpty(currentUser.getDept().getDeptName()))
+//                {
+//                    operLog.setDeptName(currentUser.getDept().getDeptName());
+//                }
             }
 
             if (e != null)

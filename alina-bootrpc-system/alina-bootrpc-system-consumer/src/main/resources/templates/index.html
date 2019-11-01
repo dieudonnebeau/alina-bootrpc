@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
-    <title>若依系统首页</title>
+    <title>ALINA MANAGEMENT SYSTEM</title>
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
@@ -28,129 +28,129 @@
         <div class="sidebar-collapse">
             <ul class="nav" id="side-menu">
                 <li class="logo">
-				     <span class="logo-lg">RuoYi</span>
+				     <span class="logo-lg">AMS</span>
             	</li>
             	<li>
             		<div class="user-panel">
-            			<a class="menuItem" title="个人中心" th:href="@{/system/user/profile}"> 
-            				<div class="hide" th:text="个人中心"></div>
+            			<a class="menuItem" title="Center" th:href="@{/system/user/profile}">
+            				<div class="hide" > My Center </div>
 					        <div class="pull-left image">
 		                    	<img th:src="(${user.avatar} == '') ? @{/img/profile.jpg} : @{${user.avatar}}" class="img-circle" alt="User Image">
 					        </div>
 				        </a>
 				        <div class="pull-left info">
 				          <p>[[${user.loginName}]]</p>
-				          <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
-				          <a th:href="@{logout}" style="padding-left:5px;"><i class="fa fa-sign-out text-danger"></i> 注销</a>
+				          <a href="#"><i class="fa fa-circle text-success"></i> Online </a>
+				          <a th:href="@{logout}" style="padding-left:5px;"><i class="fa fa-sign-out text-danger"></i> Logout </a>
 				        </div>
 				    </div>
             	</li>
                  <li class="active">
-                    <a href="index.html"><i class="fa fa-home"></i> <span class="nav-label">主页</span> <span class="fa arrow"></span></a>
+                    <a href="index.html"><i class="fa fa-home"></i> <span class="nav-label">Main Page</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li class="active"><a class="menuItem" th:href="@{/system/main}">了解若依</a></li>
+                        <li class="active"><a class="menuItem" th:href="@{/system/main}">About AMS</a></li>
                     </ul>
                 </li>
                 <li th:each="menu : ${menus}">
                 	<a th:class="@{${menu.url != '' && menu.url != '#'} ? ${menu.target}}" th:href="@{${menu.url == ''} ? |#| : ${menu.url}}">
                 		<i class="fa fa-bar-chart-o" th:class="${menu.icon}"></i>
-                    	<span class="nav-label" th:text="${menu.menuName}">一级菜单</span> 
+                    	<span class="nav-label" th:text="${menu.menuName}">Menu Level 1</span>
                     	<span th:class="${menu.url == '' || menu.url == '#'} ? |fa arrow|"></span>
                 	</a>
                     <ul class="nav nav-second-level collapse">
 						<li th:each="cmenu : ${menu.children}">
-							<a th:if="${#lists.isEmpty(cmenu.children)}" th:class="${cmenu.target == ''} ? |menuItem| : ${cmenu.target}" th:utext="${cmenu.menuName}" th:href="@{${cmenu.url}}">二级菜单</a>
+							<a th:if="${#lists.isEmpty(cmenu.children)}" th:class="${cmenu.target == ''} ? |menuItem| : ${cmenu.target}" th:utext="${cmenu.menuName}" th:href="@{${cmenu.url}}">Menu Level 2</a>
 							<a th:if="${not #lists.isEmpty(cmenu.children)}" href="#">[[${cmenu.menuName}]]<span class="fa arrow"></span></a>
 							<ul th:if="${not #lists.isEmpty(cmenu.children)}" class="nav nav-third-level">
-								<li th:each="emenu : ${cmenu.children}"><a th:class="${emenu.target == ''} ? |menuItem| : ${emenu.target}" th:text="${emenu.menuName}" th:href="@{${emenu.url}}">三级菜单</a></li>
+								<li th:each="emenu : ${cmenu.children}"><a th:class="${emenu.target == ''} ? |menuItem| : ${emenu.target}" th:text="${emenu.menuName}" th:href="@{${emenu.url}}">Menu Level 3</a></li>
 							</ul>
 						</li>
 					</ul>
                 </li>
                 <li th:if="${demoEnabled}">
-                    <a href="#"><i class="fa fa-desktop"></i><span class="nav-label">实例演示</span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-desktop"></i><span class="nav-label">Demo examples</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li> <a>表单<span class="fa arrow"></span></a>
+                        <li> <a>Forms<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
-								<li><a class="menuItem" th:href="@{/demo/form/button}">按钮</a></li>
-								<li><a class="menuItem" th:href="@{/demo/form/grid}">栅格</a></li>
-								<li><a class="menuItem" th:href="@{/demo/form/select}">下拉框</a></li>
-								<li><a class="menuItem" th:href="@{/demo/form/basic}">基本表单</a></li>
-								<li><a class="menuItem" th:href="@{/demo/form/cards}">卡片列表</a></li>
-								<li><a class="menuItem" th:href="@{/demo/form/jasny}">功能扩展</a></li>
-								<li><a class="menuItem" th:href="@{/demo/form/sortable}">拖动排序</a></li>
-								<li><a class="menuItem" th:href="@{/demo/form/tabs_panels}">选项卡 & 面板</a></li>
-								<li><a class="menuItem" th:href="@{/demo/form/validate}">表单校验</a></li>
-								<li><a class="menuItem" th:href="@{/demo/form/wizard}">表单向导</a></li>
-								<li><a class="menuItem" th:href="@{/demo/form/upload}">文件上传</a></li>
-								<li><a class="menuItem" th:href="@{/demo/form/datetime}">日期和时间</a></li>
-								<li><a class="menuItem" th:href="@{/demo/form/summernote}">富文本编辑器</a></li>
-								<li><a class="menuItem" th:href="@{/demo/form/duallistbox}">左右互选组件</a></li>
-								<li><a class="menuItem" th:href="@{/demo/form/autocomplete}">搜索自动补全</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/button}">Buttons</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/grid}">Grids</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/select}">Drop-Down Box</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/basic}">Basic Forms</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/cards}">Tabulating Card</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/jasny}">Functions Extensions</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/sortable}">Sorting Drag</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/tabs_panels}">Tabs & Panels</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/validate}">Forms Validations</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/wizard}">Form Wizard</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/upload}">File uploads</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/datetime}">Date & Time</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/summernote}">Rich Text Editor</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/duallistbox}">Left and right select components</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/autocomplete}">Search auto complete</a></li>
 							</ul>
                         </li>
-                        <li> <a>表格<span class="fa arrow"></span></a>
+                        <li> <a>Tables<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
-								<li><a class="menuItem" th:href="@{/demo/table/search}">查询条件</a></li>
-								<li><a class="menuItem" th:href="@{/demo/table/footer}">数据汇总</a></li>
-								<li><a class="menuItem" th:href="@{/demo/table/groupHeader}">组合表头</a></li>
-								<li><a class="menuItem" th:href="@{/demo/table/export}">表格导出</a></li>
-								<li><a class="menuItem" th:href="@{/demo/table/remember}">翻页记住选择</a></li>
-								<li><a class="menuItem" th:href="@{/demo/table/pageGo}">跳转至指定页</a></li>
-								<li><a class="menuItem" th:href="@{/demo/table/params}">自定义查询参数</a></li>
-								<li><a class="menuItem" th:href="@{/demo/table/multi}">初始多表格</a></li>
-								<li><a class="menuItem" th:href="@{/demo/table/button}">点击按钮加载表格</a></li>
-								<li><a class="menuItem" th:href="@{/demo/table/fixedColumns}">表格冻结列</a></li>
-								<li><a class="menuItem" th:href="@{/demo/table/event}">自定义触发事件</a></li>
-								<li><a class="menuItem" th:href="@{/demo/table/detail}">表格细节视图</a></li>
-								<li><a class="menuItem" th:href="@{/demo/table/image}">表格图片预览</a></li>
-								<li><a class="menuItem" th:href="@{/demo/table/curd}">动态增删改查</a></li>
-								<li><a class="menuItem" th:href="@{/demo/table/reorder}">表格拖拽操作</a></li>
-								<li><a class="menuItem" th:href="@{/demo/table/other}">表格其他操作</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/search}">Query Builder</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/footer}">Data Summarization</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/groupHeader}">Combination of header</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/export}">Tables export</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/remember}">Turn the page and remember to choose</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/pageGo}">Jumps to the specified page</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/params}">Custom query parameters</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/multi}">Multitable Initial </a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/button}">Click the button to load the table</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/fixedColumns}">Table column frozen</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/event}">Custom trigger events</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/detail}">Table detail view</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/image}">Table image preview</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/curd}">Dynamic CRUD</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/reorder}">Table drag and drop operation</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/other}">Table other operations</a></li>
 							</ul>
                         </li>
-                        <li> <a>弹框<span class="fa arrow"></span></a>
+                        <li> <a>Popout<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
-								<li><a class="menuItem" th:href="@{/demo/modal/dialog}">模态窗口</a></li>
-								<li><a class="menuItem" th:href="@{/demo/modal/layer}">弹层组件</a></li>
-								<li><a class="menuItem" th:href="@{/demo/modal/table}">弹层表格</a></li>
+								<li><a class="menuItem" th:href="@{/demo/modal/dialog}">Modal Window</a></li>
+								<li><a class="menuItem" th:href="@{/demo/modal/layer}">Elastic layer components</a></li>
+								<li><a class="menuItem" th:href="@{/demo/modal/table}">Elastic layer form</a></li>
 							</ul>
                         </li>
-                        <li> <a>操作<span class="fa arrow"></span></a>
+                        <li> <a>Operations<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
-								<li><a class="menuItem" th:href="@{/demo/operate/table}">表格</a></li>
-								<li><a class="menuItem" th:href="@{/demo/operate/other}">其他</a></li>
+								<li><a class="menuItem" th:href="@{/demo/operate/table}">Tables</a></li>
+								<li><a class="menuItem" th:href="@{/demo/operate/other}">Others</a></li>
 							</ul>
                         </li>
-                        <li> <a>报表<span class="fa arrow"></span></a>
+                        <li> <a>Report form<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
-								<li><a class="menuItem" th:href="@{/demo/report/echarts}">百度ECharts</a></li>
-								<li><a class="menuItem" th:href="@{/demo/report/peity}">peity</a></li>
-								<li><a class="menuItem" th:href="@{/demo/report/sparkline}">sparkline</a></li>
-								<li><a class="menuItem" th:href="@{/demo/report/metrics}">图表组合</a></li>
+								<li><a class="menuItem" th:href="@{/demo/report/echarts}">Baidu ECharts</a></li>
+								<li><a class="menuItem" th:href="@{/demo/report/peity}">Peity</a></li>
+								<li><a class="menuItem" th:href="@{/demo/report/sparkline}">Sparkline</a></li>
+								<li><a class="menuItem" th:href="@{/demo/report/metrics}">Chart combination</a></li>
 							</ul>
                         </li>
-                        <li> <a>图标<span class="fa arrow"></span></a>
+                        <li> <a>Icons<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
 								<li><a class="menuItem" th:href="@{/demo/icon/fontawesome}">Font Awesome</a></li>
 								<li><a class="menuItem" th:href="@{/demo/icon/glyphicons}">Glyphicons</a></li>
 							</ul>
                         </li>
                         <li>
-	                        <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">四层菜单 </span><span class="fa arrow"></span></a>
+	                        <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">Four Level Menu </span><span class="fa arrow"></span></a>
 	                        <ul class="nav nav-second-level collapse">
 	                            <li>
-	                                <a href="#" id="damian">三级菜单1<span class="fa arrow"></span></a>
+	                                <a href="#" id="damian">Level 1<span class="fa arrow"></span></a>
 	                                <ul class="nav nav-third-level">
 	                                    <li>
-	                                        <a href="#">四级菜单1</a>
+	                                        <a href="#">Four Level 1</a>
 	                                    </li>
 	                                    <li>
-	                                        <a href="#">四级菜单2</a>
+	                                        <a href="#">Four Level 2</a>
 	                                    </li>
 	                                </ul>
 	                            </li>
-	                            <li><a href="#">三级菜单2</a></li>
+	                            <li><a href="#">Three Level 2</a></li>
 	                        </ul>
 	                    </li>
                     </ul>
@@ -165,14 +165,14 @@
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
-                    <a class="navbar-minimalize minimalize-styl-2" style="color:#FFF;" href="#" title="收起菜单">
+                    <a class="navbar-minimalize minimalize-styl-2" style="color:#FFF;" href="#" title="Pack up the menu">
                     	<i class="fa fa-bars"></i>
                     </a>
                 </div>
                 <ul class="nav navbar-top-links navbar-right welcome-message">
-				    <li><a title="视频教程" href="http://doc.ruoyi.vip/#/standard/spjc" target="_blank"><i class="fa fa-video-camera"></i> 视频教程</a></li>
-                    <li><a title="开发文档" href="http://doc.ruoyi.vip" target="_blank"><i class="fa fa-question-circle"></i> 开发文档</a></li>
-	                <li><a title="全屏显示" href="javascript:void(0)" id="fullScreen"><i class="fa fa-arrows-alt"></i> 全屏显示</a></li>
+				    <li><a title="Video tutorial" href="#" target="_blank"><i class="fa fa-video-camera"></i> Video tutorial</a></li>
+                    <li><a title="Developing documents" href="#" target="_blank"><i class="fa fa-question-circle"></i> Developing documents</a></li>
+	                <li><a title="Full screen display" href="javascript:void(0)" id="fullScreen"><i class="fa fa-arrows-alt"></i> Full screen display </a></li>
                     <li class="dropdown user-menu">
 						<a href="javascript:void(0)" class="dropdown-toggle" data-hover="dropdown">
 							<img th:src="(${user.avatar} == '') ? @{/img/profile.jpg} : @{${user.avatar}}" class="user-image">
@@ -181,16 +181,16 @@
 						<ul class="dropdown-menu">
 							<li class="mt5">
 								<a th:href="@{/system/user/profile}" class="menuItem">
-								<i class="fa fa-user"></i> 个人中心</a>
+								<i class="fa fa-user"></i> My Center</a>
 							</li>
 							<li>
 								<a onclick="resetPwd()" class="menuItem">
-								<i class="fa fa-key"></i> 修改密码</a>
+								<i class="fa fa-key"></i> Change password</a>
 							</li>
 							<li class="divider"></li>
 							<li>
 								<a th:href="@{logout}">
-								<i class="fa fa-sign-out"></i> 退出登录</a>
+								<i class="fa fa-sign-out"></i> Sign out </a>
 							</li>
 						</ul>
 					</li>
@@ -203,23 +203,23 @@
             </button>
             <nav class="page-tabs menuTabs">
                 <div class="page-tabs-content">
-                    <a href="javascript:;" class="active menuTab" data-id="/system/main">首页</a>
+                    <a href="javascript:;" class="active menuTab" data-id="/system/main">Main Page </a>
                 </div>
             </nav>
             <button class="roll-nav roll-right tabRight">
                 <i class="fa fa-forward"></i>
             </button>
-            <a href="#" class="roll-nav roll-right tabReload"><i class="fa fa-refresh"></i> 刷新</a>
+            <a href="#" class="roll-nav roll-right tabReload"><i class="fa fa-refresh"></i> Refresh </a>
         </div>
         
-        <a id="ax_close_max" class="ax_close_max" href="#" title="关闭全屏"> <i class="fa fa-times-circle-o"></i> </a>
+        <a id="ax_close_max" class="ax_close_max" href="#" title="Close the full screen display"> <i class="fa fa-times-circle-o"></i> </a>
                     
         <div class="row mainContent" id="content-main">
             <iframe class="RuoYi_iframe" name="iframe0" width="100%" height="100%" data-id="/system/main"
                     th:src="@{/system/main}" frameborder="0" seamless></iframe>
         </div>
         <div class="footer">
-            <div class="pull-right">© [[${copyrightYear}]] RuoYi Copyright </div>
+            <div class="pull-right">© [[${copyrightYear}]] AMS Copyright </div>
         </div>
     </div>
     <!--右侧部分结束-->
@@ -240,7 +240,7 @@ var ctx = [[@{/}]];
 /*用户管理-重置密码*/
 function resetPwd() {
     var url = ctx + 'system/user/profile/resetPwd';
-    $.modal.open("重置密码", url, '800', '500');
+    $.modal.open("Reset Password", url, '800', '500');
 }
 </script>
 </body>

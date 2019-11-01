@@ -32,7 +32,7 @@ public class SysLoginController extends BaseController
         // 如果是Ajax请求，返回Json字符串。
         if (ServletUtils.isAjaxRequest(request))
         {
-            return ServletUtils.renderString(response, "{\"code\":\"1\",\"msg\":\"未登录或登录超时。请重新登录\"}");
+            return ServletUtils.renderString(response, "{\"code\":\"1\",\"msg\":\"No login or login timeout. Please login again\"}");
         }
 
         return "login";
@@ -51,7 +51,7 @@ public class SysLoginController extends BaseController
         }
         catch (AuthenticationException e)
         {
-            String msg = "用户或密码错误";
+            String msg = "Username or password error";
             if (StringUtils.isNotEmpty(e.getMessage()))
             {
                 msg = e.getMessage();

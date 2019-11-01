@@ -10,22 +10,24 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.alina.bootrpc.common.core.annotation.DataScope;
 import com.alina.bootrpc.common.core.constant.UserConstants;
 import com.alina.bootrpc.common.core.exception.BusinessException;
+import com.alina.bootrpc.common.core.text.Convert;
 import com.alina.bootrpc.common.core.utils.BlankUtil;
 import com.alina.bootrpc.common.core.utils.security.Md5Utils;
 import com.alina.bootrpc.common.mapper.service.impl.BaseServiceImpl;
+import com.alina.bootrpc.system.dto.SysUserDTO;
 import com.alina.bootrpc.system.facade.ISysConfigService;
+import com.alina.bootrpc.system.facade.ISysDeptService;
 import com.alina.bootrpc.system.facade.ISysUserService;
-import com.alina.bootrpc.system.mapper.SysPostMapper;
-import com.alina.bootrpc.system.mapper.SysRoleMapper;
-import com.alina.bootrpc.system.mapper.SysUserMapper;
-import com.alina.bootrpc.system.model.SysPost;
-import com.alina.bootrpc.system.model.SysRole;
-import com.alina.bootrpc.system.model.SysUser;
+import com.alina.bootrpc.system.mapper.*;
+import com.alina.bootrpc.system.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +46,16 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
 	private SysUserMapper userMapper;
 
 	@Autowired
+	private SysUserRoleMapper userRoleMapper;
+
+	@Autowired
+	private SysUserPostMapper userPostMapper;
+
+	@Autowired
 	private ISysConfigService configService;
+
+	@Autowired
+    private ISysDeptService deptService;
 
 	@Override
 	public SysUser selectUserByLoginName(String userName) {
@@ -233,5 +244,132 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
 		}
 		return UserConstants.USER_EMAIL_UNIQUE;
 	}
+
+
+	@Override
+	@Transactional
+	public Integer insertUser(SysUserDTO userDTO)
+	{
+		// 新增用户信息
+		SysUser user = new SysUser();
+		BeanUtils.copyProperties(userDTO,user);
+		SysDept dept = deptService.queryByID(userDTO.getDeptId());
+		if(BlankUtil.isNotBlank(dept)){
+		    user.setDeptName(dept.getDeptName());
+        }
+		int rows = saveNotNull(user);
+
+		// 新增用户岗位关联
+		userDTO.setId(user.getId());
+		insertUserPost(userDTO);
+		// 新增用户与角色管理
+		insertUserRole(userDTO);
+		return rows;
+	}
+
+	/**
+	 * 新增用户角色信息
+	 *
+	 * @param userDTO 用户对象
+	 */
+	public void insertUserRole(SysUserDTO userDTO)
+	{
+		Long[] roles = userDTO.getRoleIds();
+		if (BlankUtil.isNotBlank(roles))
+		{
+			// 新增用户与角色管理
+			List<SysUserRole> list = new ArrayList<>();
+			for (Long roleId : roles)
+			{
+				SysUserRole ur = new SysUserRole();
+				ur.setUserId(userDTO.getId());
+				ur.setRoleId(roleId);
+				list.add(ur);
+			}
+			if (list.size() > 0)
+			{
+				userRoleMapper.batchUserRole(list);
+			}
+		}
+	}
+
+	/**
+	 * 新增用户岗位信息
+	 *
+	 * @param userDTO 用户对象
+	 */
+	public void insertUserPost(SysUserDTO userDTO)
+	{
+		Long[] posts = userDTO.getPostIds();
+		if (BlankUtil.isNotBlank(posts))
+		{
+			// 新增用户与岗位管理
+			List<SysUserPost> list = new ArrayList<>();
+			for (Long postId : posts)
+			{
+				SysUserPost up = new SysUserPost();
+				up.setUserId(userDTO.getId());
+				up.setPostId(postId);
+				list.add(up);
+			}
+			if (list.size() > 0)
+			{
+				userPostMapper.batchUserPost(list);
+			}
+		}
+	}
+
+
+	/**
+	 * 修改保存用户信息
+	 *
+	 * @param userDTO 用户信息
+	 * @return 结果
+	 */
+	@Override
+	@Transactional
+	public Integer updateUser(SysUserDTO userDTO)
+	{
+		SysUser user = new SysUser();
+		BeanUtils.copyProperties(userDTO,user);
+		Long userId = userDTO.getId();
+		// 删除用户与角色关联
+		userRoleMapper.deleteUserRoleByUserId(userId);
+		// 新增用户与角色管理
+		insertUserRole(userDTO);
+		// 删除用户与岗位关联
+		userPostMapper.deleteUserPostByUserId(userId);
+		// 新增用户与岗位管理
+		insertUserPost(userDTO);
+		return updateByIDNotNull(user);
+	}
+
+
+	/**
+	 * 批量删除用户信息
+	 *
+	 * @param ids 需要删除的数据ID
+	 * @return 结果
+	 */
+	@Override
+	public Integer deleteUserByIds(String ids) throws BusinessException
+	{
+		Long[] userIds = Convert.toLongArray(ids);
+		for (Long userId : userIds)
+		{
+			if (SysUser.isAdmin(userId))
+			{
+				throw new BusinessException("不允许删除超级管理员用户");
+			}
+			// 删除用户与角色关联
+			userRoleMapper.deleteUserRoleByUserId(userId);
+			// 删除用户与岗位关联
+			userPostMapper.deleteUserPostByUserId(userId);
+		}
+		return deleteByIDS(ids);
+	}
+
+
+
 
 }

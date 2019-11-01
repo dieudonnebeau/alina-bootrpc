@@ -4,6 +4,7 @@ import com.alina.bootrpc.common.mapper.service.IBaseService;
 import com.alina.bootrpc.system.model.SysRole;
 import com.alina.bootrpc.system.model.SysUserRole;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -61,5 +62,14 @@ public interface ISysRoleService extends IBaseService<SysRole> {
      * @return 结果
      */
     int insertAuthUsers(Long roleId, String userIds);
+
+     /**
+     * 根据用户ID查询角色
+     *
+     * @param userId 用户ID
+     * @return 角色列表
+     */
+    List<SysRole> selectRolesByUserId(Long userId);
+
 
 }

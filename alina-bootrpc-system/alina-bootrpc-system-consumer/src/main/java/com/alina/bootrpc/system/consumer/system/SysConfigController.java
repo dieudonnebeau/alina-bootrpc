@@ -3,6 +3,8 @@ package com.alina.bootrpc.system.consumer.system;
 
 import com.alina.bootrpc.common.core.annotation.Log;
 import com.alina.bootrpc.common.core.constant.UserConstants;
+import com.alina.bootrpc.common.core.utils.RequestBeanUtil;
+import com.alina.bootrpc.common.mapper.util.PageUtil;
 import com.alina.bootrpc.system.base.BaseController;
 import com.alina.bootrpc.common.core.domain.AjaxResult;
 import com.alina.bootrpc.common.core.enums.BusinessType;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -54,11 +57,12 @@ public class SysConfigController extends BaseController
     @RequiresPermissions("system:config:list")
     @PostMapping("/list")
     @ResponseBody
-    public TableDataInfo list(SysConfig config)
+    public TableDataInfo list(HttpServletRequest request)
     {
-        startPage();
-        List<SysConfig> list = configService.queryList(config);
-        return getDataTable(list);
+        RequestBeanUtil requestBeanUtil = new RequestBeanUtil(request);
+        PageUtil<SysConfig> pageInit = new PageUtil<>(pageNumber() , pageSize() , orderBy());
+        PageUtil<SysConfig> pageUtil = configService.queryPage(pageInit, requestBeanUtil, SysConfig.class);
+        return getDataTable(pageUtil);
     }
 
     @Log(title = "参数管理", businessType = BusinessType.EXPORT)

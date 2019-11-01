@@ -1,6 +1,8 @@
 package com.alina.bootrpc.system.facade;
 
+import com.alina.bootrpc.common.core.exception.BusinessException;
 import com.alina.bootrpc.common.mapper.service.IBaseService;
+import com.alina.bootrpc.system.dto.SysUserDTO;
 import com.alina.bootrpc.system.model.SysUser;
 
 import java.util.List;
@@ -95,5 +97,29 @@ public interface ISysUserService extends IBaseService<SysUser> {
      * @return
      */
     String checkEmailUnique(SysUser user);
+
+    /**
+     * 新增保存用户信息
+     *
+     * @param userDTO 用户信息
+     * @return 结果
+     */
+    Integer insertUser(SysUserDTO userDTO);
+
+    /**
+     * 修改保存用户信息
+     *
+     * @param userDTO 用户信息
+     * @return 结果
+     */
+    Integer updateUser(SysUserDTO userDTO);
+
+    /**
+     * 批量删除用户信息
+     *
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+    Integer deleteUserByIds(String ids) throws BusinessException ;
 
 }

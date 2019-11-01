@@ -2,6 +2,7 @@ package com.alina.bootrpc.system.consumer.system;
 
 import com.alina.bootrpc.common.core.annotation.Log;
 import com.alina.bootrpc.common.core.utils.EntityUtils;
+import com.alina.bootrpc.common.core.utils.RequestBeanUtil;
 import com.alina.bootrpc.common.mapper.util.PageUtil;
 import com.alina.bootrpc.system.base.BaseController;
 import com.alina.bootrpc.common.core.domain.AjaxResult;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -50,11 +52,11 @@ public class SysDictDataController extends BaseController
     @PostMapping("/list")
     @RequiresPermissions("system:dict:list")
     @ResponseBody
-    public TableDataInfo list(SysDictData dictData)
+    public TableDataInfo list(HttpServletRequest request)
     {
+        RequestBeanUtil requestBeanUtil = new RequestBeanUtil(request);
         PageUtil<SysDictData> pageInit = new PageUtil<>(pageNumber() , pageSize() , orderBy());
-        SysDictData entity = EntityUtils.mapToEntity(EntityUtils.entityToMap(dictData) , SysDictData.class);
-        PageUtil<SysDictData> pageUtil = dictDataService.queryPage(pageInit, entity);
+        PageUtil<SysDictData> pageUtil = dictDataService.queryPage(pageInit, requestBeanUtil, SysDictData.class);
         return getDataTable(pageUtil);
     }
 

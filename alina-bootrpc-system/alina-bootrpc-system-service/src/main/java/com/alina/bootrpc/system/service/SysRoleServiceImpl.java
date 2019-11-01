@@ -184,4 +184,30 @@ public class SysRoleServiceImpl  extends BaseServiceImpl<SysRoleMapper, SysRole>
         return userRoleMapper.batchUserRole(list);
     }
 
+    /**
+     * 根据用户ID查询角色
+     *
+     * @param userId 用户ID
+     * @return 角色列表
+     */
+    @Override
+    public List<SysRole> selectRolesByUserId(Long userId)
+    {
+        List<SysRole> userRoles = roleMapper.selectRolesByUserId(userId);
+        List<SysRole> roles = roleMapper.selectAll();
+        for (SysRole role : roles)
+        {
+            for (SysRole userRole : userRoles)
+            {
+                if (role.getId().compareTo(userRole.getId()) == 0)
+                {
+                    role.setFlag(true);
+                    break;
+                }
+            }
+        }
+        return roles;
+    }
+
+
 }

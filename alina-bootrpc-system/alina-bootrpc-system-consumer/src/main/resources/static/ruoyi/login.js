@@ -55,10 +55,10 @@ function validateRule() {
         },
         messages: {
             username: {
-                required: icon + "请输入您的用户名",
+                required: icon + "PLEASE ENTER YOUR USERNAME",
             },
             password: {
-                required: icon + "请输入您的密码",
+                required: icon + "PLEASE ENTER YOUR PASSWORD",
             }
         }
     })
@@ -66,9 +66,9 @@ function validateRule() {
 
 function validateKickout() {
 	if (getParam("kickout") == 1) {
-	    layer.alert("<font color='red'>您已在别处登录，请您修改密码或重新登录</font>", {
+	    layer.alert("<font color='red'>You have logged in elsewhere. Please change your password or log in again. </font>", {
 	        icon: 0,
-	        title: "系统提示"
+	        title: " System prompt"
 	    },
 	    function(index) {
 	        //关闭弹窗
