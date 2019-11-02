@@ -76,7 +76,7 @@ public class Global
      */
     public static String getName()
     {
-        return StringUtils.nvl(getConfig("ruoyi.name"), "RuoYi");
+        return StringUtils.nvl(getConfig("alina.name"), "AMS");
     }
 
     /**
@@ -84,7 +84,7 @@ public class Global
      */
     public static String getVersion()
     {
-        return StringUtils.nvl(getConfig("ruoyi.version"), "4.0.0");
+        return StringUtils.nvl(getConfig("alina.version"), "1.0.0");
     }
 
     /**
@@ -92,7 +92,7 @@ public class Global
      */
     public static String getCopyrightYear()
     {
-        return StringUtils.nvl(getConfig("ruoyi.copyrightYear"), "2019");
+        return StringUtils.nvl(getConfig("alina.copyrightYear"), "2019");
     }
 
     /**
@@ -108,7 +108,7 @@ public class Global
      */
     public static Boolean isAddressEnabled()
     {
-        return Boolean.valueOf(getConfig("ruoyi.addressEnabled"));
+        return Boolean.valueOf(getConfig("alina.addressEnabled"));
     }
 
     /**
@@ -116,7 +116,7 @@ public class Global
      */
     public static String getProfile()
     {
-        return getConfig("ruoyi.profile");
+        return getConfig("alina.profile");
     }
 
     /**

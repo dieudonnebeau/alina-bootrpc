@@ -6,6 +6,7 @@ import java.util.List;
 import com.alina.bootrpc.common.core.annotation.Log;
 import com.alina.bootrpc.common.core.constant.UserConstants;
 import com.alina.bootrpc.common.core.utils.BlankUtil;
+import com.alina.bootrpc.common.core.utils.EntityUtils;
 import com.alina.bootrpc.common.core.utils.RequestBeanUtil;
 import com.alina.bootrpc.common.core.utils.bean.BeanUtils;
 import com.alina.bootrpc.common.mapper.util.PageUtil;
@@ -84,15 +85,16 @@ public class SysUserController extends BaseController
         return getDataTable(pageUtil);
     }
 
-    @Log(title = "用户管理", businessType = BusinessType.EXPORT)
+    @Log(title = "User Management", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:user:export")
     @PostMapping("/export")
     @ResponseBody
-    public AjaxResult export(SysUser user)
+    public AjaxResult export(HttpServletRequest request)
     {
-        List<SysUser> list = userService.queryList(user);
+        RequestBeanUtil requestBeanUtil = new RequestBeanUtil(request);;
+        List<SysUser> list = userService.queryList(requestBeanUtil,SysUser.class);
         ExcelUtil<SysUser> util = new ExcelUtil<SysUser>(SysUser.class);
-        return util.exportExcel(list, "用户数据");
+        return util.exportExcel(list, "Users-Datas");
     }
 
     @Log(title = "用户管理", businessType = BusinessType.IMPORT)

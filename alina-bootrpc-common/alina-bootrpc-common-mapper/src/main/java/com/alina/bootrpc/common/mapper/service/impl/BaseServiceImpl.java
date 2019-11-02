@@ -77,6 +77,16 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> implements IBa
 	public List<T> queryList(T entity) {
 		return mapper.select(entity);
 	}
+
+	@Override
+	public List <T> queryList(RequestBeanUtil requestBeanUtil, Class clazz){
+		Example example = getExample(requestBeanUtil, clazz);
+		List<T> list = queryByExample(example);
+		return list ;
+	}
+
+
+
 	@Override
 	public T queryOne(T entity) {
 		return mapper.selectOne(entity);
@@ -143,36 +153,7 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> implements IBa
 
 	@Override
 	public PageUtil <T> queryPage(PageUtil<T> page, RequestBeanUtil requestBeanUtil, Class clazz){
-		Example example = new Example(clazz);
-		Example.Criteria criteria = example.createCriteria();
-		for(Object key : requestBeanUtil.keySet()){
-			String keyStr = String.valueOf(key);
-			boolean skipColumn = "pageNum".equalsIgnoreCase(keyStr) || "pageSize".equalsIgnoreCase(keyStr)||
-					"isAsc".equalsIgnoreCase(keyStr) || "orderByColumn".equalsIgnoreCase(keyStr);
-			if(skipColumn){
-				continue;
-			}
-			if("beginTime".equalsIgnoreCase(keyStr)){
-				if(BlankUtil.isNotBlank(requestBeanUtil.getString(keyStr))){
-					criteria.andGreaterThanOrEqualTo("createTime" , requestBeanUtil.getString(keyStr));
-				}
-			}else{
-				if("endTime".equalsIgnoreCase(keyStr)){
-					if(BlankUtil.isNotBlank(requestBeanUtil.getString(keyStr))){
-						criteria.andLessThanOrEqualTo("createTime" , requestBeanUtil.getString(keyStr));
-					}
-				}else {
-					if(BlankUtil.isNotBlank(requestBeanUtil.get(keyStr)) && BlankUtil.isNotBlank(String.valueOf(requestBeanUtil.get(keyStr)))) {
-						try {
-							criteria.andEqualTo(keyStr, requestBeanUtil.get(keyStr));
-						} catch (Exception e){
-							e.printStackTrace();
-							continue;
-						}
-					}
-				}
-			}
-		}
+		Example example = getExample(requestBeanUtil, clazz);
 		PageMethod.startPage(page.getPageNo(), page.getPageSize(),page.getOrderBy());
 		List<T> list = queryByExample(example);
 		return new PageUtil<T>(list);
@@ -258,6 +239,45 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> implements IBa
 		PageMethod.startPage(page.getPageNo(), page.getPageSize());
 		List<T> list = queryByExample(example);
 		return ResultResponseEntity.success((new PageUtil<T>(list)));
+	}
+
+	private Example getExample(RequestBeanUtil requestBeanUtil, Class clazz) {
+		Example example = new Example(clazz);
+		Example.Criteria criteria = example.createCriteria();
+		for(Object key : requestBeanUtil.keySet()){
+			String keyStr = String.valueOf(key);
+			boolean skipColumn = "pageNum".equalsIgnoreCase(keyStr) || "pageSize".equalsIgnoreCase(keyStr)||
+					"isAsc".equalsIgnoreCase(keyStr) || "orderByColumn".equalsIgnoreCase(keyStr);
+			if(skipColumn){
+				continue;
+			}
+			if("beginTime".equalsIgnoreCase(keyStr)){
+				if(BlankUtil.isNotBlank(requestBeanUtil.getString(keyStr))){
+					criteria.andGreaterThanOrEqualTo("createTime" , requestBeanUtil.getString(keyStr));
+				}
+			}else{
+				if("endTime".equalsIgnoreCase(keyStr)){
+					if(BlankUtil.isNotBlank(requestBeanUtil.getString(keyStr))){
+						criteria.andLessThanOrEqualTo("createTime" , requestBeanUtil.getString(keyStr));
+					}
+				}else {
+					if(BlankUtil.isNotBlank(requestBeanUtil.get(keyStr)) && BlankUtil.isNotBlank(String.valueOf(requestBeanUtil.get(keyStr)))) {
+						try {
+							if(requestBeanUtil.get(keyStr) instanceof  String){
+								StringBuilder builder = new StringBuilder("%").append(String.valueOf(requestBeanUtil.get(keyStr))).append("%");
+								criteria.andLike(keyStr, builder.toString());
+							}else{
+								criteria.andEqualTo(keyStr, requestBeanUtil.get(keyStr));
+							}
+						} catch (Exception e){
+							e.printStackTrace();
+							continue;
+						}
+					}
+				}
+			}
+		}
+		return  example;
 	}
 
 }

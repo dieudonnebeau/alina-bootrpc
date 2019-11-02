@@ -266,12 +266,12 @@
     		},
     		// 导出数据
     		exportExcel: function(formId) {
-    			$.modal.confirm("确定导出所有" + $.table._option.modalName + "吗？", function() {
+    			$.modal.confirm("Are you sure to export all" + $.table._option.modalName + "？", function() {
 	    			var currentId = $.common.isEmpty(formId) ? $('form').attr('id') : formId;
-	    			$.modal.loading("正在导出数据，请稍后...");
+	    			$.modal.loading("Exporting data, please wait...");
 	    			$.post($.table._option.exportUrl, $("#" + currentId).serializeArray(), function(result) {
 	    				if (result.code == web_status.SUCCESS) {
-	    			        window.location.href = ctx + "common/download?fileName=" + encodeURI(result.msg) + "&delete=" + true;
+	    			        window.location.href = ctx + "common/download?fileName=" + result.msg + "&delete=" + true;
 	    				} else if (result.code == web_status.WARNING) {
 	                        $.modal.alertWarning(result.msg)
 	                    } else {
@@ -303,15 +303,15 @@
             		//不固定
             		maxmin: true,
             		shade: 0.3,
-            		title: '导入' + $.table._option.modalName + '数据',
+            		title: 'Importing' + $.table._option.modalName + 'datas',
             		content: $('#' + currentId).html(),
-            		btn: ['<i class="fa fa-check"></i> 导入', '<i class="fa fa-remove"></i> 取消'],
+            		btn: ['<i class="fa fa-check"></i> importing', '<i class="fa fa-remove"></i> Cancelled'],
             		// 弹层外区域关闭
             		shadeClose: true,
             		btn1: function(index, layero){
             			var file = layero.find('#file').val();
             			if (file == '' || (!$.common.endWith(file, '.xls') && !$.common.endWith(file, '.xlsx'))){
-            				$.modal.msgWarning("请选择后缀为 “xls”或“xlsx”的文件。");
+            				$.modal.msgWarning("Please select files suffixed \"XLS\" or \"XLSX\".");
             				return false;
             			}
             			var index = layer.load(2, {shade: false});

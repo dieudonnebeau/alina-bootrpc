@@ -1,5 +1,6 @@
 package com.alina.bootrpc.system.model;
 
+import com.alina.bootrpc.common.core.annotation.Excel;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,20 +21,28 @@ public class SysUser implements Serializable {
     private static final long serialVersionUID = 3611104699562919482L;
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Excel(name = "编号")
     private Long id;
 
+    @Excel(name = "部门编号")
     private Long deptId;
 
+    @Excel(name = "登录名")
     private String loginName;
 
+    @Excel(name = "真实名称")
     private String userName;
 
+    @Excel(name = "类型")
     private String userType;
 
+    @Excel(name = "邮箱")
     private String email;
 
+    @Excel(name = "手机号码")
     private String phonenumber;
 
+    @Excel(name = "性别", readConverterExp = ("0=男,1=女,2=未知"))
     private String sex;
 
     private String avatar;
@@ -42,6 +51,7 @@ public class SysUser implements Serializable {
 
     private String salt;
 
+    @Excel(name = "状态", readConverterExp = ("0=正常,1=停用"))
     private String status;
 
     private String delFlag;

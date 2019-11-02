@@ -341,6 +341,8 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
 		userPostMapper.deleteUserPostByUserId(userId);
 		// 新增用户与岗位管理
 		insertUserPost(userDTO);
+		SysDept dept = deptService.queryByID(userDTO.getDeptId());
+		user.setDeptName(dept.getDeptName());
 		return updateByIDNotNull(user);
 	}
 

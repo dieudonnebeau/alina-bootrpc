@@ -119,6 +119,16 @@ public interface  IBaseService<T> {
 	List<T> queryList(T entity);
 
 	/**
+	 *
+	 * @Title: queryList
+	 * @param: requestBeanUtil
+	 * @param: clazz
+	 * @retrn: PageUtil<T>
+	 * @throws
+	 */
+	List <T> queryList(RequestBeanUtil requestBeanUtil, Class clazz) ;
+
+	/**
 	 * 
 	 * @Title: queryOne   
 	 * @Description: 查询单条记录     
