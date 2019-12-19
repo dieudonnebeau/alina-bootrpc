@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="alina-bootrpc-system-service"/>
+    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"/>
+    <dubbo:protocol name="dubbo" port="20880"/>
+
+    <dubbo:service interface="com.alina.bootrpc.system.facade.ISysConfigService" ref="configService" timeout="6000"/>
+    <bean id="configService" class="com.alina.bootrpc.generator.SysConfigServiceImpl"/>
+
+    <dubbo:service interface="com.alina.bootrpc.system.facade.ISysDeptService" ref="deptService" timeout="6000"/>
+    <bean id="deptService" class="com.alina.bootrpc.system.service.SysDeptServiceImpl"/>
+
+    <dubbo:service interface="com.alina.bootrpc.system.facade.ISysDictDataService" ref="dictDataService" timeout="6000"/>
+    <bean id="dictDataService" class="com.alina.bootrpc.system.service.SysDictDataServiceImpl"/>
+
+    <dubbo:service interface="com.alina.bootrpc.system.facade.ISysDictTypeService" ref="dictTypeService" timeout="6000"/>
+    <bean id="dictTypeService" class="com.alina.bootrpc.system.service.SysDictTypeServiceImpl"/>
+
+    <dubbo:service interface="com.alina.bootrpc.system.facade.ISysGenTableColumnService" ref="genTableColumnService" timeout="6000"/>
+    <bean id="genTableColumnService" class="com.alina.bootrpc.system.service.SysGenTableColumnServiceImpl"/>
+
+    <dubbo:service interface="com.alina.bootrpc.system.facade.ISysGenTableService" ref="genTableService" timeout="6000"/>
+    <bean id="genTableService" class="com.alina.bootrpc.system.service.SysGenTableServiceImpl"/>
+
+    <dubbo:service interface="com.alina.bootrpc.quartz.facade.ISysJobLogService" ref="jobLogService" timeout="6000"/>
+    <bean id="jobLogService" class="com.alina.bootrpc.system.service.SysJobLogServiceImpl"/>
+
+    <dubbo:service interface="com.alina.bootrpc.quartz.facade.ISysJobService" ref="jobService" timeout="6000"/>
+    <bean id="jobService" class="com.alina.bootrpc.system.service.SysJobServiceImpl"/>
+
+    <dubbo:service interface="com.alina.bootrpc.system.facade.ISysLogininforService" ref="logininforService" timeout="6000"/>
+    <bean id="logininforService" class="com.alina.bootrpc.generator.SysLogininforServiceImpl"/>
+
+    <dubbo:service interface="com.alina.bootrpc.system.facade.ISysMenuService" ref="menuService" timeout="6000"/>
+    <bean id="menuService" class="com.alina.bootrpc.system.service.SysMenuServiceImpl"/>
+
+    <dubbo:service interface="com.alina.bootrpc.system.facade.ISysNoticeService" ref="noticeService" timeout="6000"/>
+    <bean id="noticeService" class="com.alina.bootrpc.system.service.SysNoticeServiceImpl"/>
+
+    <dubbo:service interface="com.alina.bootrpc.system.facade.ISysOperLogService" ref="operLogService" timeout="6000"/>
+    <bean id="operLogService" class="com.alina.bootrpc.system.service.SysOperLogServiceImpl"/>
+
+    <dubbo:service interface="com.alina.bootrpc.system.facade.ISysPostService" ref="postService" timeout="6000"/>
+    <bean id="postService" class="com.alina.bootrpc.system.service.SysPostServiceImpl"/>
+
+    <dubbo:service interface="com.alina.bootrpc.system.facade.ISysRoleService" ref="roleService" timeout="6000"/>
+    <bean id="roleService" class="com.alina.bootrpc.generator.SysRoleServiceImpl"/>
+
+    <dubbo:service interface="com.alina.bootrpc.system.facade.ISysUserOnlineService" ref="userOnlineService" timeout="6000"/>
+    <bean id="userOnlineService" class="com.alina.bootrpc.generator.SysUserOnlineServiceImpl"/>
+
+    <dubbo:service interface="com.alina.bootrpc.system.facade.ISysUserService" ref="userService" timeout="6000"/>
+    <bean id="userService" class="com.alina.bootrpc.system.service.SysUserServiceImpl"/>
+</beans>

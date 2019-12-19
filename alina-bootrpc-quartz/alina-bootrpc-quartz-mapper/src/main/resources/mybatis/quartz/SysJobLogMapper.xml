@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alina.bootrpc.quartz.mapper.SysJobLogMapper">
+    <resultMap id="BaseResultMap" type="com.alina.bootrpc.quartz.model.SysJobLog">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="job_name" property="jobName" jdbcType="VARCHAR"/>
+        <result column="job_group" property="jobGroup" jdbcType="VARCHAR"/>
+        <result column="invoke_target" property="invokeTarget" jdbcType="VARCHAR"/>
+        <result column="job_message" property="jobMessage" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="CHAR"/>
+        <result column="exception_info" property="exceptionInfo" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+</mapper>

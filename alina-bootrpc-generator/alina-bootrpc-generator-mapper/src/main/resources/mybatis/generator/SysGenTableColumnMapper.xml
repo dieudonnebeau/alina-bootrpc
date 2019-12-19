@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alina.bootrpc.generator.mapper.SysGenTableColumnMapper">
+    <resultMap id="BaseResultMap" type="com.alina.bootrpc.generator.model.SysGenTableColumn">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="table_id" property="tableId" jdbcType="VARCHAR"/>
+        <result column="column_name" property="columnName" jdbcType="VARCHAR"/>
+        <result column="column_comment" property="columnComment" jdbcType="VARCHAR"/>
+        <result column="column_type" property="columnType" jdbcType="VARCHAR"/>
+        <result column="java_type" property="javaType" jdbcType="VARCHAR"/>
+        <result column="java_field" property="javaField" jdbcType="VARCHAR"/>
+        <result column="is_pk" property="isPk" jdbcType="CHAR"/>
+        <result column="is_increment" property="isIncrement" jdbcType="CHAR"/>
+        <result column="is_required" property="isRequired" jdbcType="CHAR"/>
+        <result column="is_insert" property="isInsert" jdbcType="CHAR"/>
+        <result column="is_edit" property="isEdit" jdbcType="CHAR"/>
+        <result column="is_list" property="isList" jdbcType="CHAR"/>
+        <result column="is_query" property="isQuery" jdbcType="CHAR"/>
+        <result column="query_type" property="queryType" jdbcType="VARCHAR"/>
+        <result column="html_type" property="htmlType" jdbcType="VARCHAR"/>
+        <result column="dict_type" property="dictType" jdbcType="VARCHAR"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+</mapper>
