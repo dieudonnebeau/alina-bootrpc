@@ -8,11 +8,11 @@ package com.alina.bootrpc.system.service;
  */
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.alina.bootrpc.common.mapper.service.IBaseService;
 import com.alina.bootrpc.common.mapper.service.impl.BaseServiceImpl;
-import com.alina.bootrpc.system.facade.ISysUserPostService;
 import com.alina.bootrpc.system.mapper.SysUserPostMapper;
 import com.alina.bootrpc.system.model.SysUserPost;
 
 @Service(version="1.0.0")
-public class SysUserPostServiceImpl  extends BaseServiceImpl<SysUserPostMapper, SysUserPost> implements ISysUserPostService {
+public class SysUserPostServiceImpl  extends BaseServiceImpl<SysUserPostMapper, SysUserPost> implements IBaseService<SysUserPost> {
 }

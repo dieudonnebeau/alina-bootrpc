@@ -8,7 +8,6 @@ import com.alina.bootrpc.system.model.SysUserOnline;
 import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import tk.mybatis.mapper.entity.Example;
 
 import java.io.Serializable;
 import java.util.HashMap;

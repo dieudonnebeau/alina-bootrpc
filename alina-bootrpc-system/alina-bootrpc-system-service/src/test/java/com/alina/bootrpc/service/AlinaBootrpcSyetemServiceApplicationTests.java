@@ -1,4 +1,4 @@
-package com.alina.bootrpc.system.service;
+package com.alina.bootrpc.service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

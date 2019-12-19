@@ -32,21 +32,21 @@ jdbc:
   ds:
     dsType: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/alina?useSSL=false
+    url: jdbc:mysql://localhost:3306/alina?useSSL=false&characterEncoding=utf8&serverTimezone=UTC
     username: root
     password: root
   #从数据源1
   ds1:
     dsType: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/alina?useSSL=false
+    url: jdbc:mysql://localhost:3306/alina?useSSL=falsecharacterEncoding=utf8&serverTimezone=UTC
     username: root
     password: root
   #从数据源2(远程数据源)
   ds2:
     dsType: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/alina?useSSL=false
+    url: jdbc:mysql://localhost:3306/alina?useSSL=falsecharacterEncoding=utf8&serverTimezone=UTC
     username: root
     password: root
 

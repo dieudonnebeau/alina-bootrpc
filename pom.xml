@@ -59,12 +59,6 @@
 
         <dependency>
             <groupId>com.alina.bootrpc</groupId>
-            <artifactId>alina-bootrpc-common-framework</artifactId>
-            <version>${alina.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alina.bootrpc</groupId>
             <artifactId>alina-bootrpc-system-mapper</artifactId>
             <version>${alina.version}</version>
         </dependency>
@@ -72,6 +66,30 @@
         <dependency>
             <groupId>com.alina.bootrpc</groupId>
             <artifactId>alina-bootrpc-system-facade</artifactId>
+            <version>${alina.version}</version>
+        </dependency>
+
+        <dependency>
+        <groupId>com.alina.bootrpc</groupId>
+        <artifactId>alina-bootrpc-generator-mapper</artifactId>
+        <version>${alina.version}</version>
+    </dependency>
+
+        <dependency>
+            <groupId>com.alina.bootrpc</groupId>
+            <artifactId>alina-bootrpc-generator-facade</artifactId>
+            <version>${alina.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alina.bootrpc</groupId>
+            <artifactId>alina-bootrpc-quartz-mapper</artifactId>
+            <version>${alina.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alina.bootrpc</groupId>
+            <artifactId>alina-bootrpc-quartz-facade</artifactId>
             <version>${alina.version}</version>
         </dependency>
 
@@ -108,7 +126,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.39</version>
+            <version>8.0.11</version>
         </dependency>
 
         <!--阿里数据库连接池 -->
@@ -321,5 +339,7 @@
     <modules>
         <module>alina-bootrpc-common</module>
         <module>alina-bootrpc-system</module>
+        <module>alina-bootrpc-generator</module>
+        <module>alina-bootrpc-quartz</module>
     </modules>
 </project>

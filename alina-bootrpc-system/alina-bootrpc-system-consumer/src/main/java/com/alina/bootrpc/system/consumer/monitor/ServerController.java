@@ -1,7 +1,7 @@
 package com.alina.bootrpc.system.consumer.monitor;
 
-import com.alina.bootrpc.system.base.BaseController;
 import com.alina.bootrpc.system.framework.web.domain.Server;
+import com.alina.bootrpc.system.base.BaseController;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

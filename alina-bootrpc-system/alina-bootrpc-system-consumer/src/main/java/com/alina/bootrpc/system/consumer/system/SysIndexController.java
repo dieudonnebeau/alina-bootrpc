@@ -3,9 +3,9 @@ package com.alina.bootrpc.system.consumer.system;
 import java.util.List;
 
 import com.alina.bootrpc.common.core.config.Global;
-import com.alina.bootrpc.system.base.BaseController;
 import com.alina.bootrpc.system.facade.ISysMenuService;
 import com.alina.bootrpc.system.framework.util.ShiroUtils;
+import com.alina.bootrpc.system.base.BaseController;
 import com.alina.bootrpc.system.model.SysMenu;
 import com.alina.bootrpc.system.model.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;

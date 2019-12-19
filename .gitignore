@@ -1,2 +1,14 @@
 /.idea
 /alina-bootrpc-common/alina-bootrpc-common-mapper/target
+/alina-bootrpc-quartz/alina-bootrpc-quartz-service/target/
+/alina-bootrpc-quartz/alina-bootrpc-quartz-mapper/target/
+/alina-bootrpc-quartz/alina-bootrpc-quartz-facade/target/
+/alina-bootrpc-generator/alina-bootrpc-generator-service/target/
+/alina-bootrpc-generator/alina-bootrpc-generator-mapper/target/
+/alina-bootrpc-generator/alina-bootrpc-generator-facade/target/
+/alina-bootrpc-generator/alina-bootrpc-generator-facade/alina-bootrpc-generator-facade.iml
+/alina-bootrpc-generator/alina-bootrpc-generator-mapper/alina-bootrpc-generator-mapper.iml
+/alina-bootrpc-generator/alina-bootrpc-generator-service/alina-bootrpc-generator-service.iml
+/alina-bootrpc-quartz/alina-bootrpc-quartz-facade/alina-bootrpc-quartz-facade.iml
+/alina-bootrpc-quartz/alina-bootrpc-quartz-mapper/alina-bootrpc-quartz-mapper.iml
+/alina-bootrpc-quartz/alina-bootrpc-quartz-service/alina-bootrpc-quartz-service.iml

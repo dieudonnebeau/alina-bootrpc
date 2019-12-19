@@ -7,11 +7,11 @@ package com.alina.bootrpc.system.service;
  * @version:     1.0
  */
 import com.alibaba.dubbo.config.annotation.Service;
+import com.alina.bootrpc.common.mapper.service.IBaseService;
 import com.alina.bootrpc.common.mapper.service.impl.BaseServiceImpl;
-import com.alina.bootrpc.system.facade.ISysRoleMenuService;
 import com.alina.bootrpc.system.mapper.SysRoleMenuMapper;
 import com.alina.bootrpc.system.model.SysRoleMenu;
 
 @Service(version="1.0.0")
-public class SysRoleMenuServiceImpl  extends BaseServiceImpl<SysRoleMenuMapper, SysRoleMenu> implements ISysRoleMenuService {
+public class SysRoleMenuServiceImpl  extends BaseServiceImpl<SysRoleMenuMapper, SysRoleMenu> implements IBaseService<SysRoleMenu> {
 }

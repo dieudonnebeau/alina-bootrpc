@@ -52,8 +52,12 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+        <dependency>
+            <groupId>com.alina.bootrpc</groupId>
+            <artifactId>alina-bootrpc-quartz-facade</artifactId>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>

@@ -5,7 +5,6 @@ import com.alina.bootrpc.system.model.SysRole;
 import com.alina.bootrpc.system.model.SysUser;
 import lombok.Data;
 
-import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.List;
 

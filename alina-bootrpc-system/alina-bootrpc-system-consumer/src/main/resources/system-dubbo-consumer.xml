@@ -16,8 +16,8 @@
     <dubbo:reference id="dictTypeService" interface="com.alina.bootrpc.system.facade.ISysDictTypeService"  check="false"/>
     <dubbo:reference id="genTableColumnService" interface="com.alina.bootrpc.system.facade.ISysGenTableColumnService"  check="false"/>
     <dubbo:reference id="genTableService" interface="com.alina.bootrpc.system.facade.ISysGenTableService"  check="false"/>
-    <dubbo:reference id="jobLogService" interface="com.alina.bootrpc.system.facade.ISysJobLogService"  check="false"/>
-    <dubbo:reference id="jobService" interface="com.alina.bootrpc.system.facade.ISysJobService"  check="false"/>
+    <dubbo:reference id="jobLogService" interface="com.alina.bootrpc.quartz.facade.ISysJobLogService" check="false"/>
+    <dubbo:reference id="jobService" interface="com.alina.bootrpc.quartz.facade.ISysJobService" check="false"/>
     <dubbo:reference id="logininforService" interface="com.alina.bootrpc.system.facade.ISysLogininforService"  check="false"/>
     <dubbo:reference id="noticeService" interface="com.alina.bootrpc.system.facade.ISysNoticeService"  check="false"/>
     <dubbo:reference id="operLogService" interface="com.alina.bootrpc.system.facade.ISysOperLogService"  check="false"/>

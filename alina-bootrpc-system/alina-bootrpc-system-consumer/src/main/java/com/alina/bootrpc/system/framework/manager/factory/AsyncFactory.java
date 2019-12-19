@@ -17,7 +17,6 @@ import com.alina.bootrpc.system.model.SysUserOnline;
 import eu.bitwalker.useragentutils.UserAgent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.TimerTask;
 

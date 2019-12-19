@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**

@@ -14,7 +14,6 @@ import com.alina.bootrpc.common.core.utils.BlankUtil;
 import com.alina.bootrpc.common.mapper.service.impl.BaseServiceImpl;
 import com.alina.bootrpc.system.facade.ISysMenuService;
 import com.alina.bootrpc.system.mapper.SysMenuMapper;
-import com.alina.bootrpc.system.mapper.SysRoleMapper;
 import com.alina.bootrpc.system.mapper.SysRoleMenuMapper;
 import com.alina.bootrpc.system.model.SysMenu;
 import com.alina.bootrpc.system.model.SysRole;

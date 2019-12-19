@@ -9,7 +9,6 @@ package com.alina.bootrpc.system.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alina.bootrpc.common.core.annotation.DataScope;
-import com.alina.bootrpc.common.core.annotation.DataSource;
 import com.alina.bootrpc.common.core.constant.UserConstants;
 import com.alina.bootrpc.common.core.domain.Ztree;
 import com.alina.bootrpc.common.core.utils.BlankUtil;

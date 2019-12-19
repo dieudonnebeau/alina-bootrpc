@@ -17,6 +17,14 @@
             <groupId>com.alina.bootrpc</groupId>
             <artifactId>alina-bootrpc-system-mapper</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.alina.bootrpc</groupId>
+            <artifactId>alina-bootrpc-generator-mapper</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alina.bootrpc</groupId>
+            <artifactId>alina-bootrpc-generator-mapper</artifactId>
+        </dependency>
     </dependencies>
 
 

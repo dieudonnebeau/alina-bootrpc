@@ -5,7 +5,6 @@ import com.alina.bootrpc.common.mapper.service.IBaseService;
 import com.alina.bootrpc.system.model.SysMenu;
 import com.alina.bootrpc.system.model.SysRole;
 import com.alina.bootrpc.system.model.SysUser;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Set;

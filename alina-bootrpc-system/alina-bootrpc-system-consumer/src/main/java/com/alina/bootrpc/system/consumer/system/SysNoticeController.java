@@ -1,16 +1,14 @@
 package com.alina.bootrpc.system.consumer.system;
 
-import java.util.List;
-
 import com.alina.bootrpc.common.core.annotation.Log;
 import com.alina.bootrpc.common.core.utils.RequestBeanUtil;
 import com.alina.bootrpc.common.mapper.util.PageUtil;
+import com.alina.bootrpc.system.facade.ISysNoticeService;
+import com.alina.bootrpc.system.framework.util.ShiroUtils;
 import com.alina.bootrpc.system.base.BaseController;
 import com.alina.bootrpc.common.core.domain.AjaxResult;
 import com.alina.bootrpc.common.core.enums.BusinessType;
 import com.alina.bootrpc.common.core.page.TableDataInfo;
-import com.alina.bootrpc.system.facade.ISysNoticeService;
-import com.alina.bootrpc.system.framework.util.ShiroUtils;
 import com.alina.bootrpc.system.model.SysNotice;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;

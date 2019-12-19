@@ -15,7 +15,6 @@ import com.alina.bootrpc.system.facade.ISysConfigService;
 import com.alina.bootrpc.system.mapper.SysConfigMapper;
 import com.alina.bootrpc.system.model.SysConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import tk.mybatis.mapper.entity.Example;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 
 @EnableConfigurationProperties
-@EnableAutoConfiguration
 @Import({ DynamicDataSourceRegister.class })
 @SpringBootApplication
 @MapperScan(basePackages = "com.alina.bootrpc.system.mapper")

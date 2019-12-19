@@ -1,5 +1,9 @@
 package com.alina.bootrpc.system.consumer.demo.controller;
 
+import com.alina.bootrpc.system.consumer.demo.domain.DemoDatas;
+import com.alina.bootrpc.system.consumer.demo.domain.UserFormModel;
+import com.alina.bootrpc.system.consumer.demo.domain.UserOperateModel;
+import com.alina.bootrpc.system.consumer.demo.domain.UserTableModel;
 import com.alina.bootrpc.system.base.BaseController;
 import com.alina.bootrpc.common.core.domain.AjaxResult;
 import com.alina.bootrpc.common.core.exception.BusinessException;
@@ -9,10 +13,6 @@ import com.alina.bootrpc.common.core.page.TableSupport;
 import com.alina.bootrpc.common.core.text.Convert;
 import com.alina.bootrpc.common.core.utils.StringUtils;
 import com.alina.bootrpc.common.core.utils.poi.ExcelUtil;
-import com.alina.bootrpc.system.consumer.demo.domain.DemoDatas;
-import com.alina.bootrpc.system.consumer.demo.domain.UserFormModel;
-import com.alina.bootrpc.system.consumer.demo.domain.UserOperateModel;
-import com.alina.bootrpc.system.consumer.demo.domain.UserTableModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +31,7 @@ import java.util.*;
 public class DemoPageController extends BaseController {
     private String prefix = "demo/modal";
 
-    private  DemoDatas demoDatas = new DemoDatas();
+    private DemoDatas demoDatas = new DemoDatas();
 
     /**
      * 获取用户数据

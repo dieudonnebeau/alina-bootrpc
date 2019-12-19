@@ -2,14 +2,14 @@ package com.alina.bootrpc.system.consumer.system;
 
 import com.alina.bootrpc.common.core.annotation.Log;
 import com.alina.bootrpc.common.core.config.Global;
+import com.alina.bootrpc.system.facade.ISysUserService;
+import com.alina.bootrpc.system.framework.shiro.service.SysPasswordService;
+import com.alina.bootrpc.system.framework.util.ShiroUtils;
 import com.alina.bootrpc.system.base.BaseController;
 import com.alina.bootrpc.common.core.domain.AjaxResult;
 import com.alina.bootrpc.common.core.enums.BusinessType;
 import com.alina.bootrpc.common.core.utils.BlankUtil;
 import com.alina.bootrpc.common.core.utils.file.FileUploadUtils;
-import com.alina.bootrpc.system.facade.ISysUserService;
-import com.alina.bootrpc.system.framework.shiro.service.SysPasswordService;
-import com.alina.bootrpc.system.framework.util.ShiroUtils;
 import com.alina.bootrpc.system.model.SysUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
