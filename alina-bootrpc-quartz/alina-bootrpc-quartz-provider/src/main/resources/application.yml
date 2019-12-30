@@ -1,0 +1,75 @@
+server:
+  port: 7002
+  session-timeout: 120
+  undertow:
+    io-threads: 16
+    worker-threads: 256
+    buffer-size: 1024
+    direct-buffers: true
+spring:
+  application:
+    name: alina-bootrpc-quartz-service
+  datasource:
+    name: db
+    minIdle: 5
+    maxActive: 100
+    initialSize: 10
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 50
+    removeAbandoned: true
+    filters: stat
+#数据源名称
+jdbc:
+  datasources: ds,ds1,ds2
+  #主数据源，默认的
+  ds:
+    dsType: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/alina?useSSL=false&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: root
+  #从数据源1
+  ds1:
+    dsType: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/alina?useSSL=false&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: root
+  #从数据源2(远程数据源)
+  ds2:
+    dsType: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/alina?useSSL=false&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: root
+logging:
+  level:
+    root: INFO
+    org.mybatis: INFO
+    com.alina.bootrpc.system: DEBUG
+
+
+mybatis:
+  type-aliases-package: com.alina.bootrpc.quartz.model
+  mapper-locations: classpath:mybatis/quartz/*.xml
+  configuration:
+    lazy-loading-enabled: true
+    aggressive-lazy-loading: false
+mapper:
+  mappers: com.alina.bootrpc.common.mapper.dao.BaseMapper
+  not-empty: false
+  identity: MYSQL
+
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count\=countSql
