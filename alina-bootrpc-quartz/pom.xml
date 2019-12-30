@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<parent>
-		<artifactId>alina-bootrpc</artifactId>
-		<groupId>com.alina.bootrpc</groupId>
-		<version>1.0-SNAPSHOT</version>
-	</parent>
-	<modelVersion>4.0.0</modelVersion>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>alina-bootrpc</artifactId>
+        <groupId>com.alina.bootrpc</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
 
-	<artifactId>alina-bootrpc-quartz</artifactId>
-	<packaging>pom</packaging>
-		<modules>
+    <artifactId>alina-bootrpc-quartz</artifactId>
+    <packaging>pom</packaging>
+    <modules>
         <module>alina-bootrpc-quartz-facade</module>
         <module>alina-bootrpc-quartz-mapper</module>
-		<module>alina-bootrpc-quartz-service</module>
+        <module>alina-bootrpc-quartz-provider</module>
     </modules>
 
 

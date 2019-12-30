@@ -1,5 +1,5 @@
 server:
-  port: 7001
+  port: 7003
   session-timeout: 120
   undertow:
     io-threads: 16
@@ -8,7 +8,7 @@ server:
     direct-buffers: true
 spring:
   application:
-    name: dieudonne-adminlte-bootrpc-system-service
+    name: alina-bootrpc-generator-service
   datasource:
         name: db
         minIdle: 5
@@ -58,8 +58,8 @@ logging:
 
 
 mybatis:
-  type-aliases-package: com.alina.bootrpc.system.model
-  mapper-locations: classpath:mybatis/system/*.xml
+  type-aliases-package: com.alina.bootrpc.generator.model
+  mapper-locations: classpath:mybatis/generator/*.xml
   configuration:
     lazy-loading-enabled: true
     aggressive-lazy-loading: false

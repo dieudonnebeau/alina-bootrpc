@@ -1,6 +1,6 @@
 package com.alina.bootrpc.system.framework.util;
 
-import com.alina.bootrpc.system.framework.util.spring.SpringUtils;
+import com.alina.bootrpc.common.core.utils.spring.SpringUtils;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 

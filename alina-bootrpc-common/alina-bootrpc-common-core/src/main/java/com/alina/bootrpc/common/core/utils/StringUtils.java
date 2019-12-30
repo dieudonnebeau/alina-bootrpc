@@ -2,6 +2,7 @@ package com.alina.bootrpc.common.core.utils;
 
 
 import com.alina.bootrpc.common.core.text.StrFormatter;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Collection;
 import java.util.Map;
@@ -13,7 +14,7 @@ import java.util.Map;
  * @modified By：
  * @version:     1.0
  */
-public class StringUtils extends org.apache.commons.lang3.StringUtils
+public class StringUtils  extends org.apache.commons.lang3.StringUtils
 {
     /** 空字符串 */
     private static final String NULLSTR = "";
@@ -23,7 +24,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
 
     /**
      * 获取参数不为空值
-     * 
+     *
      * @param value defaultValue 要判断的value
      * @return value 返回值
      */
@@ -34,7 +35,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
 
     /**
      * * 判断一个Collection是否为空， 包含List，Set，Queue
-     * 
+     *
      * @param coll 要判断的Collection
      * @return true：为空 false：非空
      */
@@ -45,7 +46,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
 
     /**
      * * 判断一个Collection是否非空，包含List，Set，Queue
-     * 
+     *
      * @param coll 要判断的Collection
      * @return true：非空 false：空
      */
@@ -56,7 +57,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
 
     /**
      * * 判断一个对象数组是否为空
-     * 
+     *
      * @param objects 要判断的对象数组
      ** @return true：为空 false：非空
      */
@@ -67,7 +68,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
 
     /**
      * * 判断一个对象数组是否非空
-     * 
+     *
      * @param objects 要判断的对象数组
      * @return true：非空 false：空
      */
@@ -78,7 +79,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
 
     /**
      * * 判断一个Map是否为空
-     * 
+     *
      * @param map 要判断的Map
      * @return true：为空 false：非空
      */
@@ -89,7 +90,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
 
     /**
      * * 判断一个Map是否为空
-     * 
+     *
      * @param map 要判断的Map
      * @return true：非空 false：空
      */
@@ -100,7 +101,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
 
     /**
      * * 判断一个字符串是否为空串
-     * 
+     *
      * @param str String
      * @return true：为空 false：非空
      */
@@ -111,7 +112,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
 
     /**
      * * 判断一个字符串是否为非空串
-     * 
+     *
      * @param str String
      * @return true：非空串 false：空串
      */
@@ -122,7 +123,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
 
     /**
      * * 判断一个对象是否为空
-     * 
+     *
      * @param object Object
      * @return true：为空 false：非空
      */
@@ -133,7 +134,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
 
     /**
      * * 判断一个对象是否非空
-     * 
+     *
      * @param object Object
      * @return true：非空 false：空
      */
@@ -144,7 +145,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
 
     /**
      * * 判断一个对象是否是数组类型（Java基本型别的数组）
-     * 
+     *
      * @param object 对象
      * @return true：是数组 false：不是数组
      */
@@ -163,7 +164,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
 
     /**
      * 截取字符串
-     * 
+     *
      * @param str 字符串
      * @param start 开始
      * @return 结果
@@ -194,7 +195,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
 
     /**
      * 截取字符串
-     * 
+     *
      * @param str 字符串
      * @param start 开始
      * @param end 结束
@@ -246,7 +247,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
      * 通常使用：format("this is {} for {}", "a", "b") -> this is a for b<br>
      * 转义{}： format("this is \\{} for {}", "a", "b") -> this is \{} for a<br>
      * 转义\： format("this is \\\\{} for {}", "a", "b") -> this is \a for b<br>
-     * 
+     *
      * @param template 文本模板，被替换的部分用 {} 表示
      * @param params 参数值
      * @return 格式化后的文本
@@ -311,7 +312,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
 
     /**
      * 是否包含字符串
-     * 
+     *
      * @param str 验证字符串
      * @param strs 字符串组
      * @return 包含返回true
@@ -333,7 +334,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
 
     /**
      * 将下划线大写方式命名的字符串转换为驼峰式。如果转换前的下划线大写方式命名的字符串为空，则返回空字符串。 例如：HELLO_WORLD->HelloWorld
-     * 
+     *
      * @param name 转换前的下划线大写方式命名的字符串
      * @return 转换后的驼峰式命名的字符串
      */
@@ -399,4 +400,54 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
         }
         return sb.toString();
     }
+
+    public static boolean equalsAnyIgnoreCase(final CharSequence string, final CharSequence...searchStrings) {
+        if (ArrayUtils.isNotEmpty(searchStrings)) {
+            for (final CharSequence next : searchStrings) {
+                if (equalsIgnoreCase(string, next)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static String replaceIgnoreCase(final String text, final String searchString, final String replacement) {
+        return replaceIgnoreCase(text, searchString, replacement, -1);
+    }
+    public static String replaceIgnoreCase(final String text, final String searchString, final String replacement, final int max) {
+        return replace(text, searchString, replacement, max, true);
+    }
+
+    private static String replace(final String text, String searchString, final String replacement, int max, final boolean ignoreCase) {
+        if (isEmpty(text) || isEmpty(searchString) || replacement == null || max == 0) {
+            return text;
+        }
+        String searchText = text;
+        if (ignoreCase) {
+            searchText = text.toLowerCase();
+            searchString = searchString.toLowerCase();
+        }
+        int start = 0;
+        int end = searchText.indexOf(searchString, start);
+        if (end == INDEX_NOT_FOUND) {
+            return text;
+        }
+        final int replLength = searchString.length();
+        int increase = replacement.length() - replLength;
+        increase = increase < 0 ? 0 : increase;
+        increase *= max < 0 ? 16 : max > 64 ? 64 : max;
+        final StringBuilder buf = new StringBuilder(text.length() + increase);
+        while (end != INDEX_NOT_FOUND) {
+            buf.append(text, start, end).append(replacement);
+            start = end + replLength;
+            if (--max == 0) {
+                break;
+            }
+            end = searchText.indexOf(searchString, start);
+        }
+        buf.append(text, start, text.length());
+        return buf.toString();
+    }
+
 }

@@ -12,9 +12,10 @@
 	<artifactId>alina-bootrpc-generator</artifactId>
 	<packaging>pom</packaging>
 	<modules>
-        <module>alina-bootrpc-generator-facade</module>
+		<module>alina-bootrpc-generator-facade</module>
         <module>alina-bootrpc-generator-mapper</module>
 		<module>alina-bootrpc-generator-service</module>
+        <module>alina-bootrpc-generator-facade</module>
     </modules>
 
 

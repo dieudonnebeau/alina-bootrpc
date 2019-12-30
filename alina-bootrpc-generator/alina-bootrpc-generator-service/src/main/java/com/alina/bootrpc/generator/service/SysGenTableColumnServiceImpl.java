@@ -10,9 +10,10 @@ package com.alina.bootrpc.generator.service;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alina.bootrpc.common.mapper.service.IBaseService;
 import com.alina.bootrpc.common.mapper.service.impl.BaseServiceImpl;
+import com.alina.bootrpc.generator.facade.ISysGenTableColumnService;
 import com.alina.bootrpc.generator.mapper.SysGenTableColumnMapper;
 import com.alina.bootrpc.generator.model.SysGenTableColumn;
 
 @Service(version="1.0.0")
-public class SysGenTableColumnServiceImpl  extends BaseServiceImpl<SysGenTableColumnMapper, SysGenTableColumn> implements IBaseService<SysGenTableColumn> {
+public class SysGenTableColumnServiceImpl  extends BaseServiceImpl<SysGenTableColumnMapper, SysGenTableColumn> implements ISysGenTableColumnService {
 }

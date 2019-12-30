@@ -15,7 +15,7 @@ alina:
 
 #spring.application.name=alina-bootrpc-system-consumer
 server:
-  port: 7002
+  port: 7000
   session-timeout: 120
   servlet:
     # 应用的访问路径

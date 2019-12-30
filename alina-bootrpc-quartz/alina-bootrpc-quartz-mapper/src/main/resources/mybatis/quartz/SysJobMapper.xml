@@ -16,4 +16,5 @@
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
     </resultMap>
+
 </mapper>

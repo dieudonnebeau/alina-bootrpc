@@ -12,4 +12,9 @@
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
+    <update id="cleanJobLog">
+        truncate table sys_job_log
+    </update>
+
+
 </mapper>
