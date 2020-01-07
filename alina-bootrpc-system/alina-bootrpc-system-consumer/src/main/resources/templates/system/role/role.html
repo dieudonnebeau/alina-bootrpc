@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-	<th:block th:include="include :: header('角色列表')" />
+	<th:block th:include="include :: header('Roles List')" />
 </head>
 <body class="gray-bg">
 	<div class="container-div">
@@ -11,26 +11,26 @@
 					<div class="select-list">
 						<ul>
 							<li>
-								角色名称：<input type="text" name="roleName"/>
+								ROLE NAME：<input type="text" name="roleName"/>
 							</li>
 							<li>
-								权限字符：<input type="text" name="roleKey"/>
+								ROLE KEY：<input type="text" name="roleKey"/>
 							</li>
 							<li>
-								角色状态：<select name="status" th:with="type=${@dict.getType('sys_normal_disable')}">
-									<option value="">所有</option>
+								ROLE STATE：<select name="status" th:with="type=${@dict.getType('sys_normal_disable')}">
+									<option value="">All</option>
 									<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
 								</select>
 							</li>
 							<li class="select-time">
-								<label>创建时间： </label>
+								<label>CREATE TIME： </label>
 								<input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginTime]"/>
 								<span>-</span>
 								<input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endTime]"/>
 							</li>
 							<li>
-								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
-							    <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;Search </a>
+							    <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;Reset </a>
 							</li>
 						</ul>
 					</div>
@@ -39,16 +39,16 @@
 		
 			<div class="btn-group-sm" id="toolbar" role="group">
 				<a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:role:add">
-	                <i class="fa fa-plus"></i> 新增
+	                <i class="fa fa-plus"></i> ADD
 	            </a>
 	            <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="system:role:edit">
-		            <i class="fa fa-edit"></i> 修改
+		            <i class="fa fa-edit"></i> EDIT
 		        </a>
 				<a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:role:remove">
-		            <i class="fa fa-remove"></i> 删除
+		            <i class="fa fa-remove"></i> DELETE
 		        </a>
 		        <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:role:export">
-		            <i class="fa fa-download"></i> 导出
+		            <i class="fa fa-download"></i> EXPORT
 		        </a>
 	        </div>
 	        
@@ -72,32 +72,32 @@
 		        removeUrl: prefix + "/remove",
 		        exportUrl: prefix + "/export",
 		        sortName: "roleSort",
-		        modalName: "角色",
+		        modalName: "Role",
 		        columns: [{
 		            checkbox: true
 		        },
 		        {
 		            field: 'id',
-		            title: '角色编号'
+		            title: 'NUMBER'
 		        },
 		        {
 		            field: 'roleName',
-		            title: '角色名称',
+		            title: 'ROLE NAME',
 		            sortable: true
 		        },
 		        {
 		            field: 'roleKey',
-		            title: '权限字符',
+		            title: 'ROLE KEY',
 		            sortable: true
 		        },
 		        {
 		            field: 'roleSort',
-		            title: '显示顺序',
+		            title: 'SORT',
 		            sortable: true
 		        },
 		        {
 		        	visible: editFlag == 'hidden' ? false : true,
-		        	title: '角色状态',
+		        	title: 'STATE',
 		        	align: 'center',
 		        	formatter: function (value, row, index) {
 		        		return statusTools(row);
@@ -105,18 +105,18 @@
 		        },
 		        {
 		            field: 'createTime',
-		            title: '创建时间',
+		            title: 'CREATE TIME',
 		            sortable: true
 		        },
 		        {
-		            title: '操作',
+		            title: 'OPERATIONS',
 		            align: 'center',
 		            formatter: function(value, row, index) {
 		                var actions = [];
-		                actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-		                actions.push('<a class="btn btn-primary btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="authDataScope(\'' + row.id + '\')"><i class="fa fa-check-square-o"></i>数据权限</a> ');
-		                actions.push('<a class="btn btn-info btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="authUser(\'' + row.id + '\')"><i class="fa fa-user"></i>分配用户</a> ');
-		                actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a> ');
+		                actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>Edit</a> ');
+		                actions.push('<a class="btn btn-primary btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="authDataScope(\'' + row.id + '\')"><i class="fa fa-check-square-o"></i>Data Scope</a> ');
+		                actions.push('<a class="btn btn-info btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="authUser(\'' + row.id + '\')"><i class="fa fa-user"></i>Auth. User</a> ');
+		                actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>Remove</a> ');
 		                return actions.join('');
 		            }
 		        }]
@@ -127,13 +127,13 @@
 		/* 角色管理-分配数据权限 */
 		function authDataScope(id) {
 		    var url = prefix + '/authDataScope/' + id;
-		    $.modal.open("分配数据权限", url);
+		    $.modal.open("Auth. Data Scope", url);
 		}
 		
 		/* 角色管理-分配用户 */
 		function authUser(id) {
 		    var url = prefix + '/authUser/' + id;
-		    $.modal.openTab("分配用户", url);
+		    $.modal.openTab("Auth. User", url);
 		}
 		
 		/* 角色状态显示 */
@@ -147,14 +147,14 @@
 		
 		/* 角色管理-停用 */
 		function disable(id) {
-			$.modal.confirm("确认要停用角色吗？", function() {
+			$.modal.confirm("Are you sure to deactivate the role?", function() {
 				$.operate.post(prefix + "/changeStatus", { "id": id, "status": 1 });
 		    })
 		}
 
 		/* 角色管理启用 */
 		function enable(id) {
-			$.modal.confirm("确认要启用角色吗？", function() {
+			$.modal.confirm("Are you sure to activate the role?", function() {
 				$.operate.post(prefix + "/changeStatus", { "id": id, "status": 0 });
 		    })
 		}
