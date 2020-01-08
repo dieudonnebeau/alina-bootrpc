@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-	<th:block th:include="include :: header('在线用户列表')" />
+	<th:block th:include="include :: header('Online users list')" />
 </head>
 <body class="gray-bg">
     <div class="container-div">
@@ -11,14 +11,14 @@
 					<div class="select-list">
 						<ul>
 							<li>
-								登录地址：<input type="text" name="ipaddr"/>
+								IP ADDR.：<input type="text" name="ipaddr"/>
 							</li>
 							<li>
-								操作人员：<input type="text" name="loginName"/>
+								LOGIN NAME：<input type="text" name="loginName"/>
 							</li>
 							<li>
-								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
-								<a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;Search </a>
+								<a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;Reset </a>
 							</li>
 						</ul>
 					</div>
@@ -27,7 +27,7 @@
 			
 	        <div class="btn-group-sm" id="toolbar" role="group">
 	            <a class="btn btn-danger multiple disabled" onclick="javascript:batchForceLogout()" shiro:hasPermission="monitor:online:batchForceLogout">
-	                <i class="fa fa-sign-out"></i> 强退
+	                <i class="fa fa-sign-out"></i> FORCE LOGOUT
 	            </a>
 	        </div>
 	        
@@ -54,67 +54,67 @@
 		            checkbox: true
 		        },
 		        {
-                    title: "序号",
+                    title: "INDEX",
                     formatter: function (value, row, index) {
                  	    return $.table.serialNumber(index);
                     }
                 },
 		        {
 		            field: 'sessionId',
-		            title: '会话编号'
+		            title: 'SESSION ID'
 		        },
 		        {
 		            field: 'loginName',
-		            title: '登录名称',
+		            title: 'LOGIN NAME',
 		            sortable: true
 		        },
 		        {
 		            field: 'deptName',
-		            title: '部门名称'
+		            title: 'DEPT. NAME'
 		        },
 		        {
 		            field: 'ipaddr',
-		            title: '主机'
+		            title: 'IP ADDR.'
 		        },
 		        {
 		            field: 'loginLocation',
-		            title: '登录地点'
+		            title: 'LOCATION'
 		        },
 		        {
 		            field: 'browser',
-		            title: '浏览器'
+		            title: 'BROWSER'
 		        },
 		        {
 		            field: 'os',
-		            title: '操作系统'
+		            title: 'OS'
 		        },
 		        {
 		            field: 'status',
-		            title: '会话状态',
+		            title: 'STATE',
 		            align: 'center',
 		            formatter: function(value, row, index) {
 		                if (value == 'on_line') {
-		                    return '<span class="badge badge-primary">在线</span>';
+		                    return '<span class="badge badge-primary">Online</span>';
 		                } else if (value == 'off_line') {
-		                    return '<span class="badge badge-danger">离线</span>';
+		                    return '<span class="badge badge-danger">Offline</span>';
 		                }
 		            }
 		        },
 		        {
 		            field: 'startTimestamp',
-		            title: '登录时间',
+		            title: 'START TIME',
 		            sortable: true
 		        },
 		        {
 		            field: 'lastAccessTime',
-		            title: '最后访问时间',
+		            title: 'LAST ACCESS TIME',
 		            sortable: true
 		        },
 		        {
-		            title: '操作',
+		            title: 'OPERATION',
 		            align: 'center',
 		            formatter: function(value, row, index) {
-		                var msg = '<a class="btn btn-danger btn-xs ' + forceFlag + '" href="javascript:void(0)" onclick="forceLogout(\'' + row.sessionId + '\')"><i class="fa fa-sign-out"></i>强退</a> ';
+		                var msg = '<a class="btn btn-danger btn-xs ' + forceFlag + '" href="javascript:void(0)" onclick="forceLogout(\'' + row.sessionId + '\')"><i class="fa fa-sign-out"></i>FORCE LOGOUT</a> ';
 		                return msg;
 		            }
 		        }]
@@ -124,7 +124,7 @@
 
 		// 单条强退
 		function forceLogout(sessionId) {
-		    $.modal.confirm("确定要强制选中用户下线吗？", function() {
+		    $.modal.confirm("Are you sure to force logout the selected user？", function() {
 		    	var data = { "sessionId": sessionId };
 		        $.operate.post(prefix + "/forceLogout", data);
 		    })
@@ -134,10 +134,10 @@
 		function batchForceLogout() {
 		    var rows = $.table.selectColumns("sessionId");
 		    if (rows.length == 0) {
-		        $.modal.alertWarning("请选择要强退的用户");
+		        $.modal.alertWarning("Select the user to be forced logout?");
 		        return;
 		    }
-		    $.modal.confirm("确认要强退选中的" + rows.length + "条数据吗?", function() {
+		    $.modal.confirm("Are you sure to logout the" + rows.length + " selected users?", function() {
 		        var url = prefix + "/batchForceLogout";
 		        var data = { "ids": rows };
 		        $.operate.post(url, data);

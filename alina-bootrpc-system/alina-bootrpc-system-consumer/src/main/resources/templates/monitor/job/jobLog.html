@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-	<th:block th:include="include :: header('定时任务日志列表')" />
+	<th:block th:include="include :: header('Scheduled task log list')" />
 </head>
 <body class="gray-bg">
 
@@ -12,29 +12,29 @@
 					<div class="select-list">
 						<ul>
 							<li>
-								任务名称：<input type="text" name="jobName"/>
+								JOB NAME：<input type="text" name="jobName"/>
 							</li>
 							<li>
-								任务分组：<select name="jobGroup" th:with="type=${@dict.getType('sys_job_group')}">
-									<option value="">所有</option>
+								JOB GROUP：<select name="jobGroup" th:with="type=${@dict.getType('sys_job_group')}">
+									<option value="">All</option>
 									<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
 								</select>
 							</li>
 							<li>
-								执行状态：<select name="status" th:with="type=${@dict.getType('sys_common_status')}">
-									<option value="">所有</option>
+								RUN STATE：<select name="status" th:with="type=${@dict.getType('sys_common_status')}">
+									<option value="">All</option>
 									<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
 								</select>
 							</li>
 							<li class="select-time">
-								<label>执行时间： </label>
-								<input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginTime]"/>
+								<label>RUN TIME： </label>
+								<input type="text" class="time-input" id="startTime" placeholder="Start time" name="params[beginTime]"/>
 								<span>-</span>
-								<input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endTime]"/>
+								<input type="text" class="time-input" id="endTime" placeholder="End time" name="params[endTime]"/>
 							</li>
 							<li>
-								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
-								<a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;Search </a>
+								<a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;Reset </a>
 							</li>
 						</ul>
 					</div>
@@ -43,13 +43,13 @@
 			
 			<div class="btn-group-sm" id="toolbar" role="group">
 				 <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="monitor:job:remove">
-	                <i class="fa fa-remove"></i> 删除
+	                <i class="fa fa-remove"></i> DELETE
 	            </a>
 	            <a class="btn btn-danger" onclick="$.operate.clean()" shiro:hasPermission="monitor:job:remove">
-	                <i class="fa fa-trash"></i> 清空
+	                <i class="fa fa-trash"></i> CLEAN
 	            </a>
 	            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="monitor:job:export">
-		            <i class="fa fa-download"></i> 导出
+		            <i class="fa fa-download"></i> EXPORT
 		        </a>
 	        </div>
 	        
@@ -74,39 +74,39 @@
 		        exportUrl: prefix + "/export",
 		        sortName: "createTime",
 		        sortOrder: "desc",
-		        modalName: "调度日志",
+		        modalName: "Scheduled task log",
 		        columns: [{
 		            checkbox: true
 		        },
 		        {
 		            field: 'jobLogId',
-		            title: '日志编号'
+		            title: 'JOB LOG ID'
 		        },
 		        {
 		            field: 'jobName',
-		            title: '任务名称'
+		            title: 'JOB NAME'
 		        },
 		        {
 		            field: 'jobGroup',
-		            title: '任务分组',
+		            title: 'JOB GROUP',
 		            formatter: function(value, row, index) {
 		            	return $.table.selectDictLabel(groupDatas, value);
 		            }
 		        },
 		        {
 		            field: 'invokeTarget',
-		            title: '调用目标字符串',
+		            title: 'INVOKE TARGET',
 		            formatter: function(value, row, index) {
                     	return $.table.tooltip(value);
                     }
 		        },
 		        {
 		            field: 'jobMessage',
-		            title: '日志信息'
+		            title: 'JOB MESSAGE'
 		        },
 		        {
 		            field: 'status',
-		            title: '状态',
+		            title: 'STATE',
 		            align: 'center',
 		            formatter: function(value, row, index) {
 		            	return $.table.selectDictLabel(statusDatas, value);
@@ -114,15 +114,15 @@
 		        },
 		        {
 		            field: 'createTime',
-		            title: '创建时间',
+		            title: 'CREATE TIME',
 		            sortable: true
 		        },
 		        {
-		            title: '操作',
+		            title: 'OPERATION',
 		            align: 'center',
 		            formatter: function(value, row, index) {
 		                var actions = [];
-		                actions.push('<a class="btn btn-warning btn-xs ' + detailFlag + '" href="javascript:void(0)" onclick="$.operate.detail(\'' + row.jobLogId + '\')"><i class="fa fa-search"></i>详细</a>');
+		                actions.push('<a class="btn btn-warning btn-xs ' + detailFlag + '" href="javascript:void(0)" onclick="$.operate.detail(\'' + row.jobLogId + '\')"><i class="fa fa-search"></i>Detail</a>');
 		                return actions.join('');
 		            }
 		        }]
