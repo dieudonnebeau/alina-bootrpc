@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-	<th:block th:include="include :: header('其他操作')" />
+	<th:block th:include="include :: header('Other operations')" />
 </head>
 <body class="gray-bg">
      <div class="container-div">
      	<div class="btn-group-sm" id="toolbar" role="group">
 	        <a class="btn btn-success" onclick="$.table.showColumn('userName')">
-	            <i class="fa fa-check"></i> 显示姓名
+	            <i class="fa fa-check"></i> Show Column
 	        </a>
 	        <a class="btn btn-danger" onclick="$.table.hideColumn('userName')">
-	            <i class="fa fa-close"></i> 隐藏姓名
+	            <i class="fa fa-close"></i> Hide Column
 	        </a>
 	        <a class="btn btn-info" onclick="selectColumns()">
-	            <i class="fa fa-search"></i> 获取选中姓名
+	            <i class="fa fa-search"></i> Select Columns
 	        </a>
 	        <a class="btn btn-warning" onclick="$.table.refresh()">
-	            <i class="fa fa-refresh"></i> 刷新
+	            <i class="fa fa-refresh"></i> Refresh
 	        </a>
 	        <a class="btn btn-danger" onclick="$.table.destroy()">
-	            <i class="fa fa-refresh"></i> 销毁
+	            <i class="fa fa-refresh"></i> Destroy
 	        </a>
 	        <a class="btn btn-primary" onclick="selectFirstColumns()">
-	            <i class="fa fa-search"></i> 获取选中首列值
+	            <i class="fa fa-search"></i> Select First Columns
 	        </a>
         </div>
 		<div class="row">
@@ -48,43 +48,43 @@
 		        },
 				{
 					field : 'userId', 
-					title : '用户ID'
+					title : 'USEＲ ID'
 				},
 				{
 					field : 'userCode', 
-					title : '用户编号'
+					title : 'USER CODE'
 				},
 				{
 					field : 'userName', 
-					title : '用户姓名'
+					title : 'USERNAME'
 				},
 				{
 					field : 'userPhone', 
-					title : '用户手机'
+					title : 'PHONE'
 				},
 				{
 					field : 'userEmail', 
-					title : '用户邮箱'
+					title : 'EMAIL'
 				},
 				{
 				    field : 'userBalance',
-				    title : '用户余额'
+				    title : 'BALANCE'
 				},
 				{
                     field: 'status',
-                    title: '用户状态',
+                    title: 'STATE',
                     align: 'center',
                     formatter: function(value, row, index) {
                     	return $.table.selectDictLabel(datas, value);
                     }
                 },
 		        {
-		            title: '操作',
+		            title: 'OPERATIONS',
 		            align: 'center',
 		            formatter: function(value, row, index) {
 		            	var actions = [];
-		            	actions.push('<a class="btn btn-success btn-xs" href="#"><i class="fa fa-edit"></i>编辑</a> ');
-                        actions.push('<a class="btn btn-danger btn-xs" href="#"><i class="fa fa-remove"></i>删除</a>');
+		            	actions.push('<a class="btn btn-success btn-xs" href="#"><i class="fa fa-edit"></i>Edit</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs" href="#"><i class="fa fa-remove"></i>Delete</a>');
 						return actions.join('');
 		            }
 		        }]

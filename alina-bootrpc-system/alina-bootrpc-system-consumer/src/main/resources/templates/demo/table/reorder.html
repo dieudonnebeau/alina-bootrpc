@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-	<th:block th:include="include :: header('表格拖拽操作')" />
+	<th:block th:include="include :: header('Table drag operation')" />
 </head>
 <body class="gray-bg">
      <div class="container-div">
 		<div class="row">
 			<div class="col-sm-12 select-table table-striped">
-			    <p class="select-title">按住表格拖拽</p>
+			    <p class="select-title">Drag and drop</p>
 				<table id="bootstrap-table" data-mobile-responsive="true"
 				 data-use-row-attr-func="true"
 				 data-reorderable-rows="true"></table>
@@ -29,7 +29,7 @@
 		        showColumns: false,
 		        onReorderRow: function (data) {
 		        	 //当拖拽结束后，data为整个表格的数据
-		            console.log('拖拽结束' + JSON.stringify(data))
+		            console.log('End of drag' + JSON.stringify(data))
 		            return false;
 		        },
                 columns: [{
@@ -37,19 +37,19 @@
 		        },
 				{
 					field : 'userId', 
-					title : '用户ID'
+					title : 'USER ID'
 				},
 				{
-					field : 'userCode', 
-					title : '用户编号'
+					field : 'userCode',
+					title : 'USER CODE'
 				},
 				{
 					field : 'userName', 
-					title : '用户姓名'
+					title : 'USERNAME'
 				},
 				{
 					field : 'userPhone', 
-					title : '用户手机'
+					title : 'PHONE'
 				},
 				{
 					field : 'userEmail', 
@@ -57,11 +57,11 @@
 				},
 				{
 				    field : 'userBalance',
-				    title : '用户余额'
+				    title : 'EMAIL'
 				},
 				{
                     field: 'status',
-                    title: '用户状态',
+                    title: 'STATE',
                     align: 'center',
                     formatter: function(value, row, index) {
                     	return $.table.selectDictLabel(datas, value);

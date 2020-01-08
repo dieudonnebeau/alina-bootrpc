@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-	<th:block th:include="include :: header('冻结列')" />
+	<th:block th:include="include :: header('Frozen column')" />
 </head>
 <body class="gray-bg">
      <div class="container-div">
 		<div class="row">
 			<div class="btn-group-sm" id="toolbar" role="group">
 				<a class="btn btn-success">
-	                <i class="fa fa-plus"></i> 新增
+	                <i class="fa fa-plus"></i> ADD
 	            </a>
 				<a class="btn btn-primary single disabled">
-		            <i class="fa fa-edit"></i> 修改
+		            <i class="fa fa-edit"></i> EDIT
 		        </a>
 				<a class="btn btn-danger multiple disabled">
-		            <i class="fa fa-remove"></i> 删除
+		            <i class="fa fa-remove"></i> DELETE
 		        </a>
 	        </div>
 			<div class="col-sm-12 select-table table-striped">
@@ -41,31 +41,31 @@
 		        },
 				{
 					field : 'userId', 
-					title : '用户ID'
+					title : 'USER ID'
 				},
 				{
 					field : 'userCode', 
-					title : '用户编号'
+					title : 'USER CODE'
 				},
 				{
 					field : 'userName', 
-					title : '用户姓名'
+					title : 'USERNAME'
 				},
 				{
 					field : 'userPhone', 
-					title : '用户手机'
+					title : 'PHONE'
 				},
 				{
 					field : 'userEmail', 
-					title : '用户邮箱'
+					title : 'EMAIL'
 				},
 				{
 				    field : 'userBalance',
-				    title : '用户余额'
+				    title : 'BALANCE'
 				},
 				{
                     field: 'status',
-                    title: '用户状态',
+                    title: 'STATE',
                     align: 'center',
                     formatter: function(value, row, index) {
                     	return $.table.selectDictLabel(datas, value);
@@ -73,67 +73,67 @@
                 },
 				{
 				    field : 'userBalance',
-				    title : '测试1'
+				    title : 'TEST1'
 				},
 				{
 				    field : 'userBalance',
-				    title : '测试2'
+				    title : 'TEST2'
 				},
 				{
 				    field : 'userBalance',
-				    title : '测试3'
+				    title : 'TEST3'
 				},
 				{
 				    field : 'userBalance',
-				    title : '测试4'
+				    title : 'TEST4'
 				},
 				{
 				    field : 'userBalance',
-				    title : '测试5'
+				    title : 'TEST5'
 				},
 				{
 				    field : 'userBalance',
-				    title : '测试6'
+				    title : 'TEST6'
 				},
 				{
 				    field : 'userBalance',
-				    title : '测试7'
+				    title : 'TEST7'
 				},
 				{
 				    field : 'userBalance',
-				    title : '测试8'
+				    title : 'TEST8'
 				},
 				{
 				    field : 'userBalance',
-				    title : '测试9'
+				    title : 'TEST9'
 				},
 				{
 				    field : 'userBalance',
-				    title : '测试10'
+				    title : 'TEST10'
 				},
 				{
 				    field : 'userBalance',
-				    title : '测试11'
+				    title : 'TEST11'
 				},
 				{
 				    field : 'userBalance',
-				    title : '测试12'
+				    title : 'TEST12'
 				},
 				{
 				    field : 'userBalance',
-				    title : '测试13'
+				    title : 'TEST13'
 				},
 				{
 				    field : 'userBalance',
-				    title : '测试14'
+				    title : 'TEST14'
 				},
 				{
 				    field : 'userBalance',
-				    title : '测试15'
+				    title : 'TEST15'
 				},
 				{
 				    field : 'userBalance',
-				    title : '测试16'
+				    title : 'TEST16'
 				}]
             };
             $.table.init(options);

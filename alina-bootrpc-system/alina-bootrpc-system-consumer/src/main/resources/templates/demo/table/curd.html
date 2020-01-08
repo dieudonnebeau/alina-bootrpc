@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-	<th:block th:include="include :: header('动态增删改查')" />
+	<th:block th:include="include :: header('Dynamic additions, deletions, changes, checks')" />
 </head>
 <body class="gray-bg">
      <div class="container-div">
         <div class="btn-group-sm" id="toolbar" role="group">
 	        <a class="btn btn-success" onclick="insertRow()">
-	            <i class="fa fa-plus"></i> 新增行
+	            <i class="fa fa-plus"></i> INSERT ROW
 	        </a>
 	        <a class="btn btn-danger multiple disabled" onclick="removeRow()">
-	            <i class="fa fa-remove"></i> 删除选择行
+	            <i class="fa fa-remove"></i> DELETE ROW
 	        </a>
 	        <a class="btn btn-danger" onclick="removeRowByUniqueId()">
-	            <i class="fa fa-remove"></i> 根据值删除行
+	            <i class="fa fa-remove"></i> DELETE ROW BY UNIQUE ID
 	        </a>
 	         <a class="btn btn-danger" onclick="removeRowAll()">
-	            <i class="fa fa-remove"></i> 删除所有行
+	            <i class="fa fa-remove"></i> DELETE ALL ROWS
 	        </a>
 	        <a class="btn btn-info" onclick="updateRow()">
-	            <i class="fa fa-edit"></i> 修改行
+	            <i class="fa fa-edit"></i> UPDATE ROW
 	        </a>
 	        <a class="btn btn-info" onclick="updateRowByUniqueId()">
-	            <i class="fa fa-edit"></i> 根据值修改行
+	            <i class="fa fa-edit"></i> UPDATE ROW BY UNIQUE ID
 	        </a>
 	        <a class="btn btn-info" onclick="getSelections()">
-	            <i class="fa fa-search"></i> 查询选择数据
+	            <i class="fa fa-search"></i> GET SELECTIONS
 	        </a>
 	        <a class="btn btn-info" onclick="getRowByUniqueId()">
-	            <i class="fa fa-search"></i> 根据值查询行
+	            <i class="fa fa-search"></i> GET ROW BY UNIQUE ID
 	        </a>
 	        <a class="btn btn-primary" onclick="getData()">
-	            <i class="fa fa-search"></i> 查询所有数据
+	            <i class="fa fa-search"></i> GET ALL DATA
 	        </a>
         </div>
 		<div class="row">
@@ -59,27 +59,27 @@
 		        },
 				{
 					field : 'userId', 
-					title : '用户ID'
+					title : 'USER ID'
 				},
 				{
 					field : 'userCode', 
-					title : '用户编号'
+					title : 'USER CODE'
 				},
 				{
 					field : 'userName', 
-					title : '用户姓名'
+					title : 'USERNAME'
 				},
 				{
 					field : 'userPhone', 
-					title : '用户手机'
+					title : 'PHONE'
 				},
 				{
 					field : 'userEmail', 
-					title : '用户邮箱'
+					title : 'EMAIL'
 				},
 				{
 				    field : 'userBalance',
-				    title : '用户余额'
+				    title : 'BALANCE'
 				}]
             };
             $.table.init(options);
@@ -93,9 +93,9 @@
                 row: {
                 	userId: randomId,
                 	userCode: 2000000 + randomId,
-                	userName: '测试' + randomId,
-                	userPhone: '1588888888',
-                	userEmail: 'ry1@qq.com',
+                	userName: 'TEST' + randomId,
+                	userPhone: '1318888888',
+                	userEmail: 'alina1@qq.com',
                 	userBalance: 10 + randomId,
                 }
         	})
@@ -105,7 +105,7 @@
         function removeRow(){
         	var ids = $.table.selectColumns("userId");
         	if (ids.length == 0) {
-    			$.modal.alertWarning("请至少选择一条记录");
+    			$.modal.alertWarning("Please select at least one record.");
     			return;
     		}
         	$.btTable.bootstrapTable('remove', {
@@ -132,9 +132,9 @@
                 row: {
                 	userId: randomId,
                 	userCode: 3000000 + randomId,
-                	userName: '测试' + randomId,
-                	userPhone: '1599999999',
-                	userEmail: 'ry2@qq.com',
+                	userName: 'TEST' + randomId,
+                	userPhone: '1319999999',
+                	userEmail: 'alina2@qq.com',
                 	userBalance: 50 + randomId,
                 }
         	})
@@ -148,9 +148,9 @@
                 row: {
                 	userId: randomId,
                 	userCode: 3000000 + randomId,
-                	userName: '测试' + randomId,
-                	userPhone: '1599999999',
-                	userEmail: 'ry2@qq.com',
+                	userName: 'Test' + randomId,
+                	userPhone: '1319999999',
+                	userEmail: 'alina2@qq.com',
                 	userBalance: 50 + randomId,
                 }
         	})
