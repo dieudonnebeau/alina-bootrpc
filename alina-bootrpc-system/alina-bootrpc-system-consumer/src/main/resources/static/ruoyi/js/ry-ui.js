@@ -591,8 +591,8 @@
             confirm: function (content, callBack) {
             	layer.confirm(content, {
         	        icon: 3,
-        	        title: "系统提示",
-        	        btn: ['确认', '取消']
+        	        title: "System Prompt",
+        	        btn: ['Confirm', 'Cancel']
         	    }, function (index) {
         	    	layer.close(index);
         	        callBack(true);
@@ -632,7 +632,7 @@
             		shade: 0.3,
             		title: title,
             		content: url,
-            		btn: ['确定', '关闭'],
+            		btn: ['Confirm', 'Close'],
             	    // 弹层外区域关闭
             		shadeClose: true,
             		yes: callback,
@@ -644,10 +644,10 @@
             // 弹出层指定参数选项
             openOptions: function (options) {
             	var _url = $.common.isEmpty(options.url) ? "/404.html" : options.url; 
-            	var _title = $.common.isEmpty(options.title) ? "系统窗口" : options.title; 
+            	var _title = $.common.isEmpty(options.title) ? "System window" : options.title;
                 var _width = $.common.isEmpty(options.width) ? "800" : options.width; 
                 var _height = $.common.isEmpty(options.height) ? ($(window).height() - 50) : options.height;
-                var _btn = ['<i class="fa fa-check"></i> 确认', '<i class="fa fa-close"></i> 关闭'];
+                var _btn = ['<i class="fa fa-check"></i> Confirm', '<i class="fa fa-close"></i> Close'];
                 if ($.common.isEmpty(options.yes)) {
                 	options.yes = function(index, layero) {
                     	options.callBack(index, layero);
@@ -698,7 +698,7 @@
             		shade: 0.3,
             		title: title,
             		content: url,
-            		btn: ['确定', '关闭'],
+            		btn: ['Confirm', 'Close'],
             		// 弹层外区域关闭
             		shadeClose: true,
             		yes: function(index, layero) {
@@ -760,7 +760,7 @@
         	        dataType: dataType,
         	        data: data,
         	        beforeSend: function () {
-        	        	$.modal.loading("正在处理中，请稍后...");
+        	        	$.modal.loading("Processing, please wait ...");
         	        },
         	        success: function(result) {
         	        	if (typeof callback == "function") {
@@ -783,12 +783,12 @@
             detail: function(id, width, height) {
             	var _url = $.operate.detailUrl(id);
             	var options = {
-       				title: $.table._option.modalName + "详细",
+       				title: $.table._option.modalName + "Detail",
        				width: width,
        				height: height,
        				url: $.operate.detailUrl(id),
        				skin: 'layui-layer-gray', 
-       				btn: ['关闭'],
+       				btn: ['Close'],
        				yes: function (index, layero) {
        	                layer.close(index);
                     }
@@ -803,7 +803,7 @@
             	} else {
             	    var id = $.common.isEmpty($.table._option.uniqueId) ? $.table.selectFirstColumns() : $.table.selectColumns($.table._option.uniqueId);
             	    if (id.length == 0) {
-            			$.modal.alertWarning("请至少选择一条记录");
+            			$.modal.alertWarning("Please select at least one record");
             			return;
             		}
             	    url = $.table._option.detailUrl.replace("{id}", id);
@@ -812,7 +812,7 @@
             },
             // 删除信息
             remove: function(id) {
-            	$.modal.confirm("确定删除该条" + $.table._option.modalName + "信息吗？", function() {
+            	$.modal.confirm("Are you sure to delete the" + $.table._option.modalName + " message?", function() {
                     var url = $.common.isEmpty(id) ? $.table._option.removeUrl : $.table._option.removeUrl.replace("{id}", id);
                     if($.table._option.type == table_type.bootstrapTreeTable) {
                     	$.operate.get(url);
@@ -827,10 +827,10 @@
             removeAll: function() {
         		var rows = $.common.isEmpty($.table._option.uniqueId) ? $.table.selectFirstColumns() : $.table.selectColumns($.table._option.uniqueId);
         		if (rows.length == 0) {
-        			$.modal.alertWarning("请至少选择一条记录");
+        			$.modal.alertWarning("Please select at least one record");
         			return;
         		}
-        		$.modal.confirm("确认要删除选中的" + rows.length + "条数据吗?", function() {
+        		$.modal.confirm("Are you sure to delete the selected" + rows.length + "data?", function() {
         			var url = $.table._option.removeUrl;
         			var data = { "ids": rows.join() };
         			$.operate.submit(url, "post", "json", data);
@@ -838,23 +838,23 @@
             },
             // 清空信息
             clean: function() {
-            	$.modal.confirm("确定清空所有" + $.table._option.modalName + "吗？", function() {
+            	$.modal.confirm("Are you sure to clear all" + $ .table._option.modalName + "?", function() {
 	            	var url = $.table._option.cleanUrl;
 	            	$.operate.submit(url, "post", "json", "");
             	});
             },
             // 添加信息
             add: function(id) {
-                $.modal.open("添加" + $.table._option.modalName, $.operate.addUrl(id));
+                $.modal.open("Add" + $.table._option.modalName, $.operate.addUrl(id));
             },
             // 添加信息，以tab页展现
             addTab: function (id) {
-                $.modal.openTab("添加" + $.table._option.modalName, $.operate.addUrl(id));
+                $.modal.openTab("Add" + $.table._option.modalName, $.operate.addUrl(id));
             },
             // 添加信息 全屏
             addFull: function(id) {
             	var url = $.common.isEmpty(id) ? $.table._option.createUrl : $.table._option.createUrl.replace("{id}", id);
-                $.modal.openFull("添加" + $.table._option.modalName, url);
+                $.modal.openFull("Add" + $.table._option.modalName, url);
             },
             // 添加访问地址
             addUrl: function(id) {
@@ -866,18 +866,18 @@
             	if($.common.isEmpty(id) && $.table._option.type == table_type.bootstrapTreeTable) {
             		var row = $.bttTable.bootstrapTreeTable('getSelections')[0];
                 	if ($.common.isEmpty(row)) {
-            			$.modal.alertWarning("请至少选择一条记录");
+            			$.modal.alertWarning("Please select at least one record");
             			return;
             		}
                     var url = $.table._option.updateUrl.replace("{id}", row[$.table._option.uniqueId]);
-                    $.modal.open("修改" + $.table._option.modalName, url);
+                    $.modal.open("Edit" + $.table._option.modalName, url);
             	} else {
-            	    $.modal.open("修改" + $.table._option.modalName, $.operate.editUrl(id));
+            	    $.modal.open("Edit" + $.table._option.modalName, $.operate.editUrl(id));
             	}
             },
             // 修改信息，以tab页展现
             editTab: function(id) {
-            	$.modal.openTab("修改" + $.table._option.modalName, $.operate.editUrl(id));
+            	$.modal.openTab("Edit" + $.table._option.modalName, $.operate.editUrl(id));
             },
             // 修改信息 全屏
             editFull: function(id) {
@@ -888,7 +888,7 @@
             	    var row = $.common.isEmpty($.table._option.uniqueId) ? $.table.selectFirstColumns() : $.table.selectColumns($.table._option.uniqueId);
             	    url = $.table._option.updateUrl.replace("{id}", row);
             	}
-            	$.modal.openFull("修改" + $.table._option.modalName, url);
+            	$.modal.openFull("Edit" + $.table._option.modalName, url);
             },
             // 修改访问地址
             editUrl: function(id) {
@@ -898,7 +898,7 @@
             	} else {
             	    var id = $.common.isEmpty($.table._option.uniqueId) ? $.table.selectFirstColumns() : $.table.selectColumns($.table._option.uniqueId);
             	    if (id.length == 0) {
-            			$.modal.alertWarning("请至少选择一条记录");
+            			$.modal.alertWarning("Please select at least one record");
             			return;
             		}
             	    url = $.table._option.updateUrl.replace("{id}", id);
@@ -913,7 +913,7 @@
         	        dataType: "json",
         	        data: data,
         	        beforeSend: function () {
-        	        	$.modal.loading("正在处理中，请稍后...");
+        	        	$.modal.loading("Processing, please wait ...");
         	        	$.modal.disable();
         	        },
         	        success: function(result) {
@@ -933,7 +933,7 @@
         	        dataType: "json",
         	        data: data,
         	        beforeSend: function () {
-        	        	$.modal.loading("正在处理中，请稍后...");
+        	        	$.modal.loading("Processing, please wait ...");
         	        },
         	        success: function(result) {
         	        	if (typeof callback == "function") {
@@ -959,7 +959,7 @@
         	        dataType: "json",
         	        data: data,
         	        beforeSend: function () {
-        	        	$.modal.loading("正在处理中，请稍后...");
+        	        	$.modal.loading("Processing, please wait ...");
         	        },
         	        success: function(result) {
         	        	if (typeof callback == "function") {
@@ -988,7 +988,7 @@
             // 成功结果提示msg（父窗体全局更新）
             saveSuccess: function (result) {
             	if (result.code == web_status.SUCCESS) {
-            		$.modal.msgReload("保存成功,正在刷新数据请稍后……", modal_status.SUCCESS);
+            		$.modal.msgReload("Saved successfully, refreshing data please wait ...", modal_status.SUCCESS);
                 } else if (result.code == web_status.WARNING) {
                     $.modal.alertWarning(result.msg)
                 }  else {
@@ -1009,7 +1009,7 @@
                         parent.$.modal.msgSuccess(result.msg);
                         parent.$.treeTable.refresh();
                     } else {
-                        $.modal.msgReload("保存成功,正在刷新数据请稍后……", modal_status.SUCCESS);
+                        $.modal.msgReload("Saved successfully, refreshing data please wait ...", modal_status.SUCCESS);
                     }
                 } else if (result.code == web_status.WARNING) {
                     $.modal.alertWarning(result.msg)
@@ -1194,16 +1194,16 @@
         	notAllowParents: function(_tree) {
     		    var nodes = _tree.getSelectedNodes();
     		    if(nodes.length == 0){
-                    $.modal.msgError("请选择节点后提交");
+                    $.modal.msgError("Please select a node and submit");
                     return false;
 				}
     		    for (var i = 0; i < nodes.length; i++) {
     		        if (nodes[i].level == 0) {
-    		            $.modal.msgError("不能选择根节点（" + nodes[i].name + "）");
+    		            $.modal.msgError("Cannot select root node（" + nodes[i].name + "）");
     		            return false;
     		        }
     		        if (nodes[i].isParent) {
-    		            $.modal.msgError("不能选择父节点（" + nodes[i].name + "）");
+    		            $.modal.msgError("Cannot select parent node（" + nodes[i].name + "）");
     		            return false;
     		        }
     		    }
@@ -1214,7 +1214,7 @@
     		    var nodes = _tree.getSelectedNodes();
     		    for (var i = 0; i < nodes.length; i++) {
                     if (!nodes[i].isParent) {
-    		    		$.modal.msgError("不能选择最后层级节点（" + nodes[i].name + "）");
+    		    		$.modal.msgError("Cannot select the last level node（" + nodes[i].name + "）");
     		            return false;
     		        }
     		    }
