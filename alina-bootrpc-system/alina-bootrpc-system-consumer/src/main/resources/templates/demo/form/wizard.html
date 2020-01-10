@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-	<th:block th:include="include :: header('基本表单')" />
+	<th:block th:include="include :: header('Basic form')" />
 	<th:block th:include="include :: jquery-steps-css" />
 </head>
 <body class="gray-bg">
@@ -9,8 +9,8 @@
         <div class="row">
             <div class="col-sm-5">
                 <div class="jumbotron">
-                    <h1>表单向导</h1>
-                    <p>Smart UI 部件允许您快速创建表单向导接口。</p>
+                    <h1>Form Wizard</h1>
+                    <p>Smart UI widgets allow you to quickly create form wizard interfaces.</p>
                     <p><a href="https://github.com/rstaib/jquery-steps" target="_blank" class="btn btn-primary btn-lg" role="button">了解 jQuery Steps</a>
                     </p>
                 </div>
@@ -18,37 +18,37 @@
             <div class="col-sm-7">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>基础表单向导</h5>
+                        <h5>Basic Form Wizard</h5>
                     </div>
                     <div class="ibox-content">
                         <p>
-                                                                      这是一个简单的表单向导示例
+                            Here is an example of a simple form wizard
                         </p>
                         <div id="wizard">
-                            <h1>第一步</h1>
+                            <h1>Step 1 </h1>
                             <div class="step-content">
                                 <div class="text-center m-t-md">
-                                    <h2>第一步</h2>
+                                    <h2>Step 1</h2>
                                     <p>
                                                                                                        这是第一步的内容
                                     </p>
                                 </div>
                             </div>
 
-                            <h1>第二步</h1>
+                            <h1>Step 2</h1>
                             <div class="step-content">
                                 <div class="text-center m-t-md">
-                                    <h2>第二步</h2>
+                                    <h2>Step 2</h2>
                                     <p>
                                                                                                        这是第二步的内容
                                     </p>
                                 </div>
                             </div>
 
-                            <h1>第三步</h1>
+                            <h1>Step 3</h1>
                             <div class="step-content">
                                 <div class="text-center m-t-md">
-                                    <h2>第三步</h2>
+                                    <h2>Step 3</h2>
                                     <p>
                                                                                                       这是第三步的内容
                                     </p>
@@ -64,32 +64,32 @@
             <div class="col-sm-12">
                 <div class="ibox">
                     <div class="ibox-title">
-                        <h5>带验证的表单向导</h5>
+                        <h5>Form Wizard with validation</h5>
                     </div>
                     <div class="ibox-content">
                         <h2>
-                                                                               带验证的表单向导
+                            Form Wizard with validation
                             </h2>
                         <p>
-                                                                              下面这个示例展示了如何在表单向导中使用 jQuery Validation 插件
+                            The following example shows how to use the jQuery Validation plugin in the form wizard
                         </p>
 
                         <form id="form" action="" class="wizard-big">
-                            <h1>账户</h1>
+                            <h1>ACCOUNT</h1>
                             <fieldset>
-                                <h2>账户信息</h2>
+                                <h2>ACCOUNT INFO.</h2>
                                 <div class="row">
                                     <div class="col-sm-8">
                                         <div class="form-group">
-                                            <label>用户名 *</label>
+                                            <label>USERNAME *</label>
                                             <input id="userName" name="userName" type="text" class="form-control required">
                                         </div>
                                         <div class="form-group">
-                                            <label>密码 *</label>
+                                            <label>PASSWORD *</label>
                                             <input id="password" name="password" type="text" class="form-control required">
                                         </div>
                                         <div class="form-group">
-                                            <label>确认密码 *</label>
+                                            <label>CONFIRM *</label>
                                             <input id="confirm" name="confirm" type="text" class="form-control required">
                                         </div>
                                     </div>
@@ -103,41 +103,41 @@
                                 </div>
 
                             </fieldset>
-                            <h1>个人资料</h1>
+                            <h1>Personal information</h1>
                             <fieldset>
-                                <h2>个人资料信息</h2>
+                                <h2>Personal information</h2>
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>姓名 *</label>
+                                            <label>NAME *</label>
                                             <input id="name" name="name" type="text" class="form-control required">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Email *</label>
+                                            <label>EMAIL *</label>
                                             <input id="email" name="email" type="text" class="form-control required email">
                                         </div>
                                         <div class="form-group">
-                                            <label>地址 *</label>
+                                            <label>ADDRESS *</label>
                                             <input id="address" name="address" type="text" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                             </fieldset>
 
-                            <h1>警告</h1>
+                            <h1>Warnings</h1>
                             <fieldset>
                                 <div class="text-center" style="margin-top: 120px">
-                                    <h2>你是火星人 :-)</h2>
+                                    <h2>You are martian :-)</h2>
                                 </div>
                             </fieldset>
 
-                            <h1>完成</h1>
+                            <h1>Finish</h1>
                             <fieldset>
-                                <h2>条款</h2>
+                                <h2>Terms</h2>
                                 <input id="acceptTerms" name="acceptTerms" type="checkbox" class="required">
-                                <label for="acceptTerms">我同意注册条款</label>
+                                <label for="acceptTerms">I agree to the terms of registration.</label>
                             </fieldset>
                         </form>
                     </div>

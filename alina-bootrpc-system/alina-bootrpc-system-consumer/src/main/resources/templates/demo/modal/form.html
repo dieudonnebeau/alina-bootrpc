@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" >
 <head>
-	<th:block th:include="include :: header('新增用户')" />
+	<th:block th:include="include :: header('Add user')" />
 </head>
 <body>
     <div class="main-content">
@@ -9,18 +9,18 @@
             <div class="row">
             	<div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label"><span style="color: red; ">*</span>用户名称：</label>
+                        <label class="col-sm-4 control-label"><span style="color: red; ">*</span>USERNAME：</label>
                         <div class="col-sm-8">
-                            <input name="userName" placeholder="请输入用户名称" class="form-control" type="text">
+                            <input name="userName" placeholder="Username" class="form-control" type="text">
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label"><span style="color: red; ">*</span>归属部门：</label>
+                        <label class="col-sm-4 control-label"><span style="color: red; ">*</span>DEPT. NAME：</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                            	<input name="deptName" type="text" placeholder="请选择归属部门" class="form-control">
+                            	<input name="deptName" type="text" placeholder="Department" class="form-control">
                                 <span class="input-group-addon"><i class="fa fa-search"></i></span>
                             </div>
                         </div>
@@ -30,35 +30,17 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label"><span style="color: red; ">*</span>手机号码：</label>
+                        <label class="col-sm-4 control-label"><span style="color: red; ">*</span>PHONE：</label>
                         <div class="col-sm-8">
-                            <input name="phonenumber" placeholder="请输入手机号码" class="form-control" type="text">
+                            <input name="phonenumber" placeholder="Phone" class="form-control" type="text">
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label"><span style="color: red; ">*</span>邮箱：</label>
+                        <label class="col-sm-4 control-label"><span style="color: red; ">*</span>EMAIL：</label>
                         <div class="col-sm-8">
-                            <input name="email" class="form-control" type="text" placeholder="请输入邮箱">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label"><span style="color: red; ">*</span>登录账号：</label>
-                        <div class="col-sm-8">
-                            <input name="loginName" placeholder="请输入登录账号" class="form-control" type="text">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label"><span style="color: red; ">*</span>登录密码：</label>
-                        <div class="col-sm-8">
-                            <input name="password" placeholder="请输入登录密码" class="form-control" type="password">
+                            <input name="email" class="form-control" type="text" placeholder="Email">
                         </div>
                     </div>
                 </div>
@@ -66,7 +48,25 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">用户性别：</label>
+                        <label class="col-sm-4 control-label"><span style="color: red; ">*</span>LOGIN NAME：</label>
+                        <div class="col-sm-8">
+                            <input name="loginName" placeholder="Login name" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label"><span style="color: red; ">*</span>PASSWORD：</label>
+                        <div class="col-sm-8">
+                            <input name="password" placeholder="Password" class="form-control" type="password">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">SEX：</label>
                         <div class="col-sm-8">
                             <div class="input-group" style="width: 100%">
                                 <select name="sex" class="form-control m-b" th:with="type=${@dict.getType('sys_user_sex')}">
@@ -78,7 +78,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">用户状态：</label>
+                        <label class="col-sm-4 control-label">STATE：</label>
                         <div class="col-sm-8">
                             <label class="toggle-switch switch-solid">
 	                            <input type="checkbox" id="status" checked>

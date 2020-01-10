@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-	<th:block th:include="include :: header('下拉框')" />
+	<th:block th:include="include :: header('Select')" />
 	<th:block th:include="include :: select2-css" />
 	<th:block th:include="include :: bootstrap-select-css" />
 </head>
@@ -12,13 +12,13 @@
             <div class="col-sm-6">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>下拉框 <small>https://github.com/select2/select2</small></h5>
+                        <h5>Select <small>https://github.com/select2/select2</small></h5>
                     </div>  
                     <div class="ibox-content">
                         <div class="form-group">
-                            <label class="font-noraml">单选</label>
+                            <label class="font-noraml">Single Choice</label>
                             <select class="form-control">
-                            	<option value="">--请选择开发语言--</option>
+                            	<option value="">--Please select a development language--</option>
                             	<option value="Java">Java</option>
                             	<option value="PHP">PHP</option>
                             	<option value=".NET">.NET</option>
@@ -26,14 +26,14 @@
                         </div>
                         
                         <div class="form-group">
-                             <label class="font-noraml">分组单选</label>
+                             <label class="font-noraml">Group Single Choice</label>
                              <select class="form-control">
-                               <optgroup label="--请选择开发语言--">
+                               <optgroup label="--Please select a development language--">
 								 <option value="Java">Java</option>
                                  <option value="PHP">PHP</option>
                                  <option value=".NET">.NET</option>
 							   </optgroup>
-							   <optgroup label="--请选择数据库--">
+							   <optgroup label="--Please select a database--">
 							     <option value="Oracle">Oracle</option>
                                  <option value="Mysql">Mysql</option>
                                  <option value="Sysbase">Sysbase</option>
@@ -42,9 +42,9 @@
                         </div>
 						  
                         <div class="form-group">
-                            <label class="font-noraml">多选</label>
+                            <label class="font-noraml">Multiple choice</label>
                             <select class="form-control select2-multiple" multiple>
-                            	<option value="">请选择开发语言</option>
+                            	<option value="">Please select a development language</option>
                             	<option value="Java">Java</option>
                             	<option value="PHP">PHP</option>
                             	<option value=".NET">.NET</option>
@@ -52,14 +52,14 @@
                         </div>
                         
                         <div class="form-group">
-                             <label class="font-noraml">分组多选</label>
+                             <label class="font-noraml">Group Multiple choice</label>
                              <select class="form-control select2-multiple" multiple>
-                               <optgroup label="--请选择开发语言--">
+                               <optgroup label="--Please select a development language--">
 								 <option value="Java">Java</option>
                                  <option value="PHP">PHP</option>
                                  <option value=".NET">.NET</option>
 							   </optgroup>
-							   <optgroup label="--请选择数据库--">
+							   <optgroup label="--Please select a database--">
 							     <option value="Oracle">Oracle</option>
                                  <option value="Mysql">Mysql</option>
                                  <option value="Sysbase">Sysbase</option>
@@ -68,7 +68,7 @@
                         </div>
                         <hr>
                         <div class="form-group">
-                            <label class="font-noraml">相关参数详细信息</label>
+                            <label class="font-noraml">Related parameter details</label>
                             <div><a href="http://doc.ruoyi.vip/#/standard/zjwd?id=select2" target="_blank">http://doc.ruoyi.vip/#/standard/zjwd?id=select2</a></div>
                         </div>
                     </div>
@@ -77,13 +77,13 @@
             <div class="col-sm-6">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>下拉框 <small>https://github.com/snapappointments/bootstrap-select</small></h5>
+                        <h5>Selects <small>https://github.com/snapappointments/bootstrap-select</small></h5>
                     </div>
                      <div class="ibox-content">
                         <div class="form-group">
-                            <label class="font-noraml">单选</label>
+                            <label class="font-noraml">Single Choice</label>
                             <select class="form-control noselect2 selectpicker">
-                            	<option value="">--请选择开发语言--</option>
+                            	<option value="">--Please select a development language--</option>
                             	<option value="Java">Java</option>
                             	<option value="PHP">PHP</option>
                             	<option value=".NET">.NET</option>
@@ -91,14 +91,14 @@
                         </div>
                         
                         <div class="form-group">
-                             <label class="font-noraml">分组多选</label>
+                             <label class="font-noraml">Group Single Choice</label>
                              <select class="form-control noselect2 selectpicker">
-                               <optgroup label="--请选择开发语言--">
+                               <optgroup label="--Please select a development language--">
 								 <option value="Java">Java</option>
                                  <option value="PHP">PHP</option>
                                  <option value=".NET">.NET</option>
 							   </optgroup>
-							   <optgroup label="--请选择数据库--">
+							   <optgroup label="--Please select a database--">
 							     <option value="Oracle">Oracle</option>
                                  <option value="Mysql">Mysql</option>
                                  <option value="Sysbase">Sysbase</option>
@@ -107,7 +107,7 @@
                         </div>
 						  
                         <div class="form-group">
-                            <label class="font-noraml">多选</label>
+                            <label class="font-noraml">Multiple choice</label>
                             <select class="form-control noselect2 selectpicker" data-none-selected-text="请选择开发语言" multiple>
                             	<option value="Java">Java</option>
                             	<option value="PHP">PHP</option>
@@ -116,14 +116,14 @@
                         </div>
                         
                         <div class="form-group">
-                             <label class="font-noraml">分组多选</label>
+                             <label class="font-noraml">Group Multiple choice</label>
                              <select class="form-control noselect2 selectpicker" data-none-selected-text="请选择" multiple>
-                               <optgroup label="--请选择开发语言--">
+                               <optgroup label="--Please select a development language--">
 								 <option value="Java">Java</option>
                                  <option value="PHP">PHP</option>
                                  <option value=".NET">.NET</option>
 							   </optgroup>
-							   <optgroup label="--请选择数据库--">
+							   <optgroup label="--Please select a database--">
 							     <option value="Oracle">Oracle</option>
                                  <option value="Mysql">Mysql</option>
                                  <option value="Sysbase">Sysbase</option>
@@ -132,7 +132,7 @@
                         </div>
                         <hr>
                         <div class="form-group">
-                            <label class="font-noraml">相关参数详细信息</label>
+                            <label class="font-noraml">Related parameter details</label>
                             <div><a href="http://doc.ruoyi.vip/#/standard/zjwd?id=bootstrap-select" target="_blank">http://doc.ruoyi.vip/#/standard/zjwd?id=bootstrap-select</a></div>
                         </div>
                     </div>

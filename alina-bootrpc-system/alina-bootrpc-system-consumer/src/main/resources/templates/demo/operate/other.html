@@ -1,46 +1,46 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-	<th:block th:include="include :: header('其他操作')" />
+	<th:block th:include="include :: header('Other operations')" />
 </head>
 <body class="white-bg">
 	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
 	    <form class="form-horizontal" id="form-demo-1">
 	        <div class="form-group">
-	            <label class="col-sm-2 control-label">用户名称：</label>
+	            <label class="col-sm-2 control-label">USERNAME：</label>
 	            <div class="col-sm-10">
-	                <input type="text" class="form-control" name="userName"placeholder="请输入用户名称">
+	                <input type="text" class="form-control" name="userName"placeholder="Username">
 	            </div>
 	        </div>
 	        <div class="form-group">
-	            <label class="col-sm-2 control-label">手机号码：</label>
+	            <label class="col-sm-2 control-label">PHONE：</label>
 	            <div class="col-sm-10">
-	                <input type="text" class="form-control" name="phonenumber" maxlength="11"placeholder="请输入手机号码">
+	                <input type="text" class="form-control" name="phonenumber" maxlength="11"placeholder="Phone number">
 	            </div>
 	        </div>
 	        <div class="form-group">
 	            <div class="col-sm-offset-2 col-sm-10">
-	                <button type="button" class="btn btn-sm btn-primary" onclick="submit1()"><i class="fa fa-check"></i>保 存（不刷新当前页）</button>&nbsp;
+	                <button type="button" class="btn btn-sm btn-primary" onclick="submit1()"><i class="fa fa-check"></i>Save (do not refresh the current page)</button>&nbsp;
 	            </div>
 	        </div>
 	    </form>
 	    <hr/>
 	    <form class="form-horizontal" id="form-demo-2">
 	        <div class="form-group">
-	            <label class="col-sm-2 control-label">用户名称：</label>
+	            <label class="col-sm-2 control-label">USERNAME：</label>
 	            <div class="col-sm-10">
-	                <input type="text" class="form-control" name="userName"placeholder="请输入用户名称">
+	                <input type="text" class="form-control" name="userName"placeholder="Username">
 	            </div>
 	        </div>
 	        <div class="form-group">
-	            <label class="col-sm-2 control-label">手机号码：</label>
+	            <label class="col-sm-2 control-label">PHONE：</label>
 	            <div class="col-sm-10">
-	                <input type="text" class="form-control" name="phonenumber" maxlength="11"placeholder="请输入手机号码">
+	                <input type="text" class="form-control" name="phonenumber" maxlength="11"placeholder="Phone number">
 	            </div>
 	        </div>
 	        <div class="form-group">
 	            <div class="col-sm-offset-2 col-sm-10">
-	                <button type="button" class="btn btn-sm btn-primary" onclick="submit2()"><i class="fa fa-check"></i>保 存（刷新当前页）</button>&nbsp;
+	                <button type="button" class="btn btn-sm btn-primary" onclick="submit2()"><i class="fa fa-check"></i>Save (do not refresh the current page)</button>&nbsp;
 	            </div>
 	        </div>
 	    </form>
@@ -59,7 +59,7 @@
 	            type: "post",
 	            success: function(result) {
 	            	if (result.code == 0) {
-	            		layer.msg("保存成功,正在刷新数据请稍后……", {
+	            		layer.msg("Saved successfully, refreshing data please wait ...", {
 		            	    icon: 1,
 		            	    time: 500,
 		            	    shade: [0.1, '#8F8F8F']
